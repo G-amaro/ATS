@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="PT"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/25.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/diogopais/Desktop/3 ano/2semestre/ats/Projeto1/SpotifyUM/target/surefire/surefirebooter628504326778162298.jar /Users/diogopais/Desktop/3 ano/2semestre/ats/Projeto1/SpotifyUM/target/surefire 2026-04-17T08-27-57_033-jvmRun1 surefire15388632429519556109tmp surefire_02783957265262910556tmp"/>
+    <property name="sun.java.command" value="/Users/diogopais/Desktop/3 ano/2semestre/ats/Projeto1/SpotifyUM/target/surefire/surefirebooter5970134375508132399.jar /Users/diogopais/Desktop/3 ano/2semestre/ats/Projeto1/SpotifyUM/target/surefire 2026-04-17T08-44-08_002-jvmRun1 surefire9421564140821231838tmp surefire_02707132099814092726tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/diogopais/Desktop/3 ano/2semestre/ats/Projeto1/SpotifyUM/target/test-classes:/Users/diogopais/Desktop/3 ano/2semestre/ats/Projeto1/SpotifyUM/target/classes:/Users/diogopais/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/diogopais/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/diogopais/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/diogopais/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/diogopais/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/diogopais/.m2/repository/org/mockito/mockito-core/4.11.0/mockito-core-4.11.0.jar:/Users/diogopais/.m2/repository/net/bytebuddy/byte-buddy/1.12.19/byte-buddy-1.12.19.jar:/Users/diogopais/.m2/repository/net/bytebuddy/byte-buddy-agent/1.12.19/byte-buddy-agent-1.12.19.jar:/Users/diogopais/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/diogopais/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/diogopais/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/diogopais/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/diogopais/.m2/repository/net/jqwik/jqwik/1.7.3/jqwik-1.7.3.jar:/Users/diogopais/.m2/repository/net/jqwik/jqwik-api/1.7.3/jqwik-api-1.7.3.jar:/Users/diogopais/.m2/repository/net/jqwik/jqwik-web/1.7.3/jqwik-web-1.7.3.jar:/Users/diogopais/.m2/repository/net/jqwik/jqwik-time/1.7.3/jqwik-time-1.7.3.jar:/Users/diogopais/.m2/repository/net/jqwik/jqwik-engine/1.7.3/jqwik-engine-1.7.3.jar:"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/diogopais/Desktop/3 ano/2semestre/ats/Projeto1/SpotifyUM/target/surefire/surefirebooter628504326778162298.jar"/>
+    <property name="surefire.real.class.path" value="/Users/diogopais/Desktop/3 ano/2semestre/ats/Projeto1/SpotifyUM/target/surefire/surefirebooter5970134375508132399.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="25.0.2"/>
@@ -65,6 +65,6 @@
   <testcase name="testEquals" classname="org.Model.Music.MusicMultimediaTest" time="0"/>
   <testcase name="testInheritance" classname="org.Model.Music.MusicMultimediaTest" time="0"/>
   <testcase name="testSetUrl" classname="org.Model.Music.MusicMultimediaTest" time="0"/>
-  <testcase name="testConstructor" classname="org.Model.Music.MusicMultimediaTest" time="0"/>
+  <testcase name="testConstructor" classname="org.Model.Music.MusicMultimediaTest" time="0.001"/>
   <testcase name="testDefaultConstructor" classname="org.Model.Music.MusicMultimediaTest" time="0"/>
 </testsuite>

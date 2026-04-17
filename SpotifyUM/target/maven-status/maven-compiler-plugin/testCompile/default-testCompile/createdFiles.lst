@@ -31,6 +31,7 @@ org/Model/Music/MusicMultimediaTest.class
 org/View/MenuManagerTest.class
 org/View/MenuTest.class
 org/Exceptions/AlreadyExistsExceptionTest.class
+org/Controller/dtos/MusicInfoTest.class
 org/Model/Plan/PlanPremiumBaseTest.class
 org/View/StatisticsMenuTest.class
 org/Exceptions/NoMusicsInDatabaseExceptionTest.class

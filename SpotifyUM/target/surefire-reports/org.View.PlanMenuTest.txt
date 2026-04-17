@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.View.PlanMenuTest
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s - in org.View.PlanMenuTest
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.055 s - in org.View.PlanMenuTest

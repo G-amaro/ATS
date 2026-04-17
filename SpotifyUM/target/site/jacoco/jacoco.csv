@@ -9,7 +9,7 @@ SpotifyUM,org.Model.Plan,PlanFree,0,34,0,0,0,15,0,9,0,9
 SpotifyUM,org.Model.Plan,Plan,0,10,0,0,0,4,0,3,0,3
 SpotifyUM,org.Model.Album,Album,8,191,0,10,4,50,2,18,2,13
 SpotifyUM,org,App,20,0,0,0,6,0,2,0,2,0
-SpotifyUM,org.Controller.dtos,MusicInfo,4,62,0,0,2,22,1,8,1,8
+SpotifyUM,org.Controller.dtos,MusicInfo,0,66,0,0,0,24,0,9,0,9
 SpotifyUM,org.Model,SpotifUM,1913,395,68,18,281,94,113,24,73,21
 SpotifyUM,org.Exceptions,NotFoundException,0,10,0,0,0,4,0,2,0,2
 SpotifyUM,org.Exceptions,EmptyPlaylistException,0,9,0,0,0,4,0,2,0,2
