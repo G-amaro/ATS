@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package org;
+
+import org.Controller.Controller;
+import org.View.MenuManager;
+import org.Model.SpotifUM;
+
+/**
+ * Esta classe contém o método main, que inicializa o modelo, o controlador e o gestor de menus,
+ * dando início à execução da aplicação SpotifyUM.
+ */
+<span class="nc" id="L11">public class App {</span>
+    /**
+     * Cria as instâncias do modelo, controlador e gestor de menus, e executa o menu principal.
+     * @param args Argumentos da linha de comando (não utilizados).
+     */
+    public static void main(String[] args) {
+        // Cria a instância principal do modelo (lógica de negócio)
+<span class="nc" id="L18">        SpotifUM spotifUM = new SpotifUM();</span>
+        // Cria o controlador que faz a ponte entre o modelo e a interface
+<span class="nc" id="L20">        Controller controller = new Controller(spotifUM);</span>
+        // Cria o gestor de menus responsável pela interface com o utilizador
+<span class="nc" id="L22">        MenuManager menuManager = new MenuManager(controller);</span>
+        // Inicia a execução do menu principal
+<span class="nc" id="L24">        menuManager.run();</span>
+<span class="nc" id="L25">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

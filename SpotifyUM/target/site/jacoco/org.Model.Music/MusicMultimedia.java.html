@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MusicMultimedia.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Model.Music</a> &gt; <span class="el_source">MusicMultimedia.java</span></div><h1>MusicMultimedia.java</h1><pre class="source lang-java linenums">package org.Model.Music;
+
+/**
+ *
+ * Herda todas as propriedades de Music e adiciona um campo URL para recursos multimídia.
+ */
+public class MusicMultimedia extends Music {
+    /**
+     * URL para o conteúdo multimídia.
+     */
+    private String url;
+
+    /**
+     * Construtor vazio da classe MusicMultimedia.
+     */
+    public MusicMultimedia() {
+<span class="fc" id="L17">        super();</span>
+<span class="fc" id="L18">        this.url = &quot;&quot;;</span>
+<span class="fc" id="L19">    }</span>
+    /**
+     * Construtor da classe MusicMultimedia.
+     * @param name Nome da música.
+     * @param interpreter Intérprete/artista.
+     * @param publisher Editora da música.
+     * @param lyrics Letra da música.
+     * @param musicalFigures Figuras musicais ou notação.
+     * @param musicGenre Gênero da música.
+     * @param album Nome do álbum.
+     * @param duration Duração em segundos.
+     * @param explicit Se a música é explícita.
+     * @param url URL para o conteúdo multimídia.
+     */
+    public MusicMultimedia(String name, String interpreter, String publisher, String lyrics,String musicalFigures, String musicGenre, String album, int duration, boolean explicit,String url) {
+<span class="fc" id="L34">        super(name, interpreter, publisher, lyrics, musicalFigures, musicGenre, album, duration, explicit);</span>
+<span class="fc" id="L35">        this.url = url;</span>
+<span class="fc" id="L36">    }</span>
+
+    /**
+     * Construtor de cópia da classe MusicMultimedia.
+     * @param m Objeto MusicMultimedia a ser copiado.
+     */
+    public MusicMultimedia(MusicMultimedia m) {
+<span class="fc" id="L43">        super(m);</span>
+<span class="fc" id="L44">        this.url = m.getUrl();</span>
+<span class="fc" id="L45">    }</span>
+
+    /**
+     * Obtém a URL.
+     * @return String da URL.
+     */
+    public String getUrl() {
+<span class="fc" id="L52">        return url;</span>
+    }
+
+    /**
+     * Define a URL.
+     * @param url String da URL a ser definida.
+     */
+    public void setUrl(String url) {
+<span class="fc" id="L60">        this.url = url;</span>
+<span class="fc" id="L61">    }</span>
+
+    /**
+     * Retorna uma representação em String do objeto MusicMultimedia.
+     * @return String descrevendo o objeto.
+     */
+    public String toString() {
+<span class="fc" id="L68">        return &quot;MusicaMultimedia{&quot; +</span>
+<span class="fc" id="L69">                super.toString() +</span>
+                &quot;, url='&quot; + url + '\'' +
+                '}';
+    }
+
+    /**
+     * Compara dois objetos MusicMultimedia.
+     * @param o Objeto a ser comparado.
+     * @return true se igual, false caso contrário.
+     */
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (this == o) return true;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if (!(o instanceof MusicMultimedia)) return false;</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (!super.equals(o)) return false;</span>
+
+<span class="fc" id="L84">        MusicMultimedia that = (MusicMultimedia) o;</span>
+
+<span class="pc bpc" id="L86" title="3 of 4 branches missed.">        return url != null ? url.equals(that.url) : that.url == null;</span>
+    }
+    
+    /**
+     * Clona o objeto MusicMultimedia.
+     * @return Novo objeto MusicMultimedia com os mesmos dados.
+     */
+    public MusicMultimedia clone() {
+<span class="fc" id="L94">        return new MusicMultimedia(this);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
