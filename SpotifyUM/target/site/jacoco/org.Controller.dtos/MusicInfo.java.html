@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MusicInfo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Controller.dtos</a> &gt; <span class="el_source">MusicInfo.java</span></div><h1>MusicInfo.java</h1><pre class="source lang-java linenums">package org.Controller.dtos;
+
+/**
+ *
+ * Esta classe é utilizada para transferir dados de uma música entre camadas da aplicação,
+ * incluindo nome, artista, letra, se é explícita, URL e mensagens de erro.
+ */
+
+/**
+ * Classe que representa informações detalhadas de uma música.
+ */
+public class MusicInfo {
+    /** Nome da música. */
+    private String musicName;
+    /** Nome do artista. */
+    private String artistName;
+    /** Letra da música, separada por palavras. */
+    private String[] lyrics;
+    /** Indica se a música é explícita. */
+    private boolean isExplicit;
+    /** URL associada à música (caso exista). */
+    private String url;
+    /** Mensagem de erro, caso exista algum problema. */
+    private String errorMessage;
+
+    /**
+     * Construtor principal.
+     * @param musicName Nome da música.
+     * @param artistName Nome do artista.
+     * @param lyrics Letra da música (string completa).
+     * @param url URL da música.
+     * @param isExplicit Indica se a música é explícita.
+     */
+<span class="fc" id="L34">    public MusicInfo(String musicName, String artistName, String lyrics, String url, boolean isExplicit) {</span>
+<span class="fc" id="L35">        this.musicName = musicName;</span>
+<span class="fc" id="L36">        this.artistName = artistName;</span>
+<span class="fc" id="L37">        this.lyrics = lyrics.split(&quot; &quot;);</span>
+<span class="fc" id="L38">        this.isExplicit = isExplicit;</span>
+<span class="fc" id="L39">        this.url = url;</span>
+<span class="fc" id="L40">        errorMessage = &quot;&quot;;</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Construtor para situações de erro.
+     * @param errorMessage Mensagem de erro.
+     */
+<span class="fc" id="L47">    public MusicInfo(String errorMessage){</span>
+<span class="fc" id="L48">        this.musicName = &quot;&quot;;</span>
+<span class="fc" id="L49">        this.artistName = &quot;&quot;;</span>
+<span class="fc" id="L50">        this.lyrics = null;</span>
+<span class="fc" id="L51">        this.isExplicit = false;</span>
+<span class="fc" id="L52">        this.url = &quot;&quot;;</span>
+<span class="fc" id="L53">        this.errorMessage = errorMessage;</span>
+<span class="fc" id="L54">    }</span>
+
+    /**
+     * Obtém o nome da música.
+     * @return Nome da música.
+     */
+    public String getMusicName(){
+<span class="fc" id="L61">        return this.musicName;</span>
+    }
+
+    /**
+     * Obtém o nome do artista.
+     * @return Nome do artista.
+     */
+    public String getArtistName(){
+<span class="fc" id="L69">        return this.artistName;</span>
+    }
+
+    /**
+     * Obtém a letra da música (array de palavras).
+     * @return Array de palavras da letra.
+     */
+    public String[] getLyrics(){
+<span class="fc" id="L77">        return this.lyrics;</span>
+    }
+
+    /**
+     * Indica se a música é explícita.
+     * @return true se for explícita, false caso contrário.
+     */
+    public boolean isExplicit(){
+<span class="fc" id="L85">        return this.isExplicit;</span>
+    }
+
+    /**
+     * Obtém a URL da música.
+     * @return URL da música.
+     */
+    public String getUrl(){
+<span class="fc" id="L93">        return this.url;</span>
+    }
+
+    /**
+     * Obtém a mensagem de erro, se existir.
+     * @return Mensagem de erro.
+     */
+    public String getErrorMessage(){
+<span class="fc" id="L101">        return this.errorMessage;</span>
+    }
+
+    /**
+     * Define a mensagem de erro.
+     * @param error Mensagem de erro a definir.
+     */
+    public void setErrorMessage(String error){
+<span class="fc" id="L109">        this.errorMessage = error;</span>
+<span class="fc" id="L110">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

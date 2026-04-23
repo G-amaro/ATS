@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Music.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Model.Music</a> &gt; <span class="el_source">Music.java</span></div><h1>Music.java</h1><pre class="source lang-java linenums">package org.Model.Music;
+
+import java.io.Serializable;
+
+/**
+ * Representa uma faixa musical.
+ * Contém informações como nome, intérprete, editora, letra, figuras musicais,
+ */
+public class Music implements Serializable {
+    /**
+     * Nome da faixa musical.
+     */
+    private String name;
+    /**
+     * Intérprete/artista da faixa.
+     */
+    private String interpreter;
+    /**
+     * Editora da faixa.
+     */
+    private String publisher;
+    /**
+     * Letra da faixa.
+     */
+    private String lyrics;
+    /**
+     * Figuras musicais ou notação.
+     */
+    private String musicalFigures;
+    /**
+     * Gênero musical da faixa.
+     */
+    private String genre;
+    /**
+     * Nome do álbum.
+     */
+    private String album;
+    /**
+     * Duração da faixa em segundos.
+     */
+    private int duration;
+    /**
+     * Número de reproduções da faixa.
+     */
+    private int reproductions;
+    /**
+     * Indica se a faixa é explícita.
+     */
+    private boolean explicit;
+
+    /**
+     * Construtor vazio da classe Music.
+     */
+<span class="fc" id="L54">    public Music() {</span>
+<span class="fc" id="L55">        this.name = &quot;&quot;;</span>
+<span class="fc" id="L56">        this.interpreter = &quot;&quot;;</span>
+<span class="fc" id="L57">        this.publisher = &quot;&quot;;</span>
+<span class="fc" id="L58">        this.lyrics = &quot;&quot;;</span>
+<span class="fc" id="L59">        this.musicalFigures = &quot;&quot;;</span>
+<span class="fc" id="L60">        this.genre = &quot;&quot;;</span>
+<span class="fc" id="L61">        this.album = &quot;&quot;;</span>
+<span class="fc" id="L62">        this.duration = 0;</span>
+<span class="fc" id="L63">        this.reproductions = 0; // Sempre com 0</span>
+<span class="fc" id="L64">        this.explicit = false; // Por padrão, não é explícita</span>
+<span class="fc" id="L65">    }</span>
+    /**
+     * Construtor da classe Music.
+     * @param name Nome da música.
+     * @param interpreter Intérprete/artista.
+     * @param publisher Editora da música.
+     * @param lyrics Letra da música.
+     * @param musicalFigures Figuras musicais ou notação.
+     * @param musicGenre Gênero da música.
+     * @param album Nome do álbum.
+     * @param duration Duração em segundos.
+     * @param explicit Se a música é explícita.
+     */
+    public Music(String name, String interpreter, String publisher, String lyrics,
+<span class="fc" id="L79">                 String musicalFigures, String musicGenre, String album, int duration, boolean explicit) {</span>
+<span class="fc" id="L80">        this.name = name;</span>
+<span class="fc" id="L81">        this.interpreter = interpreter;</span>
+<span class="fc" id="L82">        this.publisher = publisher;</span>
+<span class="fc" id="L83">        this.lyrics = lyrics;</span>
+<span class="fc" id="L84">        this.musicalFigures = musicalFigures;</span>
+<span class="fc" id="L85">        this.genre = musicGenre;</span>
+<span class="fc" id="L86">        this.album = album;</span>
+<span class="fc" id="L87">        this.duration = duration;</span>
+<span class="fc" id="L88">        this.reproductions = 0; // Sempre começa com 0</span>
+<span class="fc" id="L89">        this.explicit = explicit; // Pode ser explícita ou não</span>
+<span class="fc" id="L90">    }</span>
+
+    /**
+     * Construtor de cópia da classe Music.
+     * @param m Objeto Music a ser copiado.
+     */
+<span class="fc" id="L96">    public Music(Music m) {</span>
+<span class="fc" id="L97">        this.name = m.getName();</span>
+<span class="fc" id="L98">        this.interpreter = m.getInterpreter();</span>
+<span class="fc" id="L99">        this.publisher = m.getPublisher();</span>
+<span class="fc" id="L100">        this.lyrics = m.getLyrics();</span>
+<span class="fc" id="L101">        this.musicalFigures = m.getMusicalFigures();</span>
+<span class="fc" id="L102">        this.genre = m.getGenre();</span>
+<span class="fc" id="L103">        this.album = m.getAlbum();</span>
+<span class="fc" id="L104">        this.duration = m.getDuration();</span>
+<span class="fc" id="L105">        this.reproductions = m.getReproductions();</span>
+<span class="fc" id="L106">        this.explicit = m.isExplicit(); // Copia o estado explícito</span>
+<span class="fc" id="L107">    }</span>
+
+
+    // Getters e Setters
+    /**
+     * Retorna o nome da faixa.
+     * @return Nome da faixa.
+     */
+    public String getName() {
+<span class="fc" id="L116">        return name;</span>
+    }
+    /**
+     * Define o nome da faixa.
+     * @param nome Nome a ser definido.
+     */
+    public void setName(String nome) {
+<span class="fc" id="L123">        this.name = nome;</span>
+<span class="fc" id="L124">    }</span>
+    /**
+     * Retorna o intérprete da faixa.
+     * @return Intérprete da faixa.
+     */
+    public String getInterpreter() {
+<span class="fc" id="L130">        return interpreter;</span>
+    }
+    /**
+     * Define o intérprete da faixa.
+     * @param intreprete Intérprete a ser definido.
+     */
+    public void setInterpreter(String intreprete) {
+<span class="fc" id="L137">        this.interpreter = intreprete;</span>
+<span class="fc" id="L138">    }</span>
+    /**
+     * Retorna a editora da faixa.
+     * @return Editora da faixa.
+     */
+    public String getPublisher() {
+<span class="fc" id="L144">        return publisher;</span>
+    }
+    /**
+     * Define a editora da faixa.
+     * @param editora Editora a ser definida.
+     */
+    public void setPublisher(String editora) {
+<span class="fc" id="L151">        this.publisher = editora;</span>
+<span class="fc" id="L152">    }</span>
+    /**
+     * Retorna a letra da faixa.
+     * @return Letra da faixa.
+     */
+    public String getLyrics() {
+<span class="fc" id="L158">        return lyrics;</span>
+    }
+    /**
+     * Define a letra da faixa.
+     * @param letraPoema Letra a ser definida.
+     */
+    public void setLyrics(String letraPoema) {
+<span class="fc" id="L165">        this.lyrics = letraPoema;</span>
+<span class="fc" id="L166">    }</span>
+    /**
+     * Retorna as figuras musicais.
+     * @return Figuras musicais.
+     */
+    public String getMusicalFigures() {
+<span class="fc" id="L172">        return musicalFigures;</span>
+    }
+    /**
+     * Define as figuras musicais.
+     * @param linhasMusicais Figuras musicais a serem definidas.
+     */
+    public void setMusicalFigures(String linhasMusicais) {
+<span class="fc" id="L179">        this.musicalFigures = linhasMusicais;</span>
+<span class="fc" id="L180">    }</span>
+    /**
+     * Retorna o gênero da faixa.
+     * @return Gênero da faixa.
+     */
+    public String getGenre() {
+<span class="fc" id="L186">        return genre;</span>
+    }
+    /**
+     * Define o gênero da faixa.
+     * @param generoMusical Gênero a ser definido.
+     */
+    public void setGenre(String generoMusical) {
+<span class="fc" id="L193">        this.genre = generoMusical;</span>
+<span class="fc" id="L194">    }</span>
+    /**
+     * Retorna a duração em segundos.
+     * @return Duração em segundos.
+     */
+    public int getDuration() {
+<span class="fc" id="L200">        return duration;</span>
+    }
+    /**
+     * Define a duração em segundos.
+     * @param duracao Duração a ser definida.
+     */
+    public void setDuration(int duracao) {
+<span class="fc" id="L207">        this.duration = duracao;</span>
+<span class="fc" id="L208">    }</span>
+    /**
+     * Retorna o nome do álbum.
+     * @return Nome do álbum.
+     */
+    public String getAlbum() {
+<span class="fc" id="L214">        return album;</span>
+    }
+    /**
+     * Define o nome do álbum.
+     * @param album Nome do álbum a ser definido.
+     */
+    public void setAlbum(String album) {
+<span class="fc" id="L221">        this.album = album;</span>
+<span class="fc" id="L222">    }</span>
+    /**
+     * Retorna o número de reproduções.
+     * @return Número de vezes que a faixa foi reproduzida.
+     */
+    public int getReproductions() {
+<span class="fc" id="L228">        return reproductions;</span>
+    }
+    /**
+     * Define o número de reproduções.
+     * @param reproducoes Número de reproduções a ser definido.
+     */
+    public void setReproductions(int reproducoes) {
+<span class="fc" id="L235">        this.reproductions = reproducoes;</span>
+<span class="fc" id="L236">    }</span>
+    /**
+     * Retorna se a faixa é explícita.
+     * @return true se for explícita, false caso contrário.
+     */
+    public boolean isExplicit() {
+<span class="fc" id="L242">        return explicit;</span>
+    }
+    /**
+     * Define se a faixa é explícita.
+     * @param explicit true se for explícita, false caso contrário.
+     */
+    public void setExplicit(boolean explicit) {
+<span class="fc" id="L249">        this.explicit = explicit;</span>
+<span class="fc" id="L250">    }</span>
+
+    /**
+     * Método clone que cria uma cópia do objeto Music.
+     * @return Novo objeto Music com os mesmos dados.
+     */
+    public Music clone(){
+<span class="fc" id="L257">        return new Music(this);</span>
+    }
+
+    /**
+     * Método toString que retorna uma representação em string do objeto Music.
+     * @return String descrevendo a faixa musical.
+     */
+    public String toString(){
+<span class="fc" id="L265">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L266">        sb.append(&quot;Nome: &quot;).append(this.name).append(&quot;\n&quot;);</span>
+<span class="fc" id="L267">        sb.append(&quot;Interprete: &quot;).append(this.interpreter).append(&quot;\n&quot;);</span>
+<span class="fc" id="L268">        sb.append(&quot;Editora: &quot;).append(this.publisher).append(&quot;\n&quot;);</span>
+<span class="fc" id="L269">        sb.append(&quot;Letra: &quot;).append(this.lyrics).append(&quot;\n&quot;);</span>
+<span class="fc" id="L270">        sb.append(&quot;Linhas Musicais: &quot;).append(this.musicalFigures).append(&quot;\n&quot;);</span>
+<span class="fc" id="L271">        sb.append(&quot;Genero Musical: &quot;).append(this.genre).append(&quot;\n&quot;);</span>
+<span class="fc" id="L272">        sb.append(&quot;Album: &quot;).append(this.album).append(&quot;\n&quot;);</span>
+<span class="fc" id="L273">        sb.append(&quot;Duracao: &quot;).append(this.duration).append(&quot;\n&quot;);</span>
+<span class="fc" id="L274">        sb.append(&quot;Reproducoes: &quot;).append(this.reproductions).append(&quot;\n&quot;);</span>
+<span class="fc bfc" id="L275" title="All 2 branches covered.">        sb.append(&quot;Explicita: &quot;).append(this.explicit ? &quot;Sim&quot; : &quot;Nao&quot;).append(&quot;\n&quot;);</span>
+<span class="fc" id="L276">        return sb.toString();</span>
+    }
+
+    /**
+     * Compara dois objetos Music.
+     * @param o Objeto a ser comparado.
+     * @return true se igual, false caso contrário.
+     */
+    public boolean equals(Object o){
+<span class="fc bfc" id="L285" title="All 2 branches covered.">        if (this == o) return true;</span>
+<span class="fc bfc" id="L286" title="All 2 branches covered.">        if (!(o instanceof Music)) return false;</span>
+
+<span class="fc" id="L288">        Music that = (Music) o;</span>
+
+<span class="pc bpc" id="L290" title="3 of 4 branches missed.">        return name != null ? name.equals(that.name) : that.name == null;</span>
+    }
+
+    /**
+     * Reproduz a faixa musical.
+     * @return Letra da faixa musical.
+     */
+    public String play(){
+<span class="fc" id="L298">        this.reproductions++;</span>
+<span class="fc" id="L299">        return this.lyrics;</span>
+    }
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

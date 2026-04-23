@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Model.User</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package org.Model.User;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.time.LocalDate;
+
+
+import org.Exceptions.AlreadyExistsException;
+import org.Exceptions.NotFoundException;
+import org.Exceptions.NoPremissionException;
+import org.Model.Music.*;
+import org.Model.Plan.Plan;
+import org.Model.Plan.PlanFree;
+import org.Model.Playlist.*;
+
+
+
+/**
+ * Contém informações pessoais, plano de subscrição, playlists e histórico de reproduções.
+ * Permite operações como adicionar/remover playlists, adicionar músicas a playlists,
+ * gerir reproduções e alterar dados do utilizador.
+ */
+public class User implements Serializable{
+    /**
+     * Nome de utilizador.
+     */
+    private String username;
+    /**
+     * Email do utilizador.
+     */
+    private String email;
+    /**
+     * Morada do utilizador.
+     */
+    private String adress;
+    /**
+     * Password do utilizador.
+     */
+    private String password;
+    /**
+     * Plano de subscrição do utilizador.
+     */
+    private Plan plan;
+    /**
+     * Lista de playlists do utilizador.
+     */
+    private List&lt;Playlist&gt; playlists;
+    /**
+     * Lista de reproduções de música do utilizador.
+     */
+    private List&lt;MusicReproduction&gt; musicReproductions;
+
+    /**
+     * Metodo de construção de um user   
+     * @param username nome de utilizador
+     * @param email email do utilizador
+     * @param adress morada do utilizador
+     * @param password password do utilizador
+     * @param plan plano do utilizador
+     * @param playlists playlists do utilizador
+     * @param musicReproductions reproduções de música do utilizador
+     */
+<span class="nc" id="L64">    public User(String username, String email, String adress, String password, Plan plan, List&lt;Playlist&gt; playlists, List&lt;MusicReproduction&gt; musicReproductions) {   </span>
+<span class="nc" id="L65">        this.username = username;</span>
+<span class="nc" id="L66">        this.email = email;</span>
+<span class="nc" id="L67">        this.adress = adress;</span>
+<span class="nc" id="L68">        this.password = password;</span>
+<span class="nc" id="L69">        this.plan = plan;</span>
+<span class="nc" id="L70">        this.playlists = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        for (Playlist p : playlists) {</span>
+<span class="nc" id="L72">            this.playlists.add(p.clone());</span>
+<span class="nc" id="L73">        }</span>
+<span class="nc" id="L74">        this.musicReproductions = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        for (MusicReproduction m : musicReproductions) {</span>
+<span class="nc" id="L76">            this.musicReproductions.add(m);</span>
+<span class="nc" id="L77">        }</span>
+<span class="nc" id="L78">    }</span>
+
+    /**
+     * Construtor vazio da classe User.
+     */
+<span class="nc" id="L83">    public User() {</span>
+<span class="nc" id="L84">        this.username = &quot;&quot;;</span>
+<span class="nc" id="L85">        this.email = &quot;&quot;;</span>
+<span class="nc" id="L86">        this.adress = &quot;&quot;;</span>
+<span class="nc" id="L87">        this.password = &quot;&quot;;</span>
+<span class="nc" id="L88">        this.plan = new PlanFree();</span>
+<span class="nc" id="L89">        this.playlists = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L90">        this.musicReproductions = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L91">    }</span>
+
+    /**
+     * Construtor de cópia da classe User.
+     * @param u Objeto User a ser copiado.
+     */
+<span class="fc" id="L97">    public User(User u) {</span>
+<span class="fc" id="L98">        this.username = u.username;</span>
+<span class="fc" id="L99">        this.email = u.email;</span>
+<span class="fc" id="L100">        this.adress = u.adress;</span>
+<span class="fc" id="L101">        this.password = u.password;</span>
+<span class="fc" id="L102">        this.playlists = u.getPlaylists();</span>
+<span class="fc" id="L103">        this.plan = u.plan;</span>
+<span class="fc" id="L104">        this.musicReproductions = u.getMusicReproductions();</span>
+<span class="fc" id="L105">    }</span>
+
+    /** 
+     * Construtor para quando o utilizador se regista
+     * @param username nome de utilizador
+     * @param email email do utilizador
+     * @param adress morada do utilizador
+     * @param password password do utilizador
+     */
+<span class="fc" id="L114">    public User(String username, String email, String adress, String password) {</span>
+<span class="fc" id="L115">        this.username = username;</span>
+<span class="fc" id="L116">        this.email = email;</span>
+<span class="fc" id="L117">        this.adress = adress;</span>
+<span class="fc" id="L118">        this.password = password;</span>
+<span class="fc" id="L119">        this.plan = new PlanFree();</span>
+<span class="fc" id="L120">        this.playlists = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L121">        this.musicReproductions = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L123">    }</span>
+
+    /**
+     * Retorna o nome de utilizador.
+     * @return Nome de utilizador.
+     */
+    public String getUsername() {
+<span class="fc" id="L130">        return username;</span>
+    }
+
+    /**
+     * Define o nome de utilizador.
+     * @param name Nome a ser definido.
+     */
+    public void setUsername(String name) {
+<span class="fc" id="L138">        this.username = name;</span>
+<span class="fc" id="L139">    }</span>
+
+    /**
+     * Retorna o email do utilizador.
+     * @return Email do utilizador.
+     */
+    public String getEmail() {
+    
+<span class="fc" id="L147">        return email;</span>
+    }
+
+    /**
+     * Define o email do utilizador.
+     * @param email Email a ser definido.
+     */
+    public void setEmail(String email) {
+<span class="fc" id="L155">        this.email = email;</span>
+<span class="fc" id="L156">    }</span>
+
+    /**
+     * Retorna a morada do utilizador.
+     * @return Morada do utilizador.
+     */
+    public String getAdress() {
+<span class="fc" id="L163">        return adress;</span>
+    }
+
+    /**
+     * Define a morada do utilizador.
+     * @param morada Morada a ser definida.
+     */
+    public void setAdress(String morada) {
+<span class="fc" id="L171">        this.adress = morada;</span>
+<span class="fc" id="L172">    }</span>
+
+    /**
+     * Define a password do utilizador.
+     * @param password Password a ser definida.
+     */
+    public void setPassword(String password) {
+<span class="fc" id="L179">        this.password = password;</span>
+<span class="fc" id="L180">    }</span>
+
+    /**
+     * Retorna a password do utilizador.
+     * @return Password do utilizador.
+     */
+    public String getPassword() {
+<span class="fc" id="L187">        return password;</span>
+    }
+
+
+    /**
+     * Define o plano do utilizador.
+     * @param plan Plano a ser definido.
+     */
+    public void setPlan(Plan plan) {
+<span class="fc" id="L196">        this.plan = plan;</span>
+<span class="fc" id="L197">    }</span>
+
+    /**
+     * Retorna o plano do utilizador.
+     * @return Plano do utilizador.
+     */
+    public Plan getPlan() {
+<span class="fc" id="L204">        return plan;</span>
+    }
+
+    /**
+     * Retorna a lista de playlists do utilizador.
+     * @return Lista de playlists.
+     */
+    public List&lt;Playlist&gt; getPlaylists() {
+<span class="fc" id="L212">        List&lt;Playlist&gt; clone = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">        for (Playlist p : this.playlists) {</span>
+<span class="fc" id="L214">            clone.add(p.clone());</span>
+<span class="fc" id="L215">        }</span>
+<span class="fc" id="L216">        return clone;</span>
+    }
+
+    /**
+     * Define a lista de playlists do utilizador.
+     * @param playlists Lista de playlists.
+     */
+    public void setPlaylists(List&lt;Playlist&gt; playlists) {
+<span class="nc" id="L224">        this.playlists = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">        for (Playlist p : playlists) {</span>
+<span class="nc" id="L226">            this.playlists.add(p.clone());</span>
+<span class="nc" id="L227">        }</span>
+<span class="nc" id="L228">    }</span>
+
+    /**
+     * Retorna a lista de reproduções de música do utilizador.
+     * @return Lista de reproduções de música.
+     */
+    public List&lt;MusicReproduction&gt; getMusicReproductions() {
+<span class="fc" id="L235">        List&lt;MusicReproduction&gt; clone = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L236" title="All 2 branches covered.">        for (MusicReproduction m : this.musicReproductions) {</span>
+<span class="fc" id="L237">            clone.add(m.clone());</span>
+<span class="fc" id="L238">        }</span>
+<span class="fc" id="L239">        return clone;</span>
+    }
+
+    /**
+     * Define a lista de reproduções de música do utilizador.
+     * @param musicReproductions Lista de reproduções de música.
+     */
+    public void setMusicReproductions(List&lt;MusicReproduction&gt; musicReproductions) {
+<span class="nc" id="L247">        this.musicReproductions = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">        for (MusicReproduction m : musicReproductions) {</span>
+<span class="nc" id="L249">            this.musicReproductions.add(m.clone());</span>
+<span class="nc" id="L250">        }</span>
+<span class="nc" id="L251">    }</span>
+
+    @Override
+    /**
+     * Método toString que retorna uma representação em String do objeto User.
+     * @return String com os dados do utilizador.
+     */
+    public String toString() {
+<span class="nc" id="L259">        return </span>
+            &quot;╔═══════════════ DADOS DO UTILIZADOR ═══════════════╗\n&quot; +
+            &quot;  👤 Nome de Utilizador: &quot; + username + &quot;\n&quot; +
+            &quot;  📧 Email: &quot; + email + &quot;\n&quot; +
+            &quot;  🏠 Morada: &quot; + adress + &quot;\n&quot; +
+<span class="nc" id="L264">            &quot;  🔑 Password: &quot; + &quot;•&quot;.repeat(password.length()) + &quot;\n&quot; +</span>
+            &quot;  📋 Plano: &quot; + plan + &quot;\n&quot; +
+            &quot;╚═══════════════════════════════════════════════════╝&quot;;
+    }
+
+    /**
+     * Método equals que compara dois objetos User.
+     * @param o Objeto a ser comparado.
+     * @return true se igual, false caso contrário.
+     */
+
+
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L277" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L278" title="1 of 2 branches missed.">        if (!(o instanceof User)) return false;</span>
+
+<span class="fc" id="L280">        User that = (User) o;</span>
+
+<span class="pc bpc" id="L282" title="1 of 2 branches missed.">        if (!username.equals(that.username)) return false;</span>
+<span class="pc bpc" id="L283" title="1 of 2 branches missed.">        if (!email.equals(that.email)) return false;</span>
+<span class="pc bpc" id="L284" title="1 of 2 branches missed.">        if (!adress.equals(that.adress)) return false;</span>
+<span class="fc" id="L285">        return password.equals(that.password);</span>
+    }
+
+    /**
+     * Método clone que cria uma cópia do objeto User.
+     * @return Novo objeto User com os mesmos dados.
+     */
+    public User clone() {
+<span class="fc" id="L293">        return new User(this);</span>
+    }
+
+    /**
+     * Retorna o nome de todas as playlists do user
+     * Throws UnsupportedOperationException se for um user free
+     * 
+     * @return Retorna uma string com os nomes das playlists, uma por linha
+     */
+    public String namePlaylists() {
+<span class="nc bnc" id="L303" title="All 2 branches missed.">        if (this.plan.canAccessLibrary()){</span>
+<span class="nc" id="L304">            StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L305" title="All 2 branches missed.">            for (Playlist p : this.playlists) {</span>
+<span class="nc" id="L306">                sb.append(String.format(&quot;🎵 [#%03d] %-25s | Autor: %-15s\n&quot;, p.getId(), p.getName(), p.getAutor()));            }</span>
+<span class="nc" id="L307">            return sb.toString();</span>
+        }
+        else {
+<span class="nc" id="L310">            throw new UnsupportedOperationException(&quot;Utilizadores Free não possuem playlists.&quot;);</span>
+        }
+    }
+
+    /**
+     * Adiciona uma playlist à Library
+     * @param nome -&gt; nome da playlist
+    */
+    public void addPlaylist(String nome){
+<span class="fc bfc" id="L319" title="All 2 branches covered.">        if (this.plan.canAccessLibrary()){</span>
+<span class="fc" id="L320">            Playlist p = new Playlist(nome, this.username);</span>
+<span class="fc" id="L321">            this.playlists.add(p); </span>
+<span class="fc" id="L322">        }</span>
+        else {
+<span class="fc" id="L324">            throw new UnsupportedOperationException(&quot;Utilizadores Free não podem adicionar playlists.&quot;);</span>
+        }
+<span class="fc" id="L326">    }</span>
+
+    /**
+     * Adiciona uma música à lista de reproduções
+     * @param m -&gt; música a adicionar
+     */
+    public void addMusicReproduction(Music m) {
+<span class="fc" id="L333">        MusicReproduction mr = new MusicReproduction(m);</span>
+<span class="fc" id="L334">        this.musicReproductions.add(mr);</span>
+<span class="fc" id="L335">    }</span>
+
+    /**
+     * Adiciona uma musica a uma playlist
+     * @param playlistId -&gt; id da playlist
+     * @param m  -&gt; nome da musica
+     * @throws NotFoundException se a playlist não existir
+     * @throws AlreadyExistsException se a musica já pertencer a playlist
+     * @throws NoPremissionException se for um user free
+     */
+    public void addMusicPlaylist(int playlistId, Music m) throws NotFoundException, AlreadyExistsException, NoPremissionException {
+<span class="fc bfc" id="L346" title="All 2 branches covered.">        for (Playlist p : this.playlists) {</span>
+<span class="pc bpc" id="L347" title="1 of 2 branches missed.">            if (p.getId() == playlistId) {</span>
+<span class="pc bpc" id="L348" title="1 of 2 branches missed.">                if (!p.getAutor().equals(this.username)) {</span>
+<span class="nc" id="L349">                    throw new NoPremissionException(&quot;Só o autor da playlist pode adicionar músicas.&quot;);</span>
+                }
+<span class="fc" id="L351">                p.addMusic(m);</span>
+<span class="fc" id="L352">                return;</span>
+            }
+<span class="nc" id="L354">        }</span>
+<span class="fc" id="L355">        throw new NotFoundException(&quot;&quot; + playlistId);</span>
+        }
+
+    /**
+     * Retorna a playlist através do nome da mesma
+     * @param playlistId -&gt; id da playlist
+     * @return Uma instancia de uma playlist
+     * @throws NotFoundException se a playlist não existir
+    */
+    public Playlist getPlaylistById(int playlistId) throws NotFoundException {
+<span class="pc bpc" id="L365" title="1 of 2 branches missed.">        if (this.plan.canAccessLibrary()){</span>
+<span class="pc bpc" id="L366" title="1 of 2 branches missed.">            for (Playlist p : this.playlists) {</span>
+<span class="pc bpc" id="L367" title="1 of 2 branches missed.">                if (p.getId() == playlistId) {</span>
+<span class="fc" id="L368">                    return p;</span>
+                }
+<span class="nc" id="L370">            }</span>
+<span class="nc" id="L371">            throw new NotFoundException(&quot;&quot; + playlistId);</span>
+        }
+        else {
+<span class="nc" id="L374">            throw new UnsupportedOperationException(&quot;Utilizadores Free não podem adicionar músicas a playlists.&quot;);</span>
+        }
+    }
+
+    /**
+     * Adiciona pontos ao utilizador
+     * @throws UnsupportedOperationException se for um user free
+     */
+    public void addPoints(){
+<span class="nc" id="L383">        this.plan.addPoints();</span>
+<span class="nc" id="L384">    }</span>
+
+    /** 
+     * Remove uma musica de uma playlist
+     * @param musicName -&gt; nome da musica
+     * @param playlistId -&gt; id da playlist
+     * @throws NotFoundException se a playlist não existir
+     * @throws NoPremissionException se o utilizador não tiver permissão para aceder à playlist
+     * 
+     */ 
+    public void removeMusicFromPlaylist(Music musicName, int playlistId) throws NotFoundException,NoPremissionException{
+<span class="fc" id="L395">        Playlist playlist = null;</span>
+<span class="fc bfc" id="L396" title="All 2 branches covered.">        for (Playlist p : this.playlists) {</span>
+<span class="pc bpc" id="L397" title="1 of 2 branches missed.">            if (p.getId() == playlistId) {</span>
+<span class="pc bpc" id="L398" title="1 of 2 branches missed.">                if (!p.getAutor().equals(this.username)) {</span>
+<span class="nc" id="L399">                    throw new NoPremissionException(&quot;Só o autor da playlist pode remover músicas.&quot;);</span>
+                }
+<span class="fc" id="L401">                playlist = p;</span>
+<span class="fc" id="L402">                break;</span>
+            }
+<span class="nc" id="L404">        }</span>
+
+<span class="fc bfc" id="L406" title="All 2 branches covered.">        if (playlist == null) {</span>
+<span class="fc" id="L407">            throw new NotFoundException(&quot;&quot; + playlistId);</span>
+        }
+
+<span class="pc bpc" id="L410" title="1 of 2 branches missed.">        if (!playlist.removeMusic(musicName)) {</span>
+<span class="nc" id="L411">            throw new NotFoundException(musicName.getName());</span>
+        }
+<span class="fc" id="L413">    }</span>
+
+    /**
+     * Verifica se o utilizador tem acesso à biblioteca
+     * @return true se o utilizador tiver acesso à biblioteca, false caso contrário
+     */
+    public boolean hasLibrary() {
+<span class="nc" id="L420">        return this.plan.canAccessLibrary();</span>
+    }
+
+    /**
+     * Obtém o número de playlists do utilizador
+     * @return Número de playlists do utilizador
+     */
+    public int getUserPlaylistCount(){
+<span class="nc" id="L428">        int count = 0;</span>
+<span class="nc bnc" id="L429" title="All 2 branches missed.">        for (Playlist p : this.playlists) {</span>
+<span class="nc bnc" id="L430" title="All 2 branches missed.">            if (p.getAutor().equals(this.username)) {</span>
+<span class="nc" id="L431">                count++;</span>
+            }
+<span class="nc" id="L433">        }</span>
+<span class="nc" id="L434">        return count;</span>
+    }
+
+    /**
+     * Altera o autor de todas as playlists do utilizador
+     * @param newName -&gt; novo nome do autor
+     */
+    public void changePlaylistAutor(String newName){
+<span class="nc bnc" id="L442" title="All 2 branches missed.">        for (Playlist p : this.playlists) {</span>
+<span class="nc bnc" id="L443" title="All 2 branches missed.">            if (p.getAutor().equals(this.username)) {</span>
+<span class="nc" id="L444">                p.setAutor(newName);</span>
+            }
+<span class="nc" id="L446">        }</span>
+<span class="nc" id="L447">    }</span>
+
+    /**
+     * Retorna o número de reproduções de música entre duas datas
+     * @param startDate -&gt; data inicial
+     * @param endDate -&gt; data final
+     * @return -&gt; número de reproduções
+     */
+    public int getMusicReproductionsCount(LocalDate startDate, LocalDate endDate) {
+<span class="fc" id="L456">        return (int) this.musicReproductions.stream()</span>
+<span class="pc bpc" id="L457" title="2 of 4 branches missed.">                .filter(m -&gt; m.getDate().isAfter(startDate) &amp;&amp; m.getDate().isBefore(endDate))</span>
+<span class="fc" id="L458">                .count();</span>
+    }
+
+    /**
+     * Adiciona uma playlist à biblioteca do utilizador
+     * @param p -&gt; playlist a adicionar
+     * @throws AlreadyExistsException se a playlist já existir na biblioteca
+     */
+    public void addPlaylistToLibrary(Playlist p) throws AlreadyExistsException {
+<span class="pc bpc" id="L467" title="1 of 2 branches missed.">        if(this.playlists.contains(p)){</span>
+<span class="nc" id="L468">            throw new AlreadyExistsException(p.getName());</span>
+        }
+        else{
+<span class="fc" id="L471">            this.playlists.add(p);</span>
+        }
+<span class="fc" id="L473">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

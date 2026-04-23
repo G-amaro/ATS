@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminMenu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.View</a> &gt; <span class="el_source">AdminMenu.java</span></div><h1>AdminMenu.java</h1><pre class="source lang-java linenums">package org.View;
+
+import org.Controller.Controller;
+
+/**
+ *
+ * Permite ao administrador importar/exportar a base de dados,
+ * adicionar músicas e aceder a estatísticas do sistema.
+ */
+public class AdminMenu extends Menu {
+    /**
+     * Construtor do menu de administração.
+     * @param controller Controlador principal da aplicação.
+     * @param menuManager Gestor de menus.
+     */
+    public AdminMenu(Controller controller, MenuManager menuManager) {
+<span class="fc" id="L17">        super(controller, menuManager);</span>
+<span class="fc" id="L18">    }</span>
+
+    /**
+     * Mostra o menu de administração e trata a seleção do utilizador.
+     */
+    @Override
+    public void show() {
+<span class="nc" id="L25">        System.out.println(&quot;\n🎧━━━━━━━━━━━━━━━【 MENU DE ADMINISTRADOR 】━━━━━━━━━━━━━━━🎧\n&quot;);</span>
+<span class="nc" id="L26">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;1️⃣&quot;, &quot;📂 Importar Base de Dados existente.&quot;);</span>
+<span class="nc" id="L27">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;2️⃣&quot;, &quot;💾 Exportar Base de Dados.&quot;);</span>
+<span class="nc" id="L28">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;3️⃣&quot;, &quot;🎼 Adicionar Música ao sistema&quot;);</span>
+<span class="nc" id="L29">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;4️⃣&quot;, &quot;📊 Mostrar Estatísticas.&quot;);</span>
+<span class="nc" id="L30">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;0️⃣&quot;, &quot;🔙 Sair para o menu de login&quot;);</span>
+<span class="nc" id="L31">        System.out.print(&quot;\n👉 Escolhe uma opção: &quot;);</span>
+<span class="nc" id="L32">        handleInput();</span>
+<span class="nc" id="L33">    }</span>
+    
+    /**
+     * Lê e processa a opção escolhida pelo utilizador.
+     */
+    public void handleInput() {
+        try{
+<span class="fc" id="L40">            int choice = getScanner().nextInt();</span>
+<span class="fc" id="L41">            getScanner().nextLine(); // Limpar buffer</span>
+<span class="fc" id="L42">            cleanTerminal();</span>
+
+<span class="pc bpc" id="L44" title="1 of 6 branches missed.">            switch (choice) {</span>
+                case 1:
+<span class="fc" id="L46">                    importDatabase();</span>
+<span class="fc" id="L47">                    break;</span>
+                case 2:
+<span class="fc" id="L49">                    exportDatabase();</span>
+<span class="fc" id="L50">                    break;</span>
+                case 3:
+<span class="nc" id="L52">                    addNewMusic();</span>
+<span class="nc" id="L53">                    break;</span>
+                case 4:
+<span class="fc" id="L55">                    getMenuManager().setMenu(new StatisticsMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L56">                    break;</span>
+                case 0:
+<span class="fc" id="L58">                    System.out.println(&quot;👋 A sair para o menu de login...&quot;);</span>
+<span class="fc" id="L59">                    getMenuManager().setMenu(new LoginMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L60">                    break;</span>
+                default:
+<span class="fc" id="L62">                    System.out.println(&quot;❌ Opção inválida. Tenta novamente.&quot;);</span>
+                    break;
+            }
+<span class="fc" id="L65">        } catch (Exception e) {</span>
+<span class="fc" id="L66">            System.out.println(&quot;Por favor, insira apenas Números.&quot;);</span>
+<span class="fc" id="L67">            getScanner().nextLine();</span>
+<span class="fc" id="L68">        }</span>
+<span class="fc" id="L69">    }</span>
+
+    /**
+     * Importa a base de dados a partir de um ficheiro.
+     */
+    public void importDatabase() {
+<span class="fc" id="L75">        System.out.print(&quot;📂 Caminho do ficheiro de base de dados a importar: &quot;);</span>
+<span class="fc" id="L76">        String filePath = getScanner().nextLine();</span>
+
+<span class="fc" id="L78">        System.out.println(this.getController().importModel(filePath));</span>
+<span class="fc" id="L79">    }</span>
+
+    /**
+     * Exporta a base de dados para um ficheiro.
+     */
+    public void exportDatabase() {
+<span class="fc" id="L85">        System.out.print(&quot;💾 Caminho do ficheiro onde guardar a base de dados: &quot;);</span>
+<span class="fc" id="L86">        String filePath = getScanner().nextLine();</span>
+
+<span class="fc" id="L88">        System.out.println(this.getController().exportModel(filePath));</span>
+<span class="fc" id="L89">    }</span>
+
+    /**
+     * Adiciona uma nova música ao sistema.
+     */
+    public void addNewMusic(){
+<span class="nc" id="L95">        System.out.println(&quot;\n🎼================= Adicionar Nova Música =================🎼\n&quot;);</span>
+<span class="nc" id="L96">        System.out.print(&quot;🎵 Nome da nova música: &quot;);</span>
+<span class="nc" id="L97">        String musicName = getScanner().nextLine();</span>
+
+<span class="nc" id="L99">        System.out.print(&quot;👤 Nome do artista: &quot;);</span>
+<span class="nc" id="L100">        String artistName = getScanner().nextLine();</span>
+
+<span class="nc" id="L102">        System.out.print(&quot;🏷️  Editora: &quot;);</span>
+<span class="nc" id="L103">        String publisher = getScanner().nextLine();</span>
+
+<span class="nc" id="L105">        System.out.print(&quot;📝 Letra da música: &quot;);</span>
+<span class="nc" id="L106">        String lyrics = getScanner().nextLine();</span>
+
+<span class="nc" id="L108">        System.out.print(&quot;🎼 Figuras musicais: &quot;);</span>
+<span class="nc" id="L109">        String musicalFigures = getScanner().nextLine();</span>
+
+<span class="nc" id="L111">        System.out.print(&quot;🎶 Género musical: &quot;);</span>
+<span class="nc" id="L112">        String genre = getScanner().nextLine();</span>
+
+<span class="nc" id="L114">        System.out.print(&quot;💿 Nome do álbum: &quot;);</span>
+<span class="nc" id="L115">        String albumName = getScanner().nextLine();</span>
+
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        if(!this.getController().albumExists(albumName)){</span>
+<span class="nc" id="L118">            System.out.println(&quot;⚠️  O álbum não existe.&quot;);</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            if(askConfirmation(&quot;Deseja criar um novo álbum com esse nome?&quot;)){</span>
+<span class="nc" id="L120">                this.getController().createAlbum(albumName, artistName);</span>
+<span class="nc" id="L121">                System.out.println(&quot;✅ Álbum criado com sucesso!&quot;);</span>
+            } else {
+<span class="nc" id="L123">                System.out.println(&quot;❌ Operação cancelada. Música não adicionada.&quot;);</span>
+<span class="nc" id="L124">                return;</span>
+            }
+        }
+
+<span class="nc" id="L128">        System.out.print(&quot;⏱️  Duração da música (em segundos): &quot;);</span>
+<span class="nc" id="L129">        int duration = getScanner().nextInt();</span>
+<span class="nc" id="L130">        getScanner().nextLine(); </span>
+
+<span class="nc" id="L132">        boolean explicit = askConfirmation(&quot;🔞 A sua música contém conteúdo explícito?&quot;);</span>
+
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if(askConfirmation(&quot;🌐 A sua música possui um URL associado?&quot;)){</span>
+<span class="nc" id="L135">            System.out.print(&quot;🔗 URL associado: &quot;);</span>
+<span class="nc" id="L136">            String url = getScanner().nextLine();</span>
+<span class="nc" id="L137">            this.getController().addMusic(musicName, artistName, publisher, lyrics, musicalFigures, genre, albumName, duration, explicit, url);</span>
+<span class="nc" id="L138">        }</span>
+        else{
+<span class="nc" id="L140">            this.getController().addMusic(musicName, artistName, publisher, lyrics, musicalFigures, genre, albumName, duration, explicit, null);</span>
+        }
+<span class="nc" id="L142">        System.out.println(&quot;\n✅ Música adicionada com sucesso!&quot;);</span>
+<span class="nc" id="L143">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
