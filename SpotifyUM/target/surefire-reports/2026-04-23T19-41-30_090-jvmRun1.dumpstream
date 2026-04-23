@@ -1,222 +1,222 @@
-# Created at 2026-04-17T08:44:08.876
+# Created at 2026-04-23T19:41:31.018
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.MainMenuTest,testHandleInputProfileMenu,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.886
+# Created at 2026-04-23T19:41:31.027
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.MainMenuTest,testHandleInputInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.897
+# Created at 2026-04-23T19:41:31.039
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.MainMenuTest,testHandleInputReproductionMenu,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.903
+# Created at 2026-04-23T19:41:31.046
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.MainMenuTest,testHandleInputNonNumeric,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.913
+# Created at 2026-04-23T19:41:31.057
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.MainMenuTest,testHandleInputLogout,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.946
+# Created at 2026-04-23T19:41:31.089
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testNonNumericInput,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.955
+# Created at 2026-04-23T19:41:31.098
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testOption2_MostReproducedArtist,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.963
+# Created at 2026-04-23T19:41:31.107
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testOption7_UserWithMostPlaylists,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.972
+# Created at 2026-04-23T19:41:31.117
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testOption3_WithInterval,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.981
+# Created at 2026-04-23T19:41:31.127
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testOption4_UserWithMostPoints,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.988
+# Created at 2026-04-23T19:41:31.136
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:08.996
+# Created at 2026-04-23T19:41:31.144
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testOption1_MostReproducedMusic,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.006
+# Created at 2026-04-23T19:41:31.156
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testOption0_BackToAdmin,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.014
+# Created at 2026-04-23T19:41:31.166
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testOption3_NoInterval,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.022
+# Created at 2026-04-23T19:41:31.178
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testOption5_MostReproducedGenre,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.029
+# Created at 2026-04-23T19:41:31.187
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.StatisticsMenuTest,testOption6_PublicPlaylistCount,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.041
+# Created at 2026-04-23T19:41:31.197
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistMenuTest,testOption6_AddPublicPlaylist,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.047
+# Created at 2026-04-23T19:41:31.205
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.PlaylistMenuTest,testNonNumericInput,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.056
+# Created at 2026-04-23T19:41:31.217
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistMenuTest,testOption2_SetPublic,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.064
+# Created at 2026-04-23T19:41:31.228
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistMenuTest,testOption5_ListPlaylists,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.074
+# Created at 2026-04-23T19:41:31.242
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistMenuTest,testOption1_PlaylistCreationMenu,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.083
+# Created at 2026-04-23T19:41:31.252
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistMenuTest,testOption3_AddMusic,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.091
+# Created at 2026-04-23T19:41:31.260
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistMenuTest,testInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.101
+# Created at 2026-04-23T19:41:31.275
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistMenuTest,testOption0_BackToMain,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.110
+# Created at 2026-04-23T19:41:31.283
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistMenuTest,testOption4_RemoveMusic,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.118
+# Created at 2026-04-23T19:41:31.290
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.PlanMenuTest,testNonNumericInput,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.128
+# Created at 2026-04-23T19:41:31.300
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlanMenuTest,testSetFreePlan,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.137
+# Created at 2026-04-23T19:41:31.309
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlanMenuTest,testSetPremiumTopPlan,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.146
+# Created at 2026-04-23T19:41:31.317
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlanMenuTest,testInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.158
+# Created at 2026-04-23T19:41:31.328
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlanMenuTest,testBackOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.166
+# Created at 2026-04-23T19:41:31.336
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlanMenuTest,testSetPremiumBasePlan,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.170
+# Created at 2026-04-23T19:41:31.340
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J6,1,org.View.MenuManagerTest,testInitialMenuIsLoginMenu,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.176
+# Created at 2026-04-23T19:41:31.347
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.MenuManagerTest,testSetMenu,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.188
+# Created at 2026-04-23T19:41:31.360
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ReproductionMenuTest,testHandleInputBackToMainMenu,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.195
+# Created at 2026-04-23T19:41:31.367
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.ReproductionMenuTest,testRandomPlaylistWithNoPlaylists,null,null,null'.
 
-# Created at 2026-04-17T08:44:09.204
+# Created at 2026-04-23T19:41:31.376
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ReproductionMenuTest,testHandleInputInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.761
+# Created at 2026-04-23T19:41:35.931
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.ReproductionMenuTest,testRandomPlaylistWithValidPlaylist,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.783
+# Created at 2026-04-23T19:41:35.950
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.ReproductionMenuTest,testFavoritePlaylistWithNoMusics,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.795
+# Created at 2026-04-23T19:41:35.967
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.ReproductionMenuTest,testHandleInputNonNumeric,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.812
+# Created at 2026-04-23T19:41:35.984
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileMenuTest,testHandleInputBackToMainMenu,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.826
+# Created at 2026-04-23T19:41:35.999
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileMenuTest,testHandleInputInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.844
+# Created at 2026-04-23T19:41:36.012
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileMenuTest,testHandleInputEditProfile,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.862
+# Created at 2026-04-23T19:41:36.028
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J8,1,org.View.ProfileMenuTest,testHandleInputChangePlans,null,expected: <true> but was: <false>,null,expected: <true> but was: <false>,ProfileMenuTest.testHandleInputChangePlans:86 expected: <true> but was: <false>,org.opentest4j.AssertionFailedError: expected: <true> but was: <false>\000A\0009at org.View.ProfileMenuTest.testHandleInputChangePlans(ProfileMenuTest.java:86)\000A'.
 
-# Created at 2026-04-17T08:44:13.881
+# Created at 2026-04-23T19:41:36.036
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.ProfileMenuTest,testHandleInputNonNumeric,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.894
+# Created at 2026-04-23T19:41:36.049
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileEditorMenuTest,testChangePasswordIncorrect,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.901
+# Created at 2026-04-23T19:41:36.056
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.ProfileEditorMenuTest,testNonNumericInput,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.911
+# Created at 2026-04-23T19:41:36.068
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileEditorMenuTest,testBackToProfileMenu,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.918
+# Created at 2026-04-23T19:41:36.077
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileEditorMenuTest,testInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.927
+# Created at 2026-04-23T19:41:36.086
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileEditorMenuTest,testChangeName,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.936
+# Created at 2026-04-23T19:41:36.097
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileEditorMenuTest,testNavigatePlans,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.945
+# Created at 2026-04-23T19:41:36.106
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileEditorMenuTest,testChangePasswordCorrect,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.953
+# Created at 2026-04-23T19:41:36.113
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.ProfileEditorMenuTest,testChangeEmail,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.961
+# Created at 2026-04-23T19:41:36.127
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.AdminMenuTest,testNonNumeric,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.971
+# Created at 2026-04-23T19:41:36.136
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.AdminMenuTest,testExportDatabase,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.979
+# Created at 2026-04-23T19:41:36.144
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.AdminMenuTest,testInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.989
+# Created at 2026-04-23T19:41:36.153
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.AdminMenuTest,testLogoutToLogin,null,null,null'.
 
-# Created at 2026-04-17T08:44:13.999
+# Created at 2026-04-23T19:41:36.160
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.AdminMenuTest,testImportDatabase,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.011
+# Created at 2026-04-23T19:41:36.171
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.AdminMenuTest,testNavigateStatistics,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.021
+# Created at 2026-04-23T19:41:36.179
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.MenuTest,testAskConfirmationYes,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.026
+# Created at 2026-04-23T19:41:36.185
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.MenuTest,testControllerGetterAndSetter,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.031
+# Created at 2026-04-23T19:41:36.190
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.MenuTest,testScannerGetterAndSetter,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.036
+# Created at 2026-04-23T19:41:36.195
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.MenuTest,testRunningStateGetterAndSetter,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.048
+# Created at 2026-04-23T19:41:36.204
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.MenuTest,testMenuManagerGetterAndSetter,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.055
+# Created at 2026-04-23T19:41:36.212
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.MenuTest,testAskConfirmationNo,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.064
+# Created at 2026-04-23T19:41:36.219
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.LoginMenuTest,testHandleInputExit,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.078
+# Created at 2026-04-23T19:41:36.228
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.LoginMenuTest,testHandleInputInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.086
+# Created at 2026-04-23T19:41:36.235
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.LoginMenuTest,testRegister,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.091
+# Created at 2026-04-23T19:41:36.241
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.LoginMenuTest,testHandleInputNonNumeric,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.100
+# Created at 2026-04-23T19:41:36.252
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.LoginMenuTest,testHandleInputAdmin,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.109
+# Created at 2026-04-23T19:41:36.265
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistCreationMenuTest,testCreatePlaylistWithGenreAndDuration,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.116
+# Created at 2026-04-23T19:41:36.274
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistCreationMenuTest,testInvalidOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.124
+# Created at 2026-04-23T19:41:36.282
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistCreationMenuTest,testCreatePlaylist,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.134
+# Created at 2026-04-23T19:41:36.292
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J6,1,org.View.PlaylistCreationMenuTest,testBackOption,null,null,null'.
 
-# Created at 2026-04-17T08:44:14.139
+# Created at 2026-04-23T19:41:36.301
 Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[3J[H[2J[3J[H[2J6,1,org.View.PlaylistCreationMenuTest,testExceptionHandling,null,null,null'.
 

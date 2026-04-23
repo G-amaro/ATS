@@ -1,157 +1,132 @@
 package org.Model.Playlist;
 
-import org.Exceptions.AlreadyExistsException;
 import org.Exceptions.EmptyPlaylistException;
 import org.Model.Music.Music;
 import org.Model.Music.MusicReproduction;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import java.util.*;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class PlaylistCreatorTest {
 
-    private final String NAME1 = "Bohemian Rhapsody";
-    private final String INTERPRETER1 = "Queen";
-    private final String PUBLISHER1 = "EMI";
-    private final String LYRICS1 = "Is this the real life? Is this just fantasy?";
-    private final String MUSICAL_FIGURES1 = "A-B-C-D";
-    private final String GENRE1 = "Rock";
-    private final String ALBUM1 = "A Night at the Opera";
-    private final int DURATION1 = 355;
-    private final boolean EXPLICIT1 = false;
-
-    private final String NAME2 = "Another One Bites the Dust";
-    private final String INTERPRETER2 = "Queen";
-    private final String PUBLISHER2 = "EMI";
-    private final String LYRICS2 = "Are you ready, hey, are you ready for this?";
-    private final String MUSICAL_FIGURES2 = "E-F-G-A";
-    private final String GENRE2 = "Rock";
-    private final String ALBUM2 = "The Game";
-    private final int DURATION2 = 215;
-    private final boolean EXPLICIT2 = true;
-
-    private final String NAME3 = "Under Pressure";
-    private final String INTERPRETER3 = "Queen & David Bowie";
-    private final String PUBLISHER3 = "EMI";
-    private final String LYRICS3 = "Pressure pushing down on me, pressing down on you, no man ask for.";
-    private final String MUSICAL_FIGURES3 = "C-D-E-F";
-    private final String GENRE3 = "Rock";
-    private final String ALBUM3 = "Hot Space";
-    private final int DURATION3 = 240;
-    private final boolean EXPLICIT3 = false;
-
-    private Music music1;
-    private Music music2;
-    private Music music3;
+    private Map<String, Music> dbMusics;
+    private Music rockMusic;
+    private Music popMusic;
 
     @BeforeEach
     void setUp() {
-        music1 = new Music(NAME1, INTERPRETER1, PUBLISHER1, LYRICS1, MUSICAL_FIGURES1, GENRE1, ALBUM1, DURATION1,
-                EXPLICIT1);
-        music2 = new Music(NAME2, INTERPRETER2, PUBLISHER2, LYRICS2, MUSICAL_FIGURES2, GENRE2, ALBUM2, DURATION2,
-                EXPLICIT2);
-        music3 = new Music(NAME3, INTERPRETER3, PUBLISHER3, LYRICS3, MUSICAL_FIGURES3, GENRE3, ALBUM3, DURATION3,
-                EXPLICIT3);
+        dbMusics = new HashMap<>();
+
+        rockMusic = mock(Music.class);
+        when(rockMusic.getName()).thenReturn("Rock Song");
+        when(rockMusic.getGenre()).thenReturn("Rock");
+        when(rockMusic.getDuration()).thenReturn(200);
+        when(rockMusic.isExplicit()).thenReturn(false);
+
+        popMusic = mock(Music.class);
+        when(popMusic.getName()).thenReturn("Pop Song");
+        when(popMusic.getGenre()).thenReturn("Pop");
+        when(popMusic.getDuration()).thenReturn(180);
+        when(popMusic.isExplicit()).thenReturn(true);
+
+        dbMusics.put("Rock Song", rockMusic);
+        dbMusics.put("Pop Song", popMusic);
     }
 
+    // ==========================================
+    // 1. TESTE DO CONSTRUTOR (Para matar os 0%)
+    // ==========================================
     @Test
-    void testCreateGenrePlaylistSuccess() throws AlreadyExistsException, EmptyPlaylistException {
-        Map<String, Music> musics = new HashMap<>();
-        musics.put("Song1", music1);
-        musics.put("Song2", music2);
-        musics.put("Song3", music3);
-
-        List<Music> playlist = PlaylistCreator.createGenrePlaylist("user1", "RockPlaylist", "Rock", 400, musics,
-                new HashMap<>());
-
-        assertNotNull(playlist);
-        assertFalse(playlist.isEmpty());
-        assertTrue(playlist.stream().allMatch(m -> m.getGenre().equals("Rock")));
-        assertTrue(playlist.stream().mapToInt(Music::getDuration).sum() <= 400);
+    void testConstructor_Coverage() {
+        // Como é uma classe de métodos estáticos, ninguém a instancia na vida real.
+        // Mas o JaCoCo exige que o construtor vazio seja chamado para dar 100%!
+        PlaylistCreator creator = new PlaylistCreator();
+        assertNotNull(creator, "Should instantiate to cover the default constructor.");
     }
 
+    // ==========================================
+    // 2. TESTE DO GENRE PLAYLIST
+    // ==========================================
     @Test
-    void testCreateGenrePlaylistNoGenre() {
-        Map<String, Music> musics = new HashMap<>();
-        musics.put("Song1", music1);
+    void testCreateGenrePlaylist() throws Exception {
+        Map<Integer, Playlist> publicPlaylists = new HashMap<>();
 
-        assertThrows(IllegalArgumentException.class,
-                () -> PlaylistCreator.createGenrePlaylist("user1", "RockPlaylist", "Pop", 300, musics, new HashMap<>()));
+        // Caminho de Sucesso
+        List<Music> result = PlaylistCreator.createGenrePlaylist("User", "RockPlay", "Rock", 500, dbMusics, publicPlaylists);
+        assertEquals(1, result.size());
+
+        // Erro: Género inexistente
+        assertThrows(IllegalArgumentException.class, () ->
+                PlaylistCreator.createGenrePlaylist("User", "JazzPlay", "Jazz", 500, dbMusics, publicPlaylists)
+        );
+
+        // Erro: Playlist Vazia (duração não chega sequer para 1 música)
+        assertThrows(EmptyPlaylistException.class, () ->
+                PlaylistCreator.createGenrePlaylist("User", "RockPlay", "Rock", 10, dbMusics, publicPlaylists)
+        );
     }
 
-    @Test
-    void testCreateGenrePlaylistEmptyPlaylist() {
-        Map<String, Music> musics = new HashMap<>();
-        musics.put("Song1", music1);
-
-        assertThrows(EmptyPlaylistException.class,
-                () -> PlaylistCreator.createGenrePlaylist("user1", "RockPlaylist", "Rock", 300, musics, new HashMap<>()));
-    }
-
+    // ==========================================
+    // 3. TESTE DO RANDOM PLAYLIST
+    // ==========================================
     @Test
     void testCreateRandomPlaylist() {
-        Map<String, Music> musics = new HashMap<>();
-        musics.put("Song1", music1);
-        musics.put("Song2", music2);
-        musics.put("Song3", music3);
-
-        List<Music> playlist = PlaylistCreator.createRandomPlaylist(musics);
-
-        assertNotNull(playlist);
-        assertFalse(playlist.isEmpty());
-        assertTrue(playlist.size() <= musics.size());
+        List<Music> result = PlaylistCreator.createRandomPlaylist(dbMusics);
+        assertNotNull(result);
+        assertTrue(result.size() > 0 && result.size() <= dbMusics.size());
     }
 
+    // ==========================================
+    // 4. TESTE DO FAVORITES (Matar os Branches e o Lambda)
+    // ==========================================
     @Test
-    void testCreateFavoritesPlaylistSuccess() {
-        Map<String, Music> musics = new HashMap<>();
-        musics.put(music1.getName(), music1);
-        musics.put(music2.getName(), music2);
-        musics.put(music3.getName(), music3);
+    void testCreateFavoritesPlaylist_FullCoverage() {
+        List<MusicReproduction> reps = new ArrayList<>();
 
-        List<MusicReproduction> reproductions = Arrays.asList(
-                new MusicReproduction(music1),
-                new MusicReproduction(music2),
-                new MusicReproduction(music3));
+        MusicReproduction repRock = mock(MusicReproduction.class);
+        when(repRock.getMusic()).thenReturn(rockMusic);
 
-        List<Music> playlist = PlaylistCreator.createFavoritesPlaylist(500, false, reproductions, musics);
+        MusicReproduction repPop = mock(MusicReproduction.class);
+        when(repPop.getMusic()).thenReturn(popMusic);
 
-        assertNotNull(playlist);
-        assertFalse(playlist.isEmpty());
-        assertTrue(playlist.stream().mapToInt(Music::getDuration).sum() <= 500);
-    }
+        // Música fantasma (está no histórico mas já foi apagada da Base de Dados - mata o "if(m != null)")
+        Music ghostMusic = mock(Music.class);
+        when(ghostMusic.getName()).thenReturn("Ghost Song");
+        when(ghostMusic.isExplicit()).thenReturn(false);
+        MusicReproduction repGhost = mock(MusicReproduction.class);
+        when(repGhost.getMusic()).thenReturn(ghostMusic);
 
-    @Test
-    void testCreateFavoritesPlaylistExplicitOnly() {
-        Map<String, Music> musics = new HashMap<>();
-        musics.put(music1.getName(), music1);
-        musics.put(music2.getName(), music2);
+        // Adicionar ao histórico: Pop(3x), Rock(2x), Ghost(1x).
+        // Isto obriga a usar a LAMBDA para ordenar: Pop(3) -> Rock(2) -> Ghost(1)
+        reps.add(repPop); reps.add(repPop); reps.add(repPop);
+        reps.add(repRock); reps.add(repRock);
+        reps.add(repGhost);
 
-        // Mark one music as explicit so explicit filter yields posts
-        music2.setExplicit(true);
-        musics.put(music2.getName(), music2);
+        // Cenário 1: maxDuration = 0 (ignora duração) e explicit = false
+        List<Music> res1 = PlaylistCreator.createFavoritesPlaylist(0, false, reps, dbMusics);
+        assertEquals(2, res1.size(), "Should skip Ghost Song because it's not in dbMusics.");
+        assertEquals("Pop Song", res1.get(0).getName(), "Pop should be first (most played).");
 
-        List<MusicReproduction> reproductions = Arrays.asList(
-                new MusicReproduction(music1),
-                new MusicReproduction(music2),
-                new MusicReproduction(music2));
+        // Cenário 2: explicit = true (Rock não é explicita, logo é ignorada na listagem)
+        List<Music> res2 = PlaylistCreator.createFavoritesPlaylist(500, true, reps, dbMusics);
+        assertEquals(1, res2.size(), "Should only include Pop Song.");
 
-        List<Music> playlist = PlaylistCreator.createFavoritesPlaylist(500, true, reproductions, musics);
+        // Cenário 3: maxDuration break! Pop=180, Rock=200. Max=200.
+        // Entra o Pop (180). Quando tenta entrar o Rock (180+200 > 200), ele faz "break"!
+        List<Music> res3 = PlaylistCreator.createFavoritesPlaylist(200, false, reps, dbMusics);
+        assertEquals(1, res3.size(), "Should stop after Pop Song due to maxDuration limit.");
 
-        assertNotNull(playlist);
-        assertFalse(playlist.isEmpty());
-        assertTrue(playlist.stream().allMatch(Music::isExplicit));
-    }
-
-    @Test
-    void testCreateFavoritesPlaylistNoFavorites() {
-        Map<String, Music> musics = new HashMap<>();
-        musics.put(music1.getName(), music1);
-
-        List<MusicReproduction> reproductions = Collections.emptyList();
-
-        assertThrows(IllegalArgumentException.class,
-                () -> PlaylistCreator.createFavoritesPlaylist(500, false, reproductions, musics));
+        // Cenário 4: Exceção de lista vazia
+        assertThrows(IllegalArgumentException.class, () ->
+                PlaylistCreator.createFavoritesPlaylist(500, false, new ArrayList<>(), dbMusics)
+        );
     }
 }

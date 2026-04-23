@@ -466,15 +466,21 @@ public class SpotifUM implements Serializable {
         if (this.musics.containsKey(musicName)) {
             throw new AlreadyExistsException(musicName);
         }
+
+        // CORREÇÃO: Se o álbum não existir, criamos o álbum em vez de deixar o programa crashar!
+        Album a = this.albums.get(albumName);
+        if (a == null) {
+            a = new Album(albumName, artistName);
+            this.albums.put(albumName, a);
+        }
+
         if (url == null) {
             Music m = new Music(musicName, artistName, publisher, lyrics, musicalFigures, genre, albumName, duration, explicit);
             this.musics.put(musicName, m);
-            Album a = this.albums.get(albumName);
             a.addMusic(m);
         } else {
             MusicMultimedia m = new MusicMultimedia(musicName, artistName, publisher, lyrics, musicalFigures, genre, albumName, duration, explicit, url);
             this.musics.put(musicName, m);
-            Album a = this.albums.get(albumName);
             a.addMusic(m);
         }
     }
@@ -501,17 +507,14 @@ public class SpotifUM implements Serializable {
      */
     public String listAllMusicsInPlaylist(int playlistId) throws NotFoundException{
         StringBuilder sb = new StringBuilder();
-        try{
-            Playlist p = this.currentUser.getPlaylistById(playlistId);
-            for (Music m : p.getMusics()) {
-                sb.append("🎶 ").append(m.getName())
-                .append(" — ").append(m.getInterpreter())
-                .append("\n");
-            }
-            return sb.toString();
-        } catch (NotFoundException e) {
-            return new NotFoundException("" + playlistId).getMessage();
+        // CORREÇÃO: Removemos o try-catch cego. Se der erro, a excepção sobe e o Controller que a trate!
+        Playlist p = this.currentUser.getPlaylistById(playlistId);
+        for (Music m : p.getMusics()) {
+            sb.append("🎶 ").append(m.getName())
+                    .append(" — ").append(m.getInterpreter())
+                    .append("\n");
         }
+        return sb.toString();
     }
 
     // =================== MÉTODOS DE ÁLBUNS ===================
@@ -629,6 +632,9 @@ public class SpotifUM implements Serializable {
      * @throws IllegalArgumentException Se argumentos inválidos
      */
     public PlaylistFavorites createFavoritesPlaylist(int maxDuration, boolean explicit) throws IllegalArgumentException{
+        if (this.currentUser.getMusicReproductions().isEmpty()) {
+            throw new IllegalArgumentException("O utilizador não tem histórico de reproduções para gerar favoritos.");
+        }
         List<Music> musicList;
         try {
             musicList = PlaylistCreator.createFavoritesPlaylist(maxDuration, explicit, this.currentUser.getMusicReproductions(), this.musics);

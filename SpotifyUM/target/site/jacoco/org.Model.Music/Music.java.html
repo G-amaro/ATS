@@ -281,13 +281,20 @@ public class Music implements Serializable {
      * @param o Objeto a ser comparado.
      * @return true se igual, false caso contrário.
      */
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
 <span class="fc bfc" id="L285" title="All 2 branches covered.">        if (this == o) return true;</span>
 <span class="fc bfc" id="L286" title="All 2 branches covered.">        if (!(o instanceof Music)) return false;</span>
 
 <span class="fc" id="L288">        Music that = (Music) o;</span>
 
-<span class="pc bpc" id="L290" title="3 of 4 branches missed.">        return name != null ? name.equals(that.name) : that.name == null;</span>
+<span class="fc bfc" id="L290" title="All 2 branches covered.">        if (this.duration != that.duration) return false;</span>
+<span class="fc bfc" id="L291" title="All 2 branches covered.">        if (this.explicit != that.explicit) return false;</span>
+<span class="fc bfc" id="L292" title="All 6 branches covered.">        if (this.name != null ? !this.name.equals(that.name) : that.name != null) return false;</span>
+<span class="fc bfc" id="L293" title="All 6 branches covered.">        if (this.interpreter != null ? !this.interpreter.equals(that.interpreter) : that.interpreter != null) return false;</span>
+<span class="fc bfc" id="L294" title="All 6 branches covered.">        if (this.genre != null ? !this.genre.equals(that.genre) : that.genre != null) return false;</span>
+<span class="fc bfc" id="L295" title="All 6 branches covered.">        if (this.album != null ? !this.album.equals(that.album) : that.album != null) return false;</span>
+
+<span class="fc" id="L297">        return true;</span>
     }
 
     /**
@@ -295,8 +302,8 @@ public class Music implements Serializable {
      * @return Letra da faixa musical.
      */
     public String play(){
-<span class="fc" id="L298">        this.reproductions++;</span>
-<span class="fc" id="L299">        return this.lyrics;</span>
+<span class="fc" id="L305">        this.reproductions++;</span>
+<span class="fc" id="L306">        return this.lyrics;</span>
     }
 
 }

@@ -46,7 +46,7 @@ public class Playlist implements Serializable{
 <span class="fc" id="L46">        this.name = name;</span>
 <span class="fc" id="L47">        this.autor = autor;</span>
 <span class="fc" id="L48">        this.musics = new ArrayList&lt;&gt;(); // Inicializa a lista</span>
-<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if (musics != null) { // Verifica se a lista passada não é nula</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (musics != null) { // Verifica se a lista passada não é nula</span>
 <span class="fc bfc" id="L50" title="All 2 branches covered.">            for (Music music : musics) {</span>
 <span class="fc" id="L51">                this.musics.add(music); </span>
 <span class="fc" id="L52">            }</span>
@@ -100,8 +100,8 @@ public class Playlist implements Serializable{
      * @param id Novo id
      */
     public void setId(int id) {
-<span class="nc" id="L103">        this.id = id;</span>
-<span class="nc" id="L104">    }</span>
+<span class="fc" id="L103">        this.id = id;</span>
+<span class="fc" id="L104">    }</span>
 
     /**
      * Retorna o nome da playlist.
@@ -116,8 +116,8 @@ public class Playlist implements Serializable{
      * @param nome Novo nome
      */
     public void setName(String nome) {
-<span class="nc" id="L119">        this.name = nome;</span>
-<span class="nc" id="L120">    }</span>
+<span class="fc" id="L119">        this.name = nome;</span>
+<span class="fc" id="L120">    }</span>
 
     /**
      * Retorna o autor da playlist.
@@ -132,8 +132,8 @@ public class Playlist implements Serializable{
      * @param autor Novo autor
      */
     public void setAutor(String autor) {
-<span class="nc" id="L135">        this.autor = autor;</span>
-<span class="nc" id="L136">    }</span>
+<span class="fc" id="L135">        this.autor = autor;</span>
+<span class="fc" id="L136">    }</span>
 
     /**
      * Retorna uma cópia da lista de músicas da playlist.
@@ -152,10 +152,10 @@ public class Playlist implements Serializable{
      * @param musics Nova lista de músicas
      */
     public void setMusics(List&lt;Music&gt; musics) {
-<span class="nc bnc" id="L155" title="All 2 branches missed.">        for (Music musicName : musics) {</span>
-<span class="nc" id="L156">            this.musics.add(musicName);</span>
-<span class="nc" id="L157">        }</span>
-<span class="nc" id="L158">    }</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        for (Music musicName : musics) {</span>
+<span class="fc" id="L156">            this.musics.add(musicName);</span>
+<span class="fc" id="L157">        }</span>
+<span class="fc" id="L158">    }</span>
 
     /**
      * Retorna uma representação textual da playlist.
@@ -177,13 +177,13 @@ public class Playlist implements Serializable{
      * @return true se forem iguais, false caso contrário
      */
     public boolean equals(Object o) {
-<span class="pc bpc" id="L180" title="1 of 2 branches missed.">        if (this == o) return true;</span>
-<span class="pc bpc" id="L181" title="1 of 2 branches missed.">        if (!(o instanceof Playlist)) return false;</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">        if (this == o) return true;</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">        if (!(o instanceof Playlist)) return false;</span>
 
 <span class="fc" id="L183">        Playlist playlist = (Playlist) o;</span>
 
 <span class="fc bfc" id="L185" title="All 2 branches covered.">        if (!name.equals(playlist.name)) return false;</span>
-<span class="pc bpc" id="L186" title="1 of 2 branches missed.">        if (!autor.equals(playlist.autor)) return false;</span>
+<span class="fc bfc" id="L186" title="All 2 branches covered.">        if (!autor.equals(playlist.autor)) return false;</span>
 <span class="fc" id="L187">        return musics.equals(playlist.musics);</span>
     }
 
@@ -222,7 +222,7 @@ public class Playlist implements Serializable{
      * @throws IndexOutOfBoundsException Se o índice for inválido
      */
     public Music getMusicBYIndex(int index){
-<span class="pc bpc" id="L225" title="1 of 4 branches missed.">        if (index &gt;= 0 &amp;&amp; index &lt; this.musics.size()) {</span>
+<span class="fc bfc" id="L225" title="All 4 branches covered.">        if (index &gt;= 0 &amp;&amp; index &lt; this.musics.size()) {</span>
 <span class="fc" id="L226">            return this.musics.get(index);</span>
         }
         else {

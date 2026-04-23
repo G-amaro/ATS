@@ -127,21 +127,8 @@ public class MusicTest {
         assertNotEquals(music.getName(), musicClone.getName());
     }
     
-    @Test
-    public void testEquals() {
-        // In the Music class, equals() only checks if names are equal
-        Music sameName = new Music(NAME, "Different", "Different", 
-                                "Different", "Different", "Different", 
-                                "Different", 100, true);
-        Music differentName = new Music("Different", INTERPRETER, PUBLISHER, LYRICS, 
-                                    MUSICAL_FIGURES, GENRE, ALBUM, DURATION, EXPLICIT);
-        
-        assertEquals(music, music);
-        assertEquals(music, sameName); // Should be equal because names are the same
-        assertNotEquals(music, differentName);
-        assertNotEquals(music, null);
-        assertNotEquals(music, new Object());
-    }
+
+
     
     @Test
     public void testToString() {
@@ -165,4 +152,59 @@ public class MusicTest {
         assertEquals(LYRICS, result);
         assertEquals(initialReproductions + 1, music.getReproductions());
     }
+
+    @Test
+    void testEquals_VariousConditions_ReturnsExpectedBoolean() {
+        Music base = new Music("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false);
+        Music same = new Music("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false);
+
+        // 1. Identidade e Tipos
+        assertTrue(base.equals(base), "Should equal itself.");
+        assertFalse(base.equals(null), "Should handle null.");
+        assertFalse(base.equals(new Object()), "Should handle different classes.");
+        assertTrue(base.equals(same), "Should equal identical object.");
+
+        // 2. Diferenças individuais em cada campo
+        assertFalse(base.equals(new Music("X", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false))); // Name diff
+        assertFalse(base.equals(new Music("Name", "X", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false))); // Artist diff
+        assertFalse(base.equals(new Music("Name", "Artist", "Pub", "Lyrics", "Fig", "X", "Album", 180, false))); // Genre diff
+        assertFalse(base.equals(new Music("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "X", 180, false))); // Album diff
+        assertFalse(base.equals(new Music("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 99, false))); // Duration diff
+        assertFalse(base.equals(new Music("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, true))); // Explicit diff
+
+        // 3. O Segredo dos 100%: Mutações de Null em todos os campos protegidos!
+        Music nullName = new Music(null, "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false);
+        assertFalse(nullName.equals(base));
+        assertFalse(base.equals(nullName));
+        assertTrue(nullName.equals(new Music(null, "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false)));
+
+        Music nullArtist = new Music("Name", null, "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false);
+        assertFalse(nullArtist.equals(base));
+        assertFalse(base.equals(nullArtist));
+        assertTrue(nullArtist.equals(new Music("Name", null, "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false)));
+
+        Music nullGenre = new Music("Name", "Artist", "Pub", "Lyrics", "Fig", null, "Album", 180, false);
+        assertFalse(nullGenre.equals(base));
+        assertFalse(base.equals(nullGenre));
+        assertTrue(nullGenre.equals(new Music("Name", "Artist", "Pub", "Lyrics", "Fig", null, "Album", 180, false)));
+
+        Music nullAlbum = new Music("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", null, 180, false);
+        assertFalse(nullAlbum.equals(base));
+        assertFalse(base.equals(nullAlbum));
+        assertTrue(nullAlbum.equals(new Music("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", null, 180, false)));
+    }
+
+
+    @Test
+    void testToString_ValidMusic_ReturnsFormattedString() {
+        // Testar o caminho do Explicita: "Nao"
+        Music m1 = new Music("Bohemian Rhapsody", "Queen", "EMI", "Mama...", "Fig", "Rock", "A Night at the Opera", 354, false);
+        assertTrue(m1.toString().contains("Explicita: Nao"), "Should contain Nao for non-explicit music.");
+
+        // Testar o caminho do Explicita: "Sim" (O 2% que faltava!)
+        Music m2 = new Music("WAP", "Cardi B", "Label", "Yeah", "Fig", "Rap", "Album", 200, true);
+        assertTrue(m2.toString().contains("Explicita: Sim"), "Should contain Sim for explicit music.");
+    }
+
+
 }

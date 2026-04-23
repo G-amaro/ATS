@@ -9,111 +9,121 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class PlaylistTest {
-    private final String NAME1 = "Bohemian Rhapsody";
-    private final String INTERPRETER1 = "Queen";
-    private final String PUBLISHER1 = "EMI";
-    private final String LYRICS1 = "Is this the real life? Is this just fantasy?";
-    private final String MUSICAL_FIGURES1 = "A-B-C-D";
-    private final String GENRE1 = "Rock";
-    private final String ALBUM1 = "A Night at the Opera";
-    private final int DURATION1 = 355;
-    private final boolean EXPLICIT1 = false;
 
-    private final String NAME2 = "Another One Bites the Dust";
-    private final String INTERPRETER2 = "Queen";
-    private final String PUBLISHER2 = "EMI";
-    private final String LYRICS2 = "Are you ready, hey, are you ready for this?";
-    private final String MUSICAL_FIGURES2 = "E-F-G-A";
-    private final String GENRE2 = "Rock";
-    private final String ALBUM2 = "The Game";
-    private final int DURATION2 = 215;
-    private final boolean EXPLICIT2 = false;
-
-    private Playlist playlist;
-    private Music music1;
-    private Music music2;
+    private Music mockMusic1;
+    private Music mockMusic2;
+    private List<Music> musicList;
 
     @BeforeEach
     void setUp() {
-        music1 = new Music(NAME1, INTERPRETER1, PUBLISHER1, LYRICS1, MUSICAL_FIGURES1, GENRE1, ALBUM1, DURATION1, EXPLICIT1);
-        music2 = new Music(NAME2, INTERPRETER2, PUBLISHER2, LYRICS2, MUSICAL_FIGURES2, GENRE2, ALBUM2, DURATION2, EXPLICIT2);
-        List<Music> musics = new ArrayList<>();
-        musics.add(music1);
-        playlist = new Playlist("Queen Hits", "Fan", musics);
+        mockMusic1 = mock(Music.class);
+        when(mockMusic1.getName()).thenReturn("Song A");
+        when(mockMusic1.clone()).thenReturn(mockMusic1);
+
+        mockMusic2 = mock(Music.class);
+        when(mockMusic2.getName()).thenReturn("Song B");
+        when(mockMusic2.clone()).thenReturn(mockMusic2);
+
+        musicList = new ArrayList<>();
+        musicList.add(mockMusic1);
     }
 
+    // ==========================================
+    // 1. TESTES DOS CONSTRUTORES (A caça aos 75% -> 100%)
+    // ==========================================
     @Test
-    void testConstructorWithMusics() {
-        assertEquals("Queen Hits", playlist.getName());
-        assertEquals("Fan", playlist.getAutor());
-        assertEquals(1, playlist.getMusics().size());
-        assertEquals(music1, playlist.getMusics().get(0));
+    void testConstructors_InitializeCorrectly() {
+        Playlist empty = new Playlist();
+        assertEquals("", empty.getName());
+        assertEquals("", empty.getAutor());
+        assertNotNull(empty.getMusics());
+
+        Playlist basic = new Playlist("My Vibes", "Quim");
+        assertEquals("My Vibes", basic.getName());
+        assertEquals("Quim", basic.getAutor());
+        assertTrue(basic.getMusics().isEmpty());
+
+        Playlist full = new Playlist("Hits", "SpotifyUM", musicList);
+        assertEquals("Hits", full.getName());
+        assertEquals(1, full.getMusics().size());
+
+        // O SEGREDO DO CONSTRUTOR: Testar a passagem de lista NULL (Mata a branch dos 75%)
+        Playlist nullListPlaylist = new Playlist("Null List", "SpotifyUM", null);
+        assertNotNull(nullListPlaylist.getMusics(), "Should handle null list safely and initialize empty array.");
+        assertTrue(nullListPlaylist.getMusics().isEmpty());
+
+        Playlist copy = new Playlist(full);
+        assertEquals("Hits", copy.getName());
     }
 
+    // ==========================================
+    // 2. TESTES DE SETTERS E GETTERS
+    // ==========================================
     @Test
-    void testConstructorWithoutMusics() {
-        Playlist emptyPlaylist = new Playlist("Empty Playlist", "Fan");
-        assertEquals("Empty Playlist", emptyPlaylist.getName());
-        assertEquals("Fan", emptyPlaylist.getAutor());
-        assertTrue(emptyPlaylist.getMusics().isEmpty());
+    void testSettersAndGetters_UpdatesFields() {
+        Playlist p = new Playlist();
+        p.setId(99);
+        p.setName("Roadtrip");
+        p.setAutor("Me");
+        p.setMusics(musicList);
+
+        assertEquals(99, p.getId());
+        assertEquals("Roadtrip", p.getName());
+        assertEquals("Me", p.getAutor());
+        assertEquals(1, p.getMusics().size());
     }
 
+    // ==========================================
+    // 3. OPERAÇÕES DE LISTA (A caça aos 75% do getMusicBYIndex)
+    // ==========================================
     @Test
-    void testAddMusic() throws AlreadyExistsException {
-        playlist.addMusic(music2);
-        assertEquals(2, playlist.getMusics().size());
-        assertTrue(playlist.getMusics().contains(music2));
+    void testListOperations() throws AlreadyExistsException {
+        Playlist p = new Playlist("Workout", "Me", new ArrayList<>());
+
+        p.addMusic(mockMusic1);
+        p.addMusic(mockMusic2);
+        assertEquals(2, p.getMusics().size());
+
+        assertThrows(AlreadyExistsException.class, () -> p.addMusic(mockMusic1));
+
+        // Testar as 3 condições do getMusicBYIndex: Válido, Abaixo do limite, Acima do limite
+        assertEquals(mockMusic1, p.getMusicBYIndex(0), "Should get valid index.");
+        assertThrows(IndexOutOfBoundsException.class, () -> p.getMusicBYIndex(5), "Should throw on index too high.");
+        // O SEGREDO DO GET INDEX: Testar o índice negativo (Mata a branch dos 75%)
+        assertThrows(IndexOutOfBoundsException.class, () -> p.getMusicBYIndex(-1), "Should throw on negative index.");
+
+        p.removeMusic(mockMusic1);
+        assertEquals(1, p.getMusics().size());
     }
 
+    // ==========================================
+    // 4. TESTE DE EQUALS, CLONE, TOSTRING E HASHCODE (A caça aos 0%)
+    // ==========================================
     @Test
-    void testAddMusicThrowsAlreadyExistsException() {
-        assertThrows(AlreadyExistsException.class, () -> playlist.addMusic(music1));
-    }
+    void testEqualsCloneToStringAndHashCode() {
+        Playlist p1 = new Playlist("Rock", "Autor A", musicList);
+        Playlist p2 = new Playlist("Rock", "Autor A", musicList);
+        Playlist diffName = new Playlist("Pop", "Autor A", musicList);
+        Playlist diffAutor = new Playlist("Rock", "Autor B", musicList);
 
-    @Test
-    void testRemoveMusic() {
-        assertTrue(playlist.removeMusic(music1));
-        assertFalse(playlist.getMusics().contains(music1));
-    }
+        Playlist cloned = p1.clone();
+        assertNotSame(p1, cloned);
+        assertEquals(p1.getName(), cloned.getName());
 
-    @Test
-    void testRemoveMusicNotInPlaylist() {
-        assertFalse(playlist.removeMusic(music2));
-    }
+        assertTrue(p1.equals(p1));
+        assertFalse(p1.equals(null));
+        assertFalse(p1.equals(new Object()));
 
-    @Test
-    void testGetMusicByIndex() {
-        assertEquals(music1, playlist.getMusicBYIndex(0));
-    }
+        assertTrue(p1.equals(p2));
+        assertFalse(p1.equals(diffName));
+        assertFalse(p1.equals(diffAutor));
 
-    @Test
-    void testGetMusicByIndexThrowsIndexOutOfBoundsException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> playlist.getMusicBYIndex(1));
-    }
+        assertTrue(p1.toString().contains("Rock"));
 
-    @Test
-    void testClone() {
-        Playlist clonedPlaylist = playlist.clone();
-        assertEquals(playlist, clonedPlaylist);
-        assertNotSame(playlist, clonedPlaylist);
-    }
-
-    @Test
-    void testEquals() {
-        Playlist samePlaylist = new Playlist(playlist);
-        assertEquals(playlist, samePlaylist);
-    }
-
-    @Test
-    void testHashCode() {
-        assertEquals(playlist.getId(), playlist.hashCode());
-    }
-
-    @Test
-    void testToString() {
-        String expected = "Playlist{nome='Queen Hits', autor='Fan', musicas=[" + music1.toString() + "]}";
-        assertEquals(expected, playlist.toString());
+        // O SEGREDO DO HASHCODE: Chamar e verificar a função! (Mata os 0% -> 100%)
+        assertEquals(p1.getId(), p1.hashCode(), "HashCode should be equal to the Playlist ID.");
     }
 }

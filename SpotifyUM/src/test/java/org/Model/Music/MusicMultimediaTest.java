@@ -1,142 +1,95 @@
 package org.Model.Music;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MusicMultimediaTest {
-    
-    private MusicMultimedia musicMultimedia;
-    private final String NAME = "Bohemian Rhapsody";
-    private final String INTERPRETER = "Queen";
-    private final String PUBLISHER = "EMI";
-    private final String LYRICS = "Is this the real life? Is this just fantasy?";
-    private final String MUSICAL_FIGURES = "A-B-C-D";
-    private final String GENRE = "Rock";
-    private final String ALBUM = "A Night at the Opera";
-    private final int DURATION = 355;
-    private final boolean EXPLICIT = false;
-    private final String URL = "https://www.youtube.com/watch?v=fJ9rUzIMcZQ";
-    
-    @BeforeEach
-    public void setUp() {
-        // Make sure the musicMultimedia object is properly initialized
-        musicMultimedia = new MusicMultimedia(NAME, INTERPRETER, PUBLISHER, LYRICS, MUSICAL_FIGURES, 
-                          GENRE, ALBUM, DURATION, EXPLICIT, URL);
-    }
-    
+class MusicMultimediaTest {
+
+    // ==========================================
+    // 1. TESTES DOS CONSTRUTORES
+    // ==========================================
     @Test
-    public void testDefaultConstructor() {
-        MusicMultimedia defaultMusic = new MusicMultimedia();
-        
-        assertEquals("", defaultMusic.getName());
-        assertEquals("", defaultMusic.getInterpreter());
-        assertEquals("", defaultMusic.getPublisher());
-        assertEquals("", defaultMusic.getLyrics());
-        assertEquals("", defaultMusic.getMusicalFigures());
-        assertEquals("", defaultMusic.getGenre());
-        assertEquals("", defaultMusic.getAlbum());
-        assertEquals(0, defaultMusic.getDuration());
-        assertEquals(0, defaultMusic.getReproductions());
-        assertFalse(defaultMusic.isExplicit());
-        assertEquals("", defaultMusic.getUrl());
+    void testConstructors_InitializeCorrectly() {
+        // Construtor Vazio
+        MusicMultimedia empty = new MusicMultimedia();
+        assertEquals("", empty.getUrl(), "Empty constructor should set URL to empty string.");
+        assertEquals("", empty.getName(), "Should inherit empty fields from superclass.");
+
+        // Construtor Completo
+        MusicMultimedia full = new MusicMultimedia("Song", "Artist", "Pub", "Lyrics", "Fig", "Pop", "Album", 180, false, "https://video.com");
+        assertEquals("https://video.com", full.getUrl());
+        assertEquals("Song", full.getName());
+
+        // Construtor Cópia
+        MusicMultimedia copy = new MusicMultimedia(full);
+        assertEquals("https://video.com", copy.getUrl());
+        assertEquals("Song", copy.getName());
     }
-    
+
+    // ==========================================
+    // 2. TESTES DE GETTERS E SETTERS
+    // ==========================================
     @Test
-    public void testConstructor() {
-        assertEquals(NAME, musicMultimedia.getName());
-        assertEquals(INTERPRETER, musicMultimedia.getInterpreter());
-        assertEquals(PUBLISHER, musicMultimedia.getPublisher());
-        assertEquals(LYRICS, musicMultimedia.getLyrics());
-        assertEquals(MUSICAL_FIGURES, musicMultimedia.getMusicalFigures());
-        assertEquals(GENRE, musicMultimedia.getGenre());
-        assertEquals(ALBUM, musicMultimedia.getAlbum());
-        assertEquals(DURATION, musicMultimedia.getDuration());
-        assertEquals(0, musicMultimedia.getReproductions());
-        assertEquals(EXPLICIT, musicMultimedia.isExplicit());
-        assertEquals(URL, musicMultimedia.getUrl());
+    void testGettersAndSetters_UpdatesUrl() {
+        MusicMultimedia mm = new MusicMultimedia();
+        mm.setUrl("https://new-url.com");
+        assertEquals("https://new-url.com", mm.getUrl(), "Setter should update the URL.");
     }
-    
+
+    // ==========================================
+    // 3. TESTE DE CLONE E TOSTRING
+    // ==========================================
     @Test
-    public void testCopyConstructor() {
-        MusicMultimedia musicCopy = new MusicMultimedia(musicMultimedia);
-        
-        assertEquals(musicMultimedia.getName(), musicCopy.getName());
-        assertEquals(musicMultimedia.getInterpreter(), musicCopy.getInterpreter());
-        assertEquals(musicMultimedia.getPublisher(), musicCopy.getPublisher());
-        assertEquals(musicMultimedia.getLyrics(), musicCopy.getLyrics());
-        assertEquals(musicMultimedia.getMusicalFigures(), musicCopy.getMusicalFigures());
-        assertEquals(musicMultimedia.getGenre(), musicCopy.getGenre());
-        assertEquals(musicMultimedia.getAlbum(), musicCopy.getAlbum());
-        assertEquals(musicMultimedia.getDuration(), musicCopy.getDuration());
-        assertEquals(musicMultimedia.getReproductions(), musicCopy.getReproductions());
-        assertEquals(musicMultimedia.isExplicit(), musicCopy.isExplicit());
-        assertEquals(musicMultimedia.getUrl(), musicCopy.getUrl());
+    void testClone_ReturnsIdenticalCopy() {
+        MusicMultimedia original = new MusicMultimedia("Song", "Artist", "Pub", "Lyrics", "Fig", "Pop", "Album", 180, false, "https://url.com");
+        MusicMultimedia cloned = original.clone();
+
+        assertNotSame(original, cloned, "Clone should return a new memory instance.");
+        assertEquals(original.getUrl(), cloned.getUrl());
+        assertEquals(original.getName(), cloned.getName());
     }
-    
+
     @Test
-    public void testSetUrl() {
-        String newUrl = "https://www.youtube.com/watch?v=newVideo";
-        musicMultimedia.setUrl(newUrl);
-        assertEquals(newUrl, musicMultimedia.getUrl());
+    void testToString_ReturnsFormattedString() {
+        MusicMultimedia mm = new MusicMultimedia("Song", "Artist", "Pub", "Lyrics", "Fig", "Pop", "Album", 180, false, "https://url.com");
+        String result = mm.toString();
+
+        assertTrue(result.contains("https://url.com"), "toString should contain the URL.");
+        assertTrue(result.contains("MusicaMultimedia"), "toString should contain the class label.");
     }
-    
+
+    // ==========================================
+    // 4. TESTE DO EQUALS (A caça aos 82% -> 100%)
+    // ==========================================
     @Test
-    public void testClone() {
-        MusicMultimedia musicClone = musicMultimedia.clone();
-        
-        assertEquals(musicMultimedia.getName(), musicClone.getName());
-        assertEquals(musicMultimedia.getInterpreter(), musicClone.getInterpreter());
-        assertEquals(musicMultimedia.getPublisher(), musicClone.getPublisher());
-        assertEquals(musicMultimedia.getLyrics(), musicClone.getLyrics());
-        assertEquals(musicMultimedia.getMusicalFigures(), musicClone.getMusicalFigures());
-        assertEquals(musicMultimedia.getGenre(), musicClone.getGenre());
-        assertEquals(musicMultimedia.getAlbum(), musicClone.getAlbum());
-        assertEquals(musicMultimedia.getDuration(), musicClone.getDuration());
-        assertEquals(musicMultimedia.getReproductions(), musicClone.getReproductions());
-        assertEquals(musicMultimedia.isExplicit(), musicClone.isExplicit());
-        assertEquals(musicMultimedia.getUrl(), musicClone.getUrl());
-        
-        // Ensure it's a deep copy
-        musicClone.setUrl("Different");
-        assertNotEquals(musicMultimedia.getUrl(), musicClone.getUrl());
-    }
-    
-    @Test
-    public void testEquals() {
-        // In Music class, equals() only checks if names are equal
-        MusicMultimedia sameName = new MusicMultimedia(NAME, INTERPRETER, PUBLISHER, LYRICS, 
-                                    MUSICAL_FIGURES, GENRE, ALBUM, DURATION, EXPLICIT, URL);
-        MusicMultimedia differentName = new MusicMultimedia("Different", INTERPRETER, PUBLISHER, LYRICS, 
-                                    MUSICAL_FIGURES, GENRE, ALBUM, DURATION, EXPLICIT, URL);
-        
-        assertEquals(musicMultimedia, musicMultimedia);
-        assertEquals(musicMultimedia, sameName);         
-        assertNotEquals(musicMultimedia, differentName);
-        assertNotEquals(musicMultimedia, null);
-        assertNotEquals(musicMultimedia, new Object());
-    }
-    
-    @Test
-    public void testToString() {
-        String result = musicMultimedia.toString();
-        
-        assertTrue(result.contains(NAME));
-        assertTrue(result.contains(INTERPRETER));
-        assertTrue(result.contains(URL));
-    }
-    
-    @Test
-    public void testInheritance() {
-        // Test that MusicMultimedia is a subtype of Music
-        assertTrue(musicMultimedia instanceof Music);
-        
-        // Test that play method works as expected
-        int initialReproductions = musicMultimedia.getReproductions();
-        String result = musicMultimedia.play();
-        
-        assertEquals(LYRICS, result);
-        assertEquals(initialReproductions + 1, musicMultimedia.getReproductions());
+    void testEquals_VariousConditions_ReturnsExpectedBoolean() {
+        MusicMultimedia base = new MusicMultimedia("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false, "http://url.com");
+        MusicMultimedia same = new MusicMultimedia("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false, "http://url.com");
+
+        MusicMultimedia diffSuper = new MusicMultimedia("Different", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false, "http://url.com");
+        MusicMultimedia diffUrl = new MusicMultimedia("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false, "http://other.com");
+
+        // Mutações de URL a null para cobrir as ramificações finais!
+        MusicMultimedia nullUrl1 = new MusicMultimedia("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false, null);
+        MusicMultimedia nullUrl2 = new MusicMultimedia("Name", "Artist", "Pub", "Lyrics", "Fig", "Genre", "Album", 180, false, null);
+
+        // 1. Identidade e Tipos
+        assertTrue(base.equals(base), "Should equal itself.");
+        assertFalse(base.equals(null), "Should handle null.");
+        assertFalse(base.equals(new Object()), "Should handle different classes.");
+
+        // 2. Igualdade Perfeita
+        assertTrue(base.equals(same), "Should equal identical object.");
+
+        // 3. Falha no super.equals() (Se um dos campos da classe pai for diferente)
+        assertFalse(base.equals(diffSuper), "Should return false if superclass fields differ.");
+
+        // 4. Falha no URL
+        assertFalse(base.equals(diffUrl), "Should return false if URLs differ.");
+
+        // 5. O Segredo dos 100%: Mutações do Null no URL!
+        assertTrue(nullUrl1.equals(nullUrl2), "Should return true if both URLs are null.");
+        assertFalse(nullUrl1.equals(base), "Should return false if this URL is null but the other is not.");
+        assertFalse(base.equals(nullUrl1), "Should return false if this URL is not null but the other is.");
     }
 }

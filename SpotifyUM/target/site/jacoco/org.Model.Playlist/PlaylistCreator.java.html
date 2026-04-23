@@ -19,7 +19,7 @@ import java.util.Random;
  * Não deve ser instanciada.
  *
  */
-<span class="nc" id="L22">public class PlaylistCreator {</span>
+<span class="fc" id="L22">public class PlaylistCreator {</span>
     /**
      * Cria uma playlist de um género musical até uma duração máxima.
      *
@@ -114,8 +114,8 @@ import java.util.Random;
 <span class="fc" id="L114">        int total = 0;</span>
 <span class="fc bfc" id="L115" title="All 2 branches covered.">        for (String nome : ordenadas) {</span>
 <span class="fc" id="L116">            Music m = musics.get(nome);</span>
-<span class="pc bpc" id="L117" title="1 of 2 branches missed.">            if (m != null) {</span>
-<span class="pc bpc" id="L118" title="1 of 4 branches missed.">                if (maxDuration &gt; 0 &amp;&amp; total + m.getDuration() &gt; maxDuration) break;</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">            if (m != null) {</span>
+<span class="fc bfc" id="L118" title="All 4 branches covered.">                if (maxDuration &gt; 0 &amp;&amp; total + m.getDuration() &gt; maxDuration) break;</span>
 <span class="fc" id="L119">                favoritas.add(m);</span>
 <span class="fc" id="L120">                total += m.getDuration();</span>
             }

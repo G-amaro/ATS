@@ -1,7 +1,6 @@
 org/Model/Music/MusicReproductionTest.class
 org/Exceptions/EmptyPlaylistExceptionTest.class
 org/Model/Plan/PlanFreeTest.class
-org/Model/User/UserTest$2.class
 org/Model/Playlist/PlaylistTest.class
 org/View/ProfileEditorMenuTest.class
 org/Model/Playlist/PlaylistCreatorTest.class
@@ -22,7 +21,6 @@ org/Exceptions/NotFoundExceptionTest.class
 org/Exceptions/NoUsersInDatabaseExceptionTest.class
 org/Model/Plan/PlanTest$TestPlan.class
 org/Model/Plan/PlanPremiumTopTest.class
-org/Model/User/UserTest$1.class
 org/View/MainMenuTest.class
 org/View/PlaylistMenuTest.class
 org/Controller/ControllerTest.class
@@ -36,7 +34,6 @@ org/Model/Plan/PlanPremiumBaseTest.class
 org/View/StatisticsMenuTest.class
 org/Exceptions/NoMusicsInDatabaseExceptionTest.class
 org/Exceptions/NoReproductionsInDatabaseExceptionTest.class
-org/Model/User/UserTest$3.class
 org/View/LoginMenuTest.class
 org/Model/SpotifUMTest.class
 org/Model/Music/MusicTest.class
