@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Serialization.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Utils</a> &gt; <span class="el_source">Serialization.java</span></div><h1>Serialization.java</h1><pre class="source lang-java linenums">package org.Utils;
+import java.io.Serializable;
+import java.io.*;
+
+/**
+ * Classe Serialization
+ *
+ * Utilitário para serialização e desserialização de objetos em Java.
+ * Fornece métodos genéricos para exportar (serializar) e importar (desserializar)
+ * objetos que implementam a interface {@link Serializable} para/de ficheiros.
+ * Não deve ser instanciada.
+ *
+ * Exemplos de uso:
+ * &lt;pre&gt;
+ *   MinhaClasse obj = new MinhaClasse();
+ *   Serialization.exportar(obj, &quot;objeto.ser&quot;);
+ *   MinhaClasse objImportado = Serialization.importar(&quot;objeto.ser&quot;);
+ * &lt;/pre&gt;
+ * 
+ */
+<span class="nc" id="L21">public class Serialization {</span>
+    /**
+     * Exporta (serializa) um objeto para um ficheiro.
+     *
+     * @param objeto O objeto a ser exportado. Deve implementar Serializable.
+     * @param caminhoFicheiro Caminho do ficheiro onde o objeto será salvo.
+     * @throws IllegalArgumentException Se o objeto for nulo.
+     * @throws RuntimeException Se ocorrer um erro de IO durante a exportação.
+     */
+    public static &lt;T extends Serializable&gt; void exportar (T objeto, String caminhoFicheiro) throws RuntimeException {
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if (objeto == null) {</span>
+<span class="nc" id="L32">            throw new IllegalArgumentException(&quot;O objeto a ser exportado não pode ser nulo.&quot;);</span>
+        }
+<span class="fc" id="L34">        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(caminhoFicheiro))) {</span>
+<span class="fc" id="L35">            oos.writeObject(objeto);</span>
+<span class="fc" id="L36">        } catch (IOException e) {</span>
+<span class="fc" id="L37">            throw new RuntimeException(&quot;Erro ao exportar o objeto: &quot; + e.getMessage(), e);</span>
+<span class="fc" id="L38">        }</span>
+<span class="fc" id="L39">    }</span>
+
+    /**
+     * Importa (desserializa) um objeto de um ficheiro.
+     *
+     * @param caminhoFicheiro Caminho do ficheiro de onde o objeto será lido.
+     * @param &lt;T&gt; Tipo do objeto esperado, que deve implementar Serializable.
+     * @return O objeto importado do ficheiro.
+     * @throws RuntimeException Se ocorrer um erro de IO ou de classe durante a importação.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public static &lt;T extends Serializable&gt; T importar(String caminhoFicheiro) throws RuntimeException {
+<span class="fc" id="L51">        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(caminhoFicheiro))) {</span>
+<span class="fc" id="L52">            Object obj = ois.readObject();</span>
+<span class="fc" id="L53">            return (T) obj;</span>
+<span class="fc" id="L54">        } catch (Exception e) {</span>
+<span class="fc" id="L55">            throw new RuntimeException(&quot;Erro ao importar o objeto: &quot; + e.getMessage(), e);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,180 @@
+* Starting client
+* Connecting to master process on port 16676
+* Analyzing classpath: 
+  - /home/gongas/Desktop/3ano2sem/ATS_Aulas/ATS/SpotifyUM2/target/classes
+  - /home/gongas/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar
+  - /home/gongas/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar
+  - /home/gongas/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+  - /home/gongas/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar
+  - /home/gongas/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar
+  - /home/gongas/.m2/repository/org/mockito/mockito-core/4.11.0/mockito-core-4.11.0.jar
+  - /home/gongas/.m2/repository/net/bytebuddy/byte-buddy/1.12.19/byte-buddy-1.12.19.jar
+  - /home/gongas/.m2/repository/net/bytebuddy/byte-buddy-agent/1.12.19/byte-buddy-agent-1.12.19.jar
+  - /home/gongas/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar
+  - /home/gongas/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar
+  - /home/gongas/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar
+  - /home/gongas/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
+  - /home/gongas/.m2/repository/org/junit/vintage/junit-vintage-engine/5.8.2/junit-vintage-engine-5.8.2.jar
+  - /home/gongas/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar
+  - /home/gongas/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik/1.7.3/jqwik-1.7.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik-api/1.7.3/jqwik-api-1.7.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik-web/1.7.3/jqwik-web-1.7.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik-time/1.7.3/jqwik-time-1.7.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik-engine/1.7.3/jqwik-engine-1.7.3.jar
+* Finished analyzing classpath
+* Generating tests for class org.Model.User.User
+* Test criteria:
+  - Line Coverage
+  - Branch Coverage
+  - Exception
+  - Mutation testing (weak)
+  - Method-Output Coverage
+  - Top-Level Method Coverage
+  - No-Exception Top-Level Method Coverage
+  - Context Branch Coverage
+* Setting up search algorithm for whole suite generation
+[MASTER] 15:55:25.421 [pool-2-thread-1] WARN  TestSuiteSerialization - Cannot load tests because file does not exist: /home/gongas/Desktop/3ano2sem/ATS_Aulas/ATS/SpotifyUM2/.evosuite/evosuite-seeds/org.Model.User.User.seed
+* Loaded 0 tests from /home/gongas/Desktop/3ano2sem/ATS_Aulas/ATS/SpotifyUM2/.evosuite/evosuite-seeds/org.Model.User.User.seed
+* Total number of test goals: 
+  - Line 154
+  - Branch 82
+  - Exception 0
+  - MutationFactory 120
+  - Output 50
+  - Method 33
+  - MethodNoException 33
+  - CBranchFitnessFactory 82
+* Using seed 1776956122819
+* Starting evolution
+* Search finished after 163s and 422 generations, 215844 statements, best individual has fitness: 21.0370370311732
+* Writing sequences to pool
+* Minimizing test suite
+* Going to analyze the coverage criteria
+* Coverage analysis for criterion LINE
+* Coverage of criterion LINE: 100%
+* Total number of goals: 154
+* Number of covered goals: 154
+* Coverage analysis for criterion BRANCH
+* Coverage of criterion BRANCH: 100%
+* Total number of goals: 82
+* Number of covered goals: 82
+* Coverage analysis for criterion EXCEPTION
+* Coverage of criterion EXCEPTION: 100%
+* Total number of goals: 26
+* Number of covered goals: 26
+* Coverage analysis for criterion WEAKMUTATION
+* Coverage of criterion WEAKMUTATION: 92%
+* Total number of goals: 120
+* Number of covered goals: 111
+* Coverage analysis for criterion OUTPUT
+* Coverage of criterion OUTPUT: 74%
+* Total number of goals: 50
+* Number of covered goals: 37
+* Coverage analysis for criterion METHOD
+* Coverage of criterion METHOD: 100%
+* Total number of goals: 33
+* Number of covered goals: 33
+* Coverage analysis for criterion METHODNOEXCEPTION
+* Coverage of criterion METHODNOEXCEPTION: 100%
+* Total number of goals: 33
+* Number of covered goals: 33
+* Coverage analysis for criterion CBRANCH
+* Coverage of criterion CBRANCH: 100%
+* Total number of goals: 82
+* Number of covered goals: 82
+* Generated 75 tests with total length 319
+* Resulting test suite's coverage: 96% (average coverage for all fitness functions)
+* Generating assertions
+* Resulting test suite's mutation score: 66%
+* Compiling and checking tests
+[MASTER] 15:58:21.629 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:21.824 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:22.110 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:22.368 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:22.606 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:22.835 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:23.049 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:23.372 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:23.575 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:23.789 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:23.974 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:24.155 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:24.340 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:24.519 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:24.698 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:24.880 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:25.039 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:25.214 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:25.397 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:25.569 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:25.737 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:25.896 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:26.053 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:26.223 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:26.393 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:26.561 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:26.741 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:26.907 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:27.066 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:27.231 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:27.428 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:27.617 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:28.018 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:28.178 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:28.337 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:28.493 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:28.652 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:28.837 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:29.028 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:29.195 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:29.360 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:29.524 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:29.696 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:29.865 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:30.045 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:30.078 [pool-2-thread-1] WARN  JUnitAnalyzer - Found unstable test named test0 -> class java.lang.AssertionError: Expecting exception: NullPointerException
+[MASTER] 15:58:30.078 [pool-2-thread-1] WARN  JUnitAnalyzer - Failing test:
+ PlanPremiumTop planPremiumTop0 = new PlanPremiumTop();
+LinkedList<Playlist> linkedList0 = new LinkedList<Playlist>();
+LinkedList<MusicReproduction> linkedList1 = new LinkedList<MusicReproduction>();
+User user0 = new User("6pn7", "6pn7", "\u2022", "org.Model.User.User", planPremiumTop0, linkedList0, linkedList1);
+Playlist playlist0 = new Playlist();
+user0.addPlaylist((String) null);
+user0.addPlaylistToLibrary(playlist0);
+
+[MASTER] 15:58:30.211 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:30.496 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:30.693 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:30.853 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:31.016 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:31.193 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:31.491 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:31.788 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:31.968 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:32.131 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:32.285 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:32.449 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:32.612 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:32.778 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:32.944 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:33.510 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:34.338 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:35.085 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:35.295 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:35.668 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:35.891 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:36.312 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:36.636 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:36.992 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:37.376 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:37.766 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:38.143 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:38.457 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+[MASTER] 15:58:38.730 [pool-2-thread-1] WARN  MSecurityManager - SUT asked for a runtime permission that EvoSuite does not recognize: net.bytebuddy.createJavaDispatcher
+* Permissions denied during test execution: 
+  - java.lang.RuntimePermission: 
+         net.bytebuddy.createJavaDispatcher: 147
+* Writing JUnit test case 'User_ESTest' to /home/gongas/Desktop/3ano2sem/ATS_Aulas/ATS/SpotifyUM2/.evosuite/tmp_2026_04_23_15_45_32/tests
+* Done!
+

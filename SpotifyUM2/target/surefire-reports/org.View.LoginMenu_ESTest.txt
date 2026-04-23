@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.View.LoginMenu_ESTest
+-------------------------------------------------------------------------------
+Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.616 s - in org.View.LoginMenu_ESTest

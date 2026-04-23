@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlaylistCreator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Model.Playlist</a> &gt; <span class="el_source">PlaylistCreator.java</span></div><h1>PlaylistCreator.java</h1><pre class="source lang-java linenums">package org.Model.Playlist;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
+import org.Exceptions.AlreadyExistsException;
+import org.Exceptions.EmptyPlaylistException;
+import org.Model.Music.Music;
+import org.Model.Music.MusicReproduction;
+
+import java.util.Map;
+import java.util.Random;
+
+/**
+ * Contém métodos estáticos para gerar playlists baseadas em critérios como género musical,
+ * seleção aleatória e músicas favoritas do utilizador.
+ * Não deve ser instanciada.
+ *
+ */
+<span class="nc" id="L22">public class PlaylistCreator {</span>
+    /**
+     * Cria uma playlist de um género musical até uma duração máxima.
+     *
+     * @param username Nome do utilizador
+     * @param name Nome da playlist
+     * @param genre Género musical desejado
+     * @param maxDuration Duração máxima da playlist (em segundos)
+     * @param musics Mapa de músicas disponíveis
+     * @param publicPlaylists Mapa de playlists públicas
+     * @return Lista de músicas selecionadas
+     * @throws AlreadyExistsException Se já existir uma playlist pública com o mesmo nome
+     * @throws EmptyPlaylistException Se não for possível criar uma playlist com as restrições
+     * @throws IllegalArgumentException Se não existirem músicas do género
+     */
+    public static List&lt;Music&gt; createGenrePlaylist(String username, String name, String genre, int maxDuration, Map&lt;String,Music&gt; musics,Map&lt;Integer,Playlist&gt; publicPlaylists) throws AlreadyExistsException, EmptyPlaylistException{
+        // Verifica se já existe uma playlist pública com este nome
+
+        // Filtra músicas do género pretendido
+<span class="fc" id="L41">        List&lt;Music&gt; musicNames = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (Music m : musics.values()){</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            if (m.getGenre().equals(genre)){</span>
+<span class="fc" id="L44">                musicNames.add(m);</span>
+            }
+<span class="fc" id="L46">        }</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (musicNames.isEmpty()){</span>
+<span class="fc" id="L48">            throw new IllegalArgumentException(&quot;Não existem músicas desse género.&quot;);</span>
+        }
+
+        // Baralha as músicas e seleciona até atingir a duração máxima
+<span class="fc" id="L52">        Collections.shuffle(musicNames);</span>
+<span class="fc" id="L53">        int totalDuration = 0;</span>
+<span class="fc" id="L54">        List&lt;Music&gt; selectedMusics = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        for (Music m : musicNames){</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            if (totalDuration + m.getDuration() &lt;= maxDuration){</span>
+<span class="fc" id="L57">                selectedMusics.add(m);</span>
+<span class="fc" id="L58">                totalDuration += m.getDuration();</span>
+            }
+<span class="fc" id="L60">        }</span>
+
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if(selectedMusics.isEmpty()){</span>
+<span class="fc" id="L63">            throw new EmptyPlaylistException(&quot;Playlist vazia.&quot;);</span>
+        }
+
+<span class="fc" id="L66">        return selectedMusics;</span>
+    }
+    
+
+    /**
+     * Cria uma playlist aleatória com músicas do sistema.
+     *
+     * @param musics Mapa de músicas disponíveis
+     * @return Lista de músicas selecionadas aleatoriamente
+     */
+    public static List&lt;Music&gt; createRandomPlaylist(Map&lt;String,Music&gt; musics) {
+<span class="fc" id="L77">        Random rand = new Random();</span>
+<span class="fc" id="L78">        int numMusics = rand.nextInt(musics.size()) + 1; // Gera um número aleatório entre 1 e o número total de músicas(exclusivo)</span>
+<span class="fc" id="L79">        List&lt;Music&gt; musicNames = new ArrayList&lt;&gt;(musics.values());</span>
+<span class="fc" id="L80">        List&lt;Music&gt; randomMusics = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        for (int i = 0; i &lt; numMusics; i++) {</span>
+<span class="fc" id="L82">            int randomIndex = rand.nextInt(musicNames.size());</span>
+<span class="fc" id="L83">            Music randomMusic = musicNames.get(randomIndex);</span>
+<span class="fc" id="L84">            randomMusics.add(randomMusic);</span>
+<span class="fc" id="L85">            musicNames.remove(randomIndex);</span>
+        }
+<span class="fc" id="L87">        return randomMusics;</span>
+    }   
+
+    /**
+     * Cria uma playlist de músicas favoritas do utilizador.
+     *
+     * @param maxDuration Duração máxima da playlist (em segundos)
+     * @param explicit true para incluir apenas músicas explícitas
+     * @param reproductions Lista de reproduções do utilizador
+     * @param musics Mapa de músicas disponíveis
+     * @return Lista de músicas favoritas ordenadas por número de reproduções
+     * @throws IllegalArgumentException Se não houver músicas favoritas suficientes
+     */
+    public static List&lt;Music&gt; createFavoritesPlaylist(int maxDuration, boolean explicit, List&lt;MusicReproduction&gt; reproductions, Map&lt;String,Music&gt; musics) throws IllegalArgumentException{
+        // Obter as músicas mais reproduzidas pelo utilizador atual
+<span class="fc" id="L102">        List&lt;Music&gt; favoritas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L103">        Map&lt;String, Integer&gt; contagem = new HashMap&lt;&gt;();</span>
+        // Contar reproduções de cada música
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        for (MusicReproduction rep : reproductions) {</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">            if(explicit)</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">                if(!rep.getMusic().isExplicit()) continue;</span>
+<span class="fc" id="L108">            String nome = rep.getMusic().getName();</span>
+<span class="fc" id="L109">            contagem.put(nome, contagem.getOrDefault(nome, 0) + 1);</span>
+<span class="fc" id="L110">        }</span>
+        // Ordenar por mais reproduzidas
+<span class="fc" id="L112">        List&lt;String&gt; ordenadas = new ArrayList&lt;&gt;(contagem.keySet());</span>
+<span class="fc" id="L113">        ordenadas.sort((a, b) -&gt; contagem.get(b) - contagem.get(a));</span>
+<span class="fc" id="L114">        int total = 0;</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        for (String nome : ordenadas) {</span>
+<span class="fc" id="L116">            Music m = musics.get(nome);</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">            if (m != null) {</span>
+<span class="pc bpc" id="L118" title="1 of 4 branches missed.">                if (maxDuration &gt; 0 &amp;&amp; total + m.getDuration() &gt; maxDuration) break;</span>
+<span class="fc" id="L119">                favoritas.add(m);</span>
+<span class="fc" id="L120">                total += m.getDuration();</span>
+            }
+<span class="fc" id="L122">        }</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        if (favoritas.isEmpty()) throw new IllegalArgumentException(&quot;Não há músicas favoritas suficientes.&quot;);</span>
+        
+<span class="fc" id="L125">        return favoritas;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

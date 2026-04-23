@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlanFree.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Model.Plan</a> &gt; <span class="el_source">PlanFree.java</span></div><h1>PlanFree.java</h1><pre class="source lang-java linenums">package org.Model.Plan;
+
+/**
+ *
+ * Usuários com este plano têm acesso limitado a funcionalidades e acumulam pontos em ritmo básico.
+ */
+public class PlanFree extends Plan{
+    /**
+     * Construtor vazio da classe PlanFree.
+     */
+<span class="fc" id="L11">    public PlanFree() {</span>
+<span class="fc" id="L12">        this.setPoints(0);</span>
+<span class="fc" id="L13">    }</span>
+
+    /**
+     * Construtor da classe PlanFree.
+     * @param p O plano de onde copiar os pontos.
+     */
+<span class="fc" id="L19">    public PlanFree(Plan p){</span>
+<span class="fc" id="L20">        this.setPoints(p.getPoints());</span>
+<span class="fc" id="L21">    }</span>
+
+    /**
+     * Adiciona pontos ao usuário.
+     */
+    public void addPoints(){
+<span class="fc" id="L27">        this.setPoints(getPoints() + 5);</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Retorna se o usuário pode acessar a biblioteca.
+     * @return false, pois usuários Free não têm acesso à biblioteca.
+     */
+    public boolean canAccessLibrary() {
+<span class="fc" id="L35">        return false;</span>
+    }
+
+    /**
+     * Retorna se o usuário pode avançar faixas.
+     * @return false, pois usuários Free não podem avançar faixas.
+     */
+    public boolean canSkip() {
+<span class="fc" id="L43">        return false;</span>
+    }
+
+    /**
+     * Retorna se o usuário pode escolher o que tocar.
+     * @return false, pois usuários Free não podem escolher faixas.
+     */
+    public boolean canChooseWhatToPlay(){
+<span class="fc" id="L51">        return false;</span>
+    }
+
+    /**
+     * Retorna o acesso aos favoritos.
+     * @return false, pois usuários Free não têm acesso aos favoritos.
+     */
+    public boolean hasAccessToFavorites() {
+<span class="fc" id="L59">        return false;</span>
+    }
+
+    /**
+     * Retorna uma representação textual do plano Free.
+     * @return String descrevendo o plano e os pontos.
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L68">        return &quot;Plano: Free\n&quot; +</span>
+<span class="fc" id="L69">               &quot;    Pontos: &quot; + getPoints();</span>
+    }
+    
+    /**
+     * Retorna o nome do plano.
+     * @return A string &quot;Free&quot;.
+     */
+    public String getPlanName() {
+<span class="fc" id="L77">        return &quot;Free&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

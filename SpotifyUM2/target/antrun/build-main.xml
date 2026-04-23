@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <copy todir="/home/gongas/Desktop/3ano2sem/ATS_Aulas/ATS/SpotifyUM2/src/test/java" overwrite="true">
+      <fileset dir="/home/gongas/Desktop/3ano2sem/ATS_Aulas/ATS/SpotifyUM2/.evosuite/best-tests">
+        <include name="**/*.java" />
+      </fileset>
+    </copy>
+  </target>
+</project>

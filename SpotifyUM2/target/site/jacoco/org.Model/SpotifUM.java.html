@@ -1,0 +1,1198 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpotifUM.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Model</a> &gt; <span class="el_source">SpotifUM.java</span></div><h1>SpotifUM.java</h1><pre class="source lang-java linenums">package org.Model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.time.LocalDate;
+
+import org.Model.Album.Album;
+import org.Model.Music.Music;
+import org.Model.Music.MusicMultimedia;
+import org.Model.Playlist.*;
+import org.Model.User.User;
+import org.Model.Plan.*;
+import org.Exceptions.*;
+
+/**
+ * Classe principal do modelo do sistema SpotifUM.
+ * Responsável por gerir músicas, playlists, utilizadores, álbuns e estatísticas.
+ * Implementa Serializable para permitir persistência do estado.
+ */
+public class SpotifUM implements Serializable {
+
+    // =================== ATRIBUTOS ===================
+
+    /**
+     * Mapa de músicas do sistema.
+     * Key: Nome da música
+     * Value: Objeto Music correspondente
+     */
+    private Map&lt;String , Music&gt; musics;
+    /**
+     * Mapa de playlists públicas do sistema.
+     * Key: ID da playlist
+     * Value: Objeto Playlist correspondente
+     */
+    private Map&lt;Integer, Playlist&gt; publicPlaylists;
+    /**
+     * Mapa de utilizadores do sistema.
+     * Key: Nome do utilizador
+     * Value: Objeto User correspondente
+     */
+    private Map&lt;String, User&gt; users;
+    /**
+     * Mapa de álbuns do sistema.
+     * Key: Nome do álbum
+     * Value: Objeto Album correspondente
+     */
+    private Map&lt;String, Album&gt; albums;
+    /**
+     * Utilizador atualmente autenticado no sistema.
+     */
+    private User currentUser;
+    /**
+     * Estatísticas de reproduções por artista.
+     * Key: Nome do artista
+     * Value: Número de reproduções
+     */
+    private Map&lt;String, Integer&gt; artistReproductions;
+    /**
+     * Estatísticas de reproduções por género musical.
+     * Key: Nome do género
+     * Value: Número de reproduções
+     */
+    private Map&lt;String, Integer&gt; genreReproductions;
+
+    // =================== CONSTRUTORES ===================
+
+    /**
+     * Construtor vazio. Inicializa todos os mapas como vazios e o utilizador atual como null.
+     */
+<span class="fc" id="L77">    public SpotifUM(){</span>
+<span class="fc" id="L78">        this.musics = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L79">        this.publicPlaylists = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L80">        this.users = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L81">        this.albums = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L82">        this.artistReproductions = new TreeMap&lt;&gt;();</span>
+<span class="fc" id="L83">        this.genreReproductions = new TreeMap&lt;&gt;();</span>
+<span class="fc" id="L84">        this.currentUser = null;</span>
+        //populateDatabase();
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * Construtor parametrizado. Inicializa os mapas e estatísticas com os valores fornecidos.
+     * O utilizador atual é definido como null.
+     * @param m Mapa de músicas
+     * @param p Mapa de playlists públicas
+     * @param u Mapa de utilizadores
+     * @param a Mapa de álbuns
+     * @param artistReproductions Estatísticas de reproduções por artista
+     * @param genreReproductions Estatísticas de reproduções por género
+     */
+<span class="fc" id="L98">    public SpotifUM(Map&lt;String, Music&gt; m, Map&lt;Integer, Playlist&gt; p, Map&lt;String, User&gt; u, Map&lt;String, Album&gt; a, Map&lt;String, Integer&gt; artistReproductions, Map&lt;String, Integer&gt; genreReproductions){</span>
+<span class="fc" id="L99">        this.musics = new HashMap&lt;&gt;();</span>
+<span class="pc" id="L100">        m.forEach((k, v) -&gt; this.musics.put(k, v.clone()));</span>
+<span class="fc" id="L101">        this.publicPlaylists = new HashMap&lt;&gt;();</span>
+<span class="pc" id="L102">        p.forEach((k, v) -&gt; this.publicPlaylists.put(k, v.clone()));</span>
+<span class="fc" id="L103">        this.users = new HashMap&lt;&gt;();</span>
+<span class="pc" id="L104">        u.forEach((k, v) -&gt; this.users.put(k, v.clone()));</span>
+<span class="fc" id="L105">        this.albums = new HashMap&lt;&gt;();</span>
+<span class="pc" id="L106">        a.forEach((k, v) -&gt; this.albums.put(k, v.clone()));</span>
+<span class="fc" id="L107">        this.currentUser = null;</span>
+<span class="fc" id="L108">        this.artistReproductions = new TreeMap&lt;&gt;();</span>
+<span class="pc" id="L109">        artistReproductions.forEach((k, v) -&gt; this.artistReproductions.put(k, v));</span>
+<span class="fc" id="L110">        this.genreReproductions = new TreeMap&lt;&gt;();</span>
+<span class="pc" id="L111">        genreReproductions.forEach((k, v) -&gt; this.genreReproductions.put(k, v));</span>
+<span class="fc" id="L112">    }</span>
+
+    /**
+     * Construtor de cópia. Cria uma nova instância com os mesmos dados do objeto fornecido.
+     * @param s Objeto SpotifUM a copiar
+     */
+<span class="fc" id="L118">    public SpotifUM(SpotifUM s){</span>
+<span class="fc" id="L119">        this.musics = new HashMap&lt;&gt;();</span>
+<span class="pc" id="L120">        s.getMusics().forEach((k, v) -&gt; this.musics.put(k, v.clone()));</span>
+<span class="fc" id="L121">        this.publicPlaylists = new HashMap&lt;&gt;();</span>
+<span class="pc" id="L122">        s.getPublicPlaylists().forEach((k, v) -&gt; this.publicPlaylists.put(k, v.clone()));</span>
+<span class="fc" id="L123">        this.users = new HashMap&lt;&gt;();</span>
+<span class="pc" id="L124">        s.getUsers().forEach((k, v) -&gt; this.users.put(k, v.clone()));</span>
+<span class="fc" id="L125">        this.albums = new HashMap&lt;&gt;();</span>
+<span class="pc" id="L126">        s.getAlbums().forEach((k, v) -&gt; this.albums.put(k, v.clone()));</span>
+<span class="fc" id="L127">        this.artistReproductions = new TreeMap&lt;&gt;();</span>
+<span class="pc" id="L128">        s.getArtistReproductions().forEach((k, v) -&gt; this.artistReproductions.put(k, v));</span>
+<span class="fc" id="L129">        this.genreReproductions = new TreeMap&lt;&gt;();</span>
+<span class="pc" id="L130">        s.getGenreReproductions().forEach((k, v) -&gt; this.genreReproductions.put(k, v));</span>
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">        this.currentUser = (s.getCurrentUser() == null ? null : s.getCurrentUser().clone());</span>
+<span class="fc" id="L132">    }</span>
+
+    // =================== GETTERS E SETTERS ===================
+
+    /**
+     * Retorna uma cópia do mapa de playlists públicas.
+     * @return Mapa de playlists públicas
+     */
+    public Map&lt;Integer, Playlist&gt; getPublicPlaylists() {
+<span class="fc" id="L141">        Map&lt;Integer, Playlist&gt; clone = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L142">        clone.putAll(this.publicPlaylists);</span>
+<span class="fc" id="L143">        return clone;</span>
+    }
+
+    /**
+     * Define o mapa de playlists públicas do sistema.
+     * @param playlists Mapa de playlists públicas
+     */
+    public void setPublicPlaylists(Map&lt;Integer, Playlist&gt; playlists) {
+<span class="nc" id="L151">        this.publicPlaylists = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L152">        this.publicPlaylists.putAll(playlists);</span>
+<span class="nc" id="L153">    }</span>
+
+    /**
+     * Retorna uma cópia do mapa de utilizadores.
+     * @return Mapa de utilizadores
+     */
+    public Map&lt;String, User&gt; getUsers() {
+<span class="fc" id="L160">        Map&lt;String, User&gt; clone = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L161">        clone.putAll(this.users);</span>
+<span class="fc" id="L162">        return clone;</span>
+    }
+
+    /**
+     * Define o mapa de utilizadores do sistema.
+     * @param users Mapa de utilizadores
+     */
+    public void setUsers(Map&lt;String, User&gt; users) {
+<span class="nc" id="L170">        this.users = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L171">        this.users.putAll(users);</span>
+<span class="nc" id="L172">    }</span>
+
+    /**
+     * Retorna uma cópia das estatísticas de reproduções por artista.
+     * @return Mapa de reproduções por artista
+     */
+    public Map&lt;String, Integer&gt; getArtistReproductions() {
+<span class="fc" id="L179">        Map&lt;String, Integer&gt; clone = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L180">        clone.putAll(this.artistReproductions);</span>
+<span class="fc" id="L181">        return clone;</span>
+    }
+
+    /**
+     * Define as estatísticas de reproduções por artista.
+     * @param artistReproductions Mapa de reproduções por artista
+     */
+    public void setArtistReproductions(Map&lt;String, Integer&gt; artistReproductions) {
+<span class="nc" id="L189">        this.artistReproductions = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L190">        this.artistReproductions.putAll(artistReproductions);</span>
+<span class="nc" id="L191">    }</span>
+
+    /**
+     * Retorna uma cópia das estatísticas de reproduções por género.
+     * @return Mapa de reproduções por género
+     */
+    public Map&lt;String, Integer&gt; getGenreReproductions() {
+<span class="fc" id="L198">        Map&lt;String, Integer&gt; clone = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L199">        clone.putAll(this.genreReproductions);</span>
+<span class="fc" id="L200">        return clone;</span>
+    }
+
+    /**
+     * Define as estatísticas de reproduções por género.
+     * @param genreReproductions Mapa de reproduções por género
+     */
+    public void setGenreReproductions(Map&lt;String, Integer&gt; genreReproductions) {
+<span class="nc" id="L208">        this.genreReproductions = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L209">        this.genreReproductions.putAll(genreReproductions);</span>
+<span class="nc" id="L210">    }</span>
+
+    /**
+     * Retorna uma cópia do mapa de músicas.
+     * @return Mapa de músicas
+     */
+    public Map&lt;String, Music&gt; getMusics() {
+<span class="fc" id="L217">        Map&lt;String, Music&gt; clone = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L218">        clone.putAll(this.musics);</span>
+<span class="fc" id="L219">        return clone;</span>
+    }
+
+    /**
+     * Define o mapa de músicas do sistema.
+     * @param musicas Mapa de músicas
+     */
+    public void setMusics(Map&lt;String, Music&gt; musicas) {
+<span class="nc" id="L227">        this.musics = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L228">        this.musics.putAll(musicas);</span>
+<span class="nc" id="L229">    }</span>
+
+    /**
+     * Retorna o utilizador atualmente autenticado.
+     * @return Utilizador atual
+     */
+    public User getCurrentUser() {
+<span class="fc" id="L236">        return currentUser;</span>
+    }
+
+    /**
+     * Define o utilizador atualmente autenticado.
+     * @param currentUser Utilizador a definir
+     */
+    public void setCurrentUser(User currentUser) {
+<span class="nc" id="L244">        this.currentUser = currentUser;</span>
+<span class="nc" id="L245">    }</span>
+
+    /**
+     * Retorna uma cópia do mapa de álbuns.
+     * @return Mapa de álbuns
+     */
+    public Map&lt;String, Album&gt; getAlbums() {
+<span class="fc" id="L252">        Map&lt;String, Album&gt; clone = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L253">        clone.putAll(this.albums);</span>
+<span class="fc" id="L254">        return clone;</span>
+    }
+
+    /**
+     * Define o mapa de álbuns do sistema.
+     * @param albums Mapa de álbuns
+     */
+    public void setAlbums(Map&lt;String, Album&gt; albums) {
+<span class="nc" id="L262">        this.albums = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L263">        this.albums.putAll(albums);</span>
+<span class="nc" id="L264">    }</span>
+
+    // =================== MÉTODOS DE AUTENTICAÇÃO E PERFIL ===================
+
+    /**
+     * Autentica um utilizador no sistema.
+     * @param nome Nome do utilizador
+     * @param password Password do utilizador
+     * @throws UnsupportedOperationException Se a password estiver incorreta
+     * @throws NotFoundException Se o utilizador não existir
+     */
+    public void authenticateUser(String nome, String password) throws UnsupportedOperationException, NotFoundException {
+<span class="fc" id="L276">        User u = this.users.get(nome);</span>
+<span class="fc bfc" id="L277" title="All 2 branches covered.">        if (u != null) {</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">            if(u.getPassword().equals(password)){</span>
+<span class="fc" id="L279">                this.currentUser = u;</span>
+            }
+            else{
+<span class="fc" id="L282">                throw new UnsupportedOperationException(&quot;Password incorreta.&quot;);  </span>
+            }
+        }
+        else{
+<span class="fc" id="L286">            throw new NotFoundException(nome);</span>
+        }
+<span class="fc" id="L288">    }</span>
+
+    /**
+     * Verifica se a password do utilizador atual está correta.
+     * @param password Password a verificar
+     * @return true se estiver correta, false caso contrário
+     */
+    public boolean isPasswordCorrect(String password){
+<span class="nc" id="L296">        return this.currentUser.getPassword().equals(password);</span>
+    }
+
+    /**
+     * Altera o email do utilizador atual.
+     * @param email Novo email
+     */
+    public void setCurrentUserEmail(String email){
+<span class="nc" id="L304">        this.currentUser.setEmail(email);</span>
+<span class="nc" id="L305">    }</span>
+
+    /**
+     * Altera a password do utilizador atual.
+     * @param password Nova password
+     */
+    public void setCurrentUserPassword(String password){
+<span class="nc" id="L312">        this.currentUser.setPassword(password);</span>
+<span class="nc" id="L313">    }</span>
+
+    /**
+     * Altera o nome de utilizador do utilizador atual.
+     * @param username Novo nome de utilizador
+     */
+    public void setCurrentUserUsername(String username){
+<span class="nc" id="L320">        this.currentUser.setUsername(username);</span>
+<span class="nc" id="L321">    }</span>
+
+    /**
+     * Altera o nome do utilizador atual e atualiza o mapa de utilizadores.
+     * @param username Novo nome de utilizador
+     * @throws IllegalArgumentException Se o nome for igual ao atual ou já existir
+     */
+    public void changeCurrentUserName(String username) throws IllegalArgumentException{
+<span class="nc bnc" id="L329" title="All 2 branches missed.">        if (username.equals(this.currentUser.getUsername())){</span>
+<span class="nc" id="L330">            throw new IllegalArgumentException(&quot;Nome de utilizador igual ao atual.&quot;);</span>
+        }
+<span class="nc bnc" id="L332" title="All 2 branches missed.">        if (this.users.containsKey(username)){</span>
+<span class="nc" id="L333">            throw new IllegalArgumentException(&quot;Nome de utilizador já existe.&quot;);</span>
+        }
+<span class="nc" id="L335">        this.users.remove(this.currentUser.getUsername());</span>
+<span class="nc" id="L336">        this.currentUser.changePlaylistAutor(username);</span>
+<span class="nc" id="L337">        this.currentUser.setUsername(username);</span>
+<span class="nc" id="L338">        this.users.put(this.currentUser.getUsername(), this.currentUser);</span>
+<span class="nc" id="L339">    }</span>
+
+    /**
+     * Verifica se o utilizador atual tem acesso à biblioteca.
+     * @return true se tiver acesso, false caso contrário
+     */
+    public boolean hasLibrary(){
+<span class="nc" id="L346">        return this.currentUser.hasLibrary();</span>
+    }
+
+    /**
+     * Adiciona pontos ao utilizador atual, de acordo com o seu plano.
+     */
+    public void addPointsToCurrentUser(){
+<span class="nc" id="L353">        this.currentUser.addPoints();</span>
+<span class="nc" id="L354">    }</span>
+
+    /**
+     * Obtém o nome do plano do utilizador atual.
+     * @return Nome do plano
+     */
+    public String getCurrentUserPlanName(){
+<span class="nc" id="L361">        return this.currentUser.getPlan().getPlanName();</span>
+    }
+
+    // =================== MÉTODOS DE UTILIZADOR ===================
+
+    /**
+     * Adiciona um novo utilizador ao sistema (plano free por defeito).
+     * @param nome Nome do utilizador
+     * @param email Email do utilizador
+     * @param morada Morada do utilizador
+     * @param password Password do utilizador
+     */
+    public void addNewUser(String nome, String email, String morada, String password) {
+<span class="fc" id="L374">        User u = new User(nome, email, morada, password);</span>
+<span class="fc" id="L375">        this.users.put(u.getUsername(), u.clone());</span>
+<span class="fc" id="L376">    }</span>
+
+    /**
+     * Verifica se um utilizador existe no sistema.
+     * @param nome Nome do utilizador
+     * @return true se o utilizador existe, false caso contrário
+     */
+    public boolean userExists(String nome) {
+<span class="fc" id="L384">        return this.users.containsKey(nome);</span>
+    }
+
+    // =================== MÉTODOS DE MÚSICAS ===================
+
+    /**
+     * Verifica se uma música existe no sistema.
+     * @param musicName Nome da música
+     * @return true se a música existe, false caso contrário
+     */
+    public boolean musicExists(String musicName){
+<span class="nc" id="L395">        return this.musics.containsKey(musicName);</span>
+    }
+
+    /**
+     * Toca uma música, incrementando o número de reproduções.
+     * @param musicName Nome da música a tocar
+     * @return Letra da música
+     * @throws NotFoundException Se a música não existir
+     */
+    public String playMusic(String musicName) throws NotFoundException{
+<span class="nc" id="L405">        Music m = this.musics.get(musicName);</span>
+<span class="nc bnc" id="L406" title="All 2 branches missed.">        if (m == null) {</span>
+<span class="nc" id="L407">            throw new NotFoundException(musicName);</span>
+        }
+<span class="nc" id="L409">        return m.play();</span>
+    }
+
+    /**
+     * Obtém uma cópia da música pelo nome.
+     * @param musicName Nome da música
+     * @return Objeto Music clonado
+     * @throws NotFoundException Se a música não existir
+     */
+    public Music getMusicByName(String musicName) throws NotFoundException{
+<span class="nc" id="L419">        Music m = this.musics.get(musicName);</span>
+<span class="nc bnc" id="L420" title="All 2 branches missed.">        if (m == null) {</span>
+<span class="nc" id="L421">            throw new NotFoundException(musicName);</span>
+        }
+<span class="nc" id="L423">        return m.clone();</span>
+    }
+
+    /**
+     * Adiciona uma reprodução de música ao utilizador atual.
+     * @param musicName Nome da música
+     */
+    public void addToCurrentUserMusicReproductions(String musicName){
+<span class="nc" id="L431">        Music m = this.musics.get(musicName);</span>
+<span class="nc" id="L432">        this.currentUser.addMusicReproduction(m);</span>
+<span class="nc" id="L433">    }</span>
+
+    /**
+     * Incrementa o número de reproduções de um género musical.
+     * @param genre Nome do género
+     */
+    public void incrementGenreReproductions(String genre) {
+<span class="nc" id="L440">        this.genreReproductions.put(genre, this.genreReproductions.getOrDefault(genre, 0) + 1);</span>
+<span class="nc" id="L441">    }</span>
+
+    /**
+     * Incrementa o número de reproduções de um artista.
+     * @param artistName Nome do artista
+     */
+    public void incrementArtistReproductions(String artistName) {
+<span class="nc" id="L448">        this.artistReproductions.put(artistName, this.artistReproductions.getOrDefault(artistName, 0) + 1);</span>
+<span class="nc" id="L449">    }</span>
+
+    /**
+     * Adiciona uma nova música ao sistema, podendo ser multimédia.
+     * @param musicName Nome da música
+     * @param artistName Nome do artista
+     * @param publisher Editora
+     * @param lyrics Letra da música
+     * @param musicalFigures Figuras musicais
+     * @param genre Género musical
+     * @param albumName Nome do álbum
+     * @param duration Duração em segundos
+     * @param explicit true se for explícita, false caso contrário
+     * @param url URL associado (pode ser null)
+     * @throws AlreadyExistsException Se a música já existir
+     */
+    public void addNewMusic(String musicName, String artistName, String publisher, String lyrics, String musicalFigures, String genre, String albumName, int duration, boolean explicit, String url) throws AlreadyExistsException {
+<span class="nc bnc" id="L466" title="All 2 branches missed.">        if (this.musics.containsKey(musicName)) {</span>
+<span class="nc" id="L467">            throw new AlreadyExistsException(musicName);</span>
+        }
+<span class="nc bnc" id="L469" title="All 2 branches missed.">        if (url == null) {</span>
+<span class="nc" id="L470">            Music m = new Music(musicName, artistName, publisher, lyrics, musicalFigures, genre, albumName, duration, explicit);</span>
+<span class="nc" id="L471">            this.musics.put(musicName, m);</span>
+<span class="nc" id="L472">            Album a = this.albums.get(albumName);</span>
+<span class="nc" id="L473">            a.addMusic(m);</span>
+<span class="nc" id="L474">        } else {</span>
+<span class="nc" id="L475">            MusicMultimedia m = new MusicMultimedia(musicName, artistName, publisher, lyrics, musicalFigures, genre, albumName, duration, explicit, url);</span>
+<span class="nc" id="L476">            this.musics.put(musicName, m);</span>
+<span class="nc" id="L477">            Album a = this.albums.get(albumName);</span>
+<span class="nc" id="L478">            a.addMusic(m);</span>
+        }
+<span class="nc" id="L480">    }</span>
+
+    /**
+     * Lista todas as músicas do sistema com formatação aprimorada.
+     * @return String formatada com nome e intérprete de cada música
+     */
+    public String listAllMusics() {
+<span class="nc" id="L487">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L488" title="All 2 branches missed.">        for (Music m : this.musics.values()) {</span>
+<span class="nc" id="L489">            sb.append(&quot;🎶 &quot;).append(m.getName())</span>
+<span class="nc" id="L490">            .append(&quot; — &quot;).append(m.getInterpreter())</span>
+<span class="nc" id="L491">            .append(&quot;\n&quot;);</span>
+<span class="nc" id="L492">        }</span>
+<span class="nc" id="L493">        return sb.toString();</span>
+    }
+
+    /**
+     * Lista todas as músicas numa certa playlist da biblioteca do utilizador atual.
+     * @param playlistId ID da playlist
+     * @return String formatada com nome e intérprete de cada música
+     * @throws NotFoundException Se a playlist não existir
+     */
+    public String listAllMusicsInPlaylist(int playlistId) throws NotFoundException{
+<span class="nc" id="L503">        StringBuilder sb = new StringBuilder();</span>
+        try{
+<span class="nc" id="L505">            Playlist p = this.currentUser.getPlaylistById(playlistId);</span>
+<span class="nc bnc" id="L506" title="All 2 branches missed.">            for (Music m : p.getMusics()) {</span>
+<span class="nc" id="L507">                sb.append(&quot;🎶 &quot;).append(m.getName())</span>
+<span class="nc" id="L508">                .append(&quot; — &quot;).append(m.getInterpreter())</span>
+<span class="nc" id="L509">                .append(&quot;\n&quot;);</span>
+<span class="nc" id="L510">            }</span>
+<span class="nc" id="L511">            return sb.toString();</span>
+<span class="nc" id="L512">        } catch (NotFoundException e) {</span>
+<span class="nc" id="L513">            return new NotFoundException(&quot;&quot; + playlistId).getMessage();</span>
+        }
+    }
+
+    // =================== MÉTODOS DE ÁLBUNS ===================
+
+    /**
+     * Verifica se um álbum existe no sistema.
+     * @param albumName Nome do álbum
+     * @return true se o álbum existe, false caso contrário
+     */
+    public boolean albumExists(String albumName) {
+<span class="fc" id="L525">        return this.albums.containsKey(albumName);</span>
+    }
+
+    /**
+     * Adiciona um novo álbum ao sistema.
+     * @param albumName Nome do álbum
+     * @param autor Nome do autor/artista
+     */
+    public void addNewAlbum(String albumName, String autor) {
+<span class="fc" id="L534">        Album a = new Album(albumName, autor);</span>
+<span class="fc" id="L535">        this.albums.put(albumName, a);</span>
+<span class="fc" id="L536">    }</span>
+
+    /**
+     * Obtém um álbum pelo nome.
+     * @param albumName Nome do álbum
+     * @return Objeto Album clonado
+     * @throws NotFoundException Se o álbum não existir
+     */
+    public Album getAlbumByName(String albumName) throws NotFoundException{
+<span class="fc" id="L545">        Album a = this.albums.get(albumName);</span>
+<span class="fc bfc" id="L546" title="All 2 branches covered.">        if (a == null) {</span>
+<span class="fc" id="L547">            throw new NotFoundException(albumName);</span>
+        }
+<span class="fc" id="L549">        return a.clone();</span>
+    }
+
+    /**
+     * Adiciona uma música a um álbum.
+     * @param albumName Nome do álbum
+     * @param music Objeto Music a adicionar
+     * @throws NotFoundException Se o álbum não existir
+     */
+    public void addMusicToAlbum(String albumName, Music music) throws NotFoundException{
+<span class="nc" id="L559">        Album a = this.albums.get(albumName);</span>
+<span class="nc bnc" id="L560" title="All 2 branches missed.">        if (a == null) {</span>
+<span class="nc" id="L561">            throw new NotFoundException(albumName);</span>
+        }
+<span class="nc" id="L563">        a.addMusic(music);</span>
+<span class="nc" id="L564">    }</span>
+
+    /**
+     * Lista todos os álbuns do sistema com formatação aprimorada.
+     * @return String formatada com nome e artista de cada álbum
+     */
+    public String listAllAlbums() {
+<span class="nc" id="L571">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L572" title="All 2 branches missed.">        for (Album a : this.albums.values()) {</span>
+<span class="nc" id="L573">            sb.append(&quot;📀 &quot;).append(a.getName())</span>
+<span class="nc" id="L574">            .append(&quot; — &quot;).append(a.getArtist())</span>
+<span class="nc" id="L575">            .append(&quot;\n&quot;);</span>
+<span class="nc" id="L576">        }</span>
+<span class="nc" id="L577">        return sb.toString();</span>
+    }
+
+    // =================== MÉTODOS DE PLAYLISTS ===================
+
+    /**
+     * Adiciona uma nova playlist pública ao sistema.
+     * @param nome Nome da playlist
+     * @param autor Autor da playlist
+     */
+    public void addPlaylist(String nome, String autor) {
+<span class="nc" id="L588">        Playlist p = new Playlist(nome, autor);</span>
+<span class="nc" id="L589">        this.publicPlaylists.put(p.getId(), p);</span>
+<span class="nc" id="L590">    }</span>
+
+    /**
+     * Remove uma música da playlist do utilizador atual.
+     * @param musicName Nome da música
+     * @param playlistId ID da playlist
+     * @throws NotFoundException Se a música ou playlist não existir
+     * @throws NoPremissionException Se o utilizador não tiver permissão
+     */
+    public void removeMusicFromPlaylist(String musicName, Integer playlistId) throws NotFoundException,NoPremissionException{
+<span class="nc bnc" id="L600" title="All 2 branches missed.">        if(!musicExists(musicName)){</span>
+<span class="nc" id="L601">            throw new NotFoundException(musicName);</span>
+        }
+<span class="nc" id="L603">        this.currentUser.removeMusicFromPlaylist(this.musics.get(musicName), playlistId);</span>
+<span class="nc" id="L604">    }</span>
+
+    /**
+     * Cria uma nova playlist de um género específico até uma duração máxima.
+     * @param name Nome da playlist
+     * @param genre Género musical
+     * @param maxDuration Duração máxima em segundos
+     * @throws AlreadyExistsException Se a playlist já existir
+     * @throws EmptyPlaylistException Se não houver músicas do género
+     */
+    public void createGenrePlaylist(String name, String genre, int maxDuration) throws AlreadyExistsException, EmptyPlaylistException{
+<span class="nc" id="L615">        List&lt;Music&gt; selectedMusics = PlaylistCreator.createGenrePlaylist(this.currentUser.getUsername(), name, genre, maxDuration, this.musics, this.publicPlaylists);</span>
+<span class="nc" id="L616">        Playlist genrePlaylist = new Playlist(name, this.currentUser.getUsername(), selectedMusics);</span>
+        try{
+<span class="nc" id="L618">            this.currentUser.addPlaylistToLibrary(genrePlaylist);</span>
+<span class="nc" id="L619">        } catch (Exception e){</span>
+<span class="nc" id="L620">            throw new AlreadyExistsException(name);</span>
+<span class="nc" id="L621">        }</span>
+<span class="nc" id="L622">    }</span>
+
+    /**
+     * Cria uma playlist de favoritos do utilizador atual.
+     * @param maxDuration Duração máxima
+     * @param explicit true se incluir explícitas
+     * @return Lista de músicas favoritas
+     * @throws IllegalArgumentException Se argumentos inválidos
+     */
+    public PlaylistFavorites createFavoritesPlaylist(int maxDuration, boolean explicit) throws IllegalArgumentException{
+        List&lt;Music&gt; musicList;
+        try {
+<span class="nc" id="L634">            musicList = PlaylistCreator.createFavoritesPlaylist(maxDuration, explicit, this.currentUser.getMusicReproductions(), this.musics);</span>
+<span class="fc" id="L635">        } catch (IllegalArgumentException e) {</span>
+            // no favorites yet, return empty playlist
+<span class="fc" id="L637">            musicList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L638">        }</span>
+<span class="fc" id="L639">        return new PlaylistFavorites(musicList);</span>
+    }
+
+    /**
+     * Obtém uma playlist aleatória do sistema.
+     * @return Objeto Playlist aleatória
+     */
+    public PlaylistRandom getRandomPlaylist(){
+<span class="pc bpc" id="L647" title="1 of 2 branches missed.">        if (this.musics.isEmpty()) {</span>
+<span class="fc" id="L648">            return new PlaylistRandom(&quot;Playlist Aleatória com 0 músicas.&quot;, new ArrayList&lt;&gt;());</span>
+        }
+<span class="nc" id="L650">        List&lt;Music&gt; randomMusics = PlaylistCreator.createRandomPlaylist(this.musics);</span>
+<span class="nc" id="L651">        PlaylistRandom randomPlaylist = new PlaylistRandom(&quot;Playlist Aleatória com &quot; + randomMusics.size() + &quot; músicas.&quot;, randomMusics);</span>
+<span class="nc" id="L652">        return randomPlaylist;</span>
+    }
+
+    /**
+     * Torna uma playlist do utilizador atual pública.
+     * @param playlistId ID da playlist
+     * @throws NotFoundException Se a playlist não existir
+     * @throws AlreadyExistsException Se a playlist já for pública
+     */
+    public void setPlaylistAsPublic(int playlistId) throws NotFoundException,AlreadyExistsException{
+<span class="nc" id="L662">        Playlist p = this.currentUser.getPlaylistById(playlistId);</span>
+<span class="nc bnc" id="L663" title="All 2 branches missed.">        if (p == null) {</span>
+<span class="nc" id="L664">            throw new NotFoundException(&quot;&quot; + playlistId);</span>
+        }
+<span class="nc bnc" id="L666" title="All 2 branches missed.">        if (!this.publicPlaylists.containsKey(playlistId)){</span>
+<span class="nc" id="L667">            this.publicPlaylists.put(playlistId, p);</span>
+        }
+        else{
+<span class="nc" id="L670">            throw new AlreadyExistsException(&quot;&quot; + playlistId);</span>
+        }
+<span class="nc" id="L672">    }</span>
+
+    /**
+     * Obtém uma playlist do utilizador atual pelo ID.
+     * @param playlistId ID da playlist
+     * @return Objeto Playlist clonado
+     */
+    public Playlist getUserPlaylistById(int playlistId){
+        try {
+<span class="nc" id="L681">            Playlist p = this.currentUser.getPlaylistById(playlistId);</span>
+<span class="nc" id="L682">            return p.clone();</span>
+<span class="nc" id="L683">        } catch (NotFoundException e) {</span>
+<span class="nc" id="L684">            throw new RuntimeException(e);</span>
+        }
+    }
+
+    /**
+     * Obtém uma playlist pública pelo ID.
+     * @param playlistId ID da playlist
+     * @return Objeto Playlist clonado
+     */
+    public Playlist getPublicPlaylistById(int playlistId){
+<span class="nc" id="L694">        Playlist p = this.publicPlaylists.get(playlistId);</span>
+<span class="nc" id="L695">        return p.clone();</span>
+    }
+
+    /**
+     * Adiciona uma nova playlist à biblioteca do utilizador atual.
+     * @param playlistName Nome da playlist
+     */
+    public void addToCurrentUserPlaylist(String playlistName){
+<span class="nc" id="L703">        this.currentUser.addPlaylist(playlistName);</span>
+<span class="nc" id="L704">    }</span>
+
+    /**
+     * Adiciona uma música à playlist do utilizador atual.
+     * @param playlistId ID da playlist
+     * @param musicName Nome da música
+     * @throws NotFoundException Se a música ou playlist não existir
+     * @throws AlreadyExistsException Se a música já estiver na playlist
+     * @throws NoPremissionException Se o utilizador não tiver permissão
+     */
+    public void addMusicToCurrentUserPlaylist(int playlistId, String musicName) throws NotFoundException, AlreadyExistsException, NoPremissionException {
+<span class="nc bnc" id="L715" title="All 2 branches missed.">        if (!this.musics.containsKey(musicName)) {</span>
+<span class="nc" id="L716">            throw new NotFoundException(musicName);</span>
+        }
+<span class="nc" id="L718">        this.currentUser.addMusicPlaylist(playlistId, this.musics.get(musicName));</span>
+<span class="nc" id="L719">    }</span>
+
+    /**
+     * Adiciona uma playlist pública à biblioteca do utilizador atual.
+     * @param playlistId ID da playlist
+     * @throws NotFoundException Se a playlist não existir
+     * @throws AlreadyExistsException Se a playlist já existir na biblioteca
+     */
+    public void addPlaylistToCurrentUserLibrary(int playlistId) throws NotFoundException, AlreadyExistsException{
+<span class="nc" id="L728">        Playlist p = this.publicPlaylists.get(playlistId);</span>
+<span class="nc bnc" id="L729" title="All 2 branches missed.">        if (p == null) {</span>
+<span class="nc" id="L730">            throw new NotFoundException(&quot;&quot; + playlistId);</span>
+        }
+        try{
+<span class="nc" id="L733">            this.currentUser.addPlaylistToLibrary(p);</span>
+<span class="nc" id="L734">        } catch (Exception e){</span>
+<span class="nc" id="L735">            throw new AlreadyExistsException(&quot;&quot; + playlistId);</span>
+<span class="nc" id="L736">        }</span>
+<span class="nc" id="L737">    }</span>
+
+    /**
+     * Lista todas as playlists do utilizador atual.
+     * @return String com os nomes das playlists
+     */
+    public String listCurrentUserPlaylists() {
+<span class="nc" id="L744">        return this.getCurrentUser().namePlaylists();</span>
+    }
+
+    /**
+     * Lista todas as playlists públicas do sistema.
+     * @return String com os nomes das playlists públicas
+     */
+    public String listPublicPlaylists(){
+<span class="nc" id="L752">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L753" title="All 2 branches missed.">        for (Playlist p : this.publicPlaylists.values()) {</span>
+<span class="nc" id="L754">            sb.append(String.format(&quot;🎵 [#%03d] %-25s | Autor: %-15s\n&quot;, p.getId(), p.getName(), p.getAutor()));</span>
+<span class="nc" id="L755">        }</span>
+<span class="nc" id="L756">        return sb.toString();</span>
+    }
+
+    /**
+     * Obtém o número de playlists públicas.
+     * @return Número de playlists públicas
+     */
+    public int getPublicPlaylistSize(){
+<span class="nc" id="L764">        return this.publicPlaylists.size();</span>
+    }
+
+    // =================== MÉTODOS DE GÉNEROS ===================
+
+    /**
+     * Lista todos os géneros musicais únicos presentes no sistema.
+     * @return String formatada com a lista de géneros
+     */
+    public String listAllGenres() {
+<span class="nc" id="L774">        Set&lt;String&gt; genres = new TreeSet&lt;&gt;();</span>
+<span class="nc bnc" id="L775" title="All 2 branches missed.">        for (Music m : this.musics.values()) {</span>
+<span class="nc" id="L776">            genres.add(m.getGenre());</span>
+<span class="nc" id="L777">        }</span>
+<span class="nc" id="L778">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L779" title="All 2 branches missed.">        for (String g : genres) {</span>
+<span class="nc" id="L780">            sb.append(&quot;• &quot;).append(g).append(&quot;\n&quot;);</span>
+<span class="nc" id="L781">        }</span>
+<span class="nc" id="L782">        return sb.toString();</span>
+    }
+
+    // =================== MÉTODOS DE ESTATÍSTICAS ===================
+
+    /**
+     * Obtém a música mais reproduzida do sistema.
+     * @return Objeto Music mais reproduzido
+     * @throws NoMusicsInDatabaseException Se não existirem músicas
+     */
+    public Music mostReproducedMusic() throws NoMusicsInDatabaseException{
+<span class="nc bnc" id="L793" title="All 2 branches missed.">        if (this.musics.isEmpty()){</span>
+<span class="nc" id="L794">            throw new NoMusicsInDatabaseException(&quot;Não existem músicas na base de dados.&quot;);</span>
+        }
+<span class="nc" id="L796">        return this.musics.values().stream()</span>
+<span class="nc" id="L797">                .max((m1, m2) -&gt; Integer.compare(m1.getReproductions(), m2.getReproductions()))</span>
+<span class="nc" id="L798">                .orElse(null).clone();</span>
+    }
+
+    /**
+     * Obtém os artistas mais tocados em ordem decrescente.
+     * @return String com artistas e número de reproduções
+     * @throws NoArtistsInDatabaseException Se não existirem artistas
+     */
+    public String getTopArtistName() throws NoArtistsInDatabaseException {
+<span class="nc bnc" id="L807" title="All 2 branches missed.">        if (this.artistReproductions.isEmpty()){</span>
+<span class="nc" id="L808">            throw new NoArtistsInDatabaseException(&quot;Não existem artistas na base de dados.&quot;);</span>
+        }
+<span class="nc" id="L810">        List&lt;Map.Entry&lt;String, Integer&gt;&gt; sortedArtists = new ArrayList&lt;&gt;(this.artistReproductions.entrySet());</span>
+<span class="nc" id="L811">        sortedArtists.sort((a, b) -&gt; b.getValue().compareTo(a.getValue()));</span>
+<span class="nc" id="L812">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L813" title="All 2 branches missed.">        for (Map.Entry&lt;String, Integer&gt; entry : sortedArtists) {</span>
+<span class="nc" id="L814">            sb.append(entry.getKey()).append(&quot; - &quot;).append(entry.getValue()).append(&quot;\n&quot;);</span>
+<span class="nc" id="L815">        }</span>
+<span class="nc" id="L816">        return sb.toString();</span>
+    }
+
+    /**
+     * Obtém o utilizador com mais pontos.
+     * @return Objeto User com mais pontos
+     * @throws NoUsersInDatabaseException Se não existirem utilizadores
+     */
+    public User getUserWithMostPoints() throws NoUsersInDatabaseException{
+<span class="nc bnc" id="L825" title="All 2 branches missed.">        if (this.users.isEmpty()){</span>
+<span class="nc" id="L826">            throw new NoUsersInDatabaseException(&quot;Não existem utilizadores na base de dados.&quot;);</span>
+        }
+<span class="nc" id="L828">        return this.users.values().stream()</span>
+<span class="nc" id="L829">                .max((u1, u2) -&gt; Integer.compare(u1.getPlan().getPoints(), u2.getPlan().getPoints()))</span>
+<span class="nc" id="L830">                .orElse(null).clone();</span>
+    }
+
+    /**
+     * Obtém o género musical com mais reproduções.
+     * @return Nome do género
+     * @throws NoReproductionsInDatabaseException Se não existirem reproduções
+     */
+    public String getGenreWithMostReproductions() throws NoReproductionsInDatabaseException {
+<span class="nc bnc" id="L839" title="All 2 branches missed.">        if (this.genreReproductions.isEmpty()){</span>
+<span class="nc" id="L840">            throw new NoReproductionsInDatabaseException();</span>
+        }
+<span class="nc" id="L842">        return this.genreReproductions.entrySet().stream()</span>
+<span class="nc" id="L843">                .max((g1, g2) -&gt; Integer.compare(g1.getValue(), g2.getValue()))</span>
+<span class="nc" id="L844">                .map(Map.Entry::getKey)</span>
+<span class="nc" id="L845">                .orElse(null);</span>
+    }
+
+    /**
+     * Obtém o utilizador com mais playlists.
+     * @return Objeto User com mais playlists
+     * @throws NoUsersInDatabaseException Se não existirem utilizadores
+     */
+    public User getUserWithMostPlaylists() throws NoUsersInDatabaseException {
+<span class="nc bnc" id="L854" title="All 2 branches missed.">        if (this.users.isEmpty()){</span>
+<span class="nc" id="L855">            throw new NoUsersInDatabaseException(&quot;Não existem utilizadores na base de dados.&quot;);</span>
+        }
+<span class="nc" id="L857">        return this.users.values().stream()</span>
+<span class="nc" id="L858">                .max((u1, u2) -&gt; Integer.compare(u1.getUserPlaylistCount(), u2.getUserPlaylistCount()))</span>
+<span class="nc" id="L859">                .orElse(null).clone();</span>
+    }
+
+    /**
+     * Obtém o utilizador com mais reproduções num intervalo de datas.
+     * @param startDate Data de início
+     * @param endDate Data de fim
+     * @return Objeto User com mais reproduções
+     * @throws NoUsersInDatabaseException Se não existirem utilizadores
+     */
+    public User getUserWithMostReproductions(LocalDate startDate, LocalDate endDate) throws NoUsersInDatabaseException{
+<span class="pc bpc" id="L870" title="1 of 2 branches missed.">        if (this.users.isEmpty()) {</span>
+<span class="fc" id="L871">            throw new NoUsersInDatabaseException(&quot;Não existem utilizadores na base de dados.&quot;);</span>
+        }
+        // find user with max reproductions in range
+<span class="nc" id="L874">        User top = this.users.values().stream()</span>
+<span class="nc" id="L875">                .max((u1, u2) -&gt; Integer.compare(</span>
+<span class="nc" id="L876">                        u1.getMusicReproductionsCount(startDate, endDate),</span>
+<span class="nc" id="L877">                        u2.getMusicReproductionsCount(startDate, endDate)))</span>
+<span class="nc" id="L878">                .orElse(null);</span>
+<span class="nc bnc" id="L879" title="All 4 branches missed.">        if (top == null || top.getMusicReproductionsCount(startDate, endDate) == 0) {</span>
+<span class="nc" id="L880">            throw new NoUsersInDatabaseException(&quot;Não existem utilizadores com reproduções no intervalo.&quot;);</span>
+        }
+<span class="nc" id="L882">        return top.clone();</span>
+    }
+
+    /**
+     * Obtém o utilizador com mais reproduções no geral.
+     * @return Objeto User com mais reproduções
+     * @throws NoUsersInDatabaseException Se não existirem utilizadores
+     */
+    public User getUserWithMostReproductions() throws NoUsersInDatabaseException{
+<span class="nc bnc" id="L891" title="All 2 branches missed.">        if (this.users.isEmpty()) {</span>
+<span class="nc" id="L892">            throw new NoUsersInDatabaseException(&quot;Não existem utilizadores na base de dados.&quot;);</span>
+        }
+<span class="nc" id="L894">        return this.users.values().stream()</span>
+<span class="nc" id="L895">                .max((u1, u2) -&gt; Integer.compare(u1.getMusicReproductions().size(), </span>
+<span class="nc" id="L896">                                                u2.getMusicReproductions().size()))</span>
+<span class="nc" id="L897">                .map(User::clone)</span>
+<span class="nc" id="L898">                .orElse(null);</span>
+    }
+
+    // =================== MÉTODOS DE PLANO E PERMISSÕES ===================
+
+    /**
+     * Verifica se o utilizador atual pode fazer skip de música.
+     * @return true se puder, false caso contrário
+     */
+    public boolean canCurrentUserSkip(){
+<span class="nc" id="L908">        return this.currentUser.getPlan().canSkip();</span>
+    }
+
+    /**
+     * Verifica se o utilizador atual pode escolher o que ouvir.
+     * @return true se puder, false caso contrário
+     */
+    public boolean canCurrentUserChooseWhatToPlay(){
+<span class="nc" id="L916">        return this.currentUser.getPlan().canChooseWhatToPlay();</span>
+    }
+
+    /**
+     * Verifica se o utilizador atual tem acesso a músicas favoritas.
+     * @return true se tiver, false caso contrário
+     */
+    public boolean currentUserAccessToFavorites(){
+<span class="nc" id="L924">        return this.currentUser.getPlan().hasAccessToFavorites();</span>
+    }
+
+    // =================== MÉTODOS AUXILIARES E OVERRIDES ===================
+
+    /**
+     * Compara se dois objetos SpotifUM são iguais.
+     * @param o Objeto a comparar
+     * @return true se forem iguais, false caso contrário
+     */
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L936" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L937" title="1 of 2 branches missed.">        if (!(o instanceof SpotifUM)) return false;</span>
+<span class="fc" id="L938">        SpotifUM spotifUM = (SpotifUM) o;</span>
+<span class="fc" id="L939">        boolean usersEqual = this.users.equals(spotifUM.getUsers());</span>
+        boolean currentUserEqual;
+<span class="pc bpc" id="L941" title="2 of 4 branches missed.">        if (this.currentUser == null &amp;&amp; spotifUM.getCurrentUser() == null) {</span>
+<span class="fc" id="L942">            currentUserEqual = true;</span>
+<span class="nc bnc" id="L943" title="All 2 branches missed.">        } else if (this.currentUser != null) {</span>
+<span class="nc" id="L944">            currentUserEqual = this.currentUser.equals(spotifUM.getCurrentUser());</span>
+        } else {
+<span class="nc" id="L946">            currentUserEqual = false;</span>
+        }
+<span class="pc bpc" id="L948" title="1 of 2 branches missed.">        return this.musics.equals(spotifUM.getMusics()) &amp;&amp;</span>
+<span class="pc bpc" id="L949" title="2 of 4 branches missed.">                this.publicPlaylists.equals(spotifUM.getPublicPlaylists()) &amp;&amp;</span>
+                usersEqual &amp;&amp;
+<span class="pc bpc" id="L951" title="2 of 4 branches missed.">                this.albums.equals(spotifUM.getAlbums()) &amp;&amp;</span>
+                currentUserEqual;
+    }
+
+    /**
+     * Retorna uma representação textual simplificada do objeto.
+     * @return String representando o objeto
+     */
+    public String toString(){
+<span class="fc" id="L960">        return &quot;SpotifUM(...)&quot;;</span>
+    }
+
+    // =================== POPULAÇÃO DE BASE DE DADOS ===================
+
+    /**
+     * Preenche a base de dados com dados de exemplo (músicas, álbuns, playlists, utilizadores).
+     */
+    public void populateDatabase() {
+        // ================================== MÚSICAS ==================================
+        
+        // Pop
+<span class="nc" id="L972">        Music shapeOfYou = createMusic(&quot;Shape of You&quot;, &quot;Ed Sheeran&quot;, &quot;Atlantic&quot;, </span>
+            &quot;The club isn't the best place to find a lover\n&quot; +
+            &quot;So the bar is where I go\n&quot; +
+            &quot;Me and my friends at the table doing shots&quot;, 
+            &quot;Guitar&quot;, &quot;Pop&quot;, &quot;Divide&quot;, 240, false);
+            
+<span class="nc" id="L978">        Music blindingLights = createMusic(&quot;Blinding Lights&quot;, &quot;The Weeknd&quot;, &quot;XO&quot;, </span>
+            &quot;Yeah\n&quot; +
+            &quot;I've been tryna call\n&quot; +
+            &quot;I've been on my own for long enough&quot;, 
+            &quot;Synth&quot;, &quot;Pop&quot;, &quot;After Hours&quot;, 200, false);
+            
+<span class="nc" id="L984">        Music levitating = createMusic(&quot;Levitating&quot;, &quot;Dua Lipa&quot;, &quot;Warner&quot;, </span>
+            &quot;If you wanna run away with me, I know a galaxy\n&quot; +
+            &quot;And I can take you for a ride\n&quot; +
+            &quot;I had a premonition that we fell into a rhythm&quot;, 
+            &quot;Synth&quot;, &quot;Pop&quot;, &quot;Future Nostalgia&quot;, 203, false);
+            
+<span class="nc" id="L990">        Music watermelonSugar = createMusic(&quot;Watermelon Sugar&quot;, &quot;Harry Styles&quot;, &quot;Columbia&quot;, </span>
+            &quot;Tastes like strawberries on a summer evening\n&quot; +
+            &quot;And it sounds just like a song\n&quot; +
+            &quot;I want more berries and that summer feeling&quot;, 
+            &quot;Guitar&quot;, &quot;Pop&quot;, &quot;Fine Line&quot;, 174, false);
+            
+<span class="nc" id="L996">        Music dontStartNow = createMusic(&quot;Don't Start Now&quot;, &quot;Dua Lipa&quot;, &quot;Warner&quot;, </span>
+            &quot;If you don't wanna see me\n&quot; +
+            &quot;Did a full 180, crazy\n&quot; +
+            &quot;Thinking 'bout the way I was&quot;, 
+            &quot;Bass&quot;, &quot;Pop&quot;, &quot;Future Nostalgia&quot;, 183, false);
+    
+        // Rock
+<span class="nc" id="L1003">        Music bohemian = createMusic(&quot;Bohemian Rhapsody&quot;, &quot;Queen&quot;, &quot;EMI&quot;, </span>
+            &quot;Is this the real life? Is this just fantasy?\n&quot; +
+            &quot;Caught in a landslide, no escape from reality\n&quot; +
+            &quot;Open your eyes, look up to the skies and see&quot;, 
+            &quot;Piano&quot;, &quot;Rock&quot;, &quot;A Night at the Opera&quot;, 355, false);
+            
+<span class="nc" id="L1009">        Music stairway = createMusic(&quot;Stairway to Heaven&quot;, &quot;Led Zeppelin&quot;, &quot;Atlantic&quot;, </span>
+            &quot;There's a lady who's sure all that glitters is gold\n&quot; +
+            &quot;And she's buying a stairway to heaven\n&quot; +
+            &quot;When she gets there she knows&quot;, 
+            &quot;Guitar&quot;, &quot;Rock&quot;, &quot;Led Zeppelin IV&quot;, 482, false);
+            
+<span class="nc" id="L1015">        Music sweetChildOMine = createMusic(&quot;Sweet Child O' Mine&quot;, &quot;Guns N' Roses&quot;, &quot;Geffen&quot;, </span>
+            &quot;She's got a smile that it seems to me\n&quot; +
+            &quot;Reminds me of childhood memories\n&quot; +
+            &quot;Where everything was as fresh as the bright blue sky&quot;, 
+            &quot;Guitar&quot;, &quot;Rock&quot;, &quot;Appetite for Destruction&quot;, 356, false);
+            
+<span class="nc" id="L1021">        Music hotelCalifornia = createMusic(&quot;Hotel California&quot;, &quot;Eagles&quot;, &quot;Asylum&quot;, </span>
+            &quot;On a dark desert highway, cool wind in my hair\n&quot; +
+            &quot;Warm smell of colitas, rising up through the air\n&quot; +
+            &quot;Up ahead in the distance, I saw a shimmering light&quot;, 
+            &quot;Guitar&quot;, &quot;Rock&quot;, &quot;Hotel California&quot;, 390, false);
+            
+<span class="nc" id="L1027">        Music smellsLikeTeenSpirit = createMusic(&quot;Smells Like Teen Spirit&quot;, &quot;Nirvana&quot;, &quot;DGC&quot;, </span>
+            &quot;Load up on guns, bring your friends\n&quot; +
+            &quot;It's fun to lose and to pretend\n&quot; +
+            &quot;She's over bored and self assured&quot;, 
+            &quot;Guitar&quot;, &quot;Rock&quot;, &quot;Nevermind&quot;, 301, true);
+    
+        // Hip-Hop
+<span class="nc" id="L1034">        Music sickoMode = createMusic(&quot;SICKO MODE&quot;, &quot;Travis Scott&quot;, &quot;Cactus Jack&quot;, </span>
+            &quot;Astro'\n&quot; +
+            &quot;Yeah\n&quot; +
+            &quot;Sun is down, freezing cold&quot;, 
+            &quot;Bass&quot;, &quot;Hip-Hop&quot;, &quot;ASTROWORLD&quot;, 312, true);
+            
+<span class="nc" id="L1040">        Music godPlan = createMusic(&quot;God's Plan&quot;, &quot;Drake&quot;, &quot;OVO&quot;, </span>
+            &quot;Yeah, they wishin' and wishin' and wishin' and wishin'\n&quot; +
+            &quot;They wishin' on me, yuh\n&quot; +
+            &quot;I been movin' calm, don't start no trouble&quot;, 
+            &quot;Drums&quot;, &quot;Hip-Hop&quot;, &quot;Scorpion&quot;, 198, false);
+            
+<span class="nc" id="L1046">        Music humble = createMusic(&quot;HUMBLE.&quot;, &quot;Kendrick Lamar&quot;, &quot;Top Dawg&quot;, </span>
+            &quot;Nobody pray for me\n&quot; +
+            &quot;It's been that day for me\n&quot; +
+            &quot;Way (yeah) yeah&quot;, 
+            &quot;Bass&quot;, &quot;Hip-Hop&quot;, &quot;DAMN.&quot;, 177, true);
+            
+<span class="nc" id="L1052">        Music rapGod = createMusic(&quot;Rap God&quot;, &quot;Eminem&quot;, &quot;Aftermath&quot;, </span>
+            &quot;Look, I was gonna go easy on you not to hurt your feelings\n&quot; +
+            &quot;But I'm only going to get this one chance\n&quot; +
+            &quot;Something's wrong, I can feel it&quot;, 
+            &quot;Vocals&quot;, &quot;Hip-Hop&quot;, &quot;The Marshall Mathers LP 2&quot;, 363, true);
+    
+        // Eletrônica
+<span class="nc" id="L1059">        Music starboy = createMusic(&quot;Starboy&quot;, &quot;The Weeknd&quot;, &quot;Republic&quot;, </span>
+            &quot;I'm tryna put you in the worst mood, ah\n&quot; +
+            &quot;P1 cleaner than your church shoes, ah\n&quot; +
+            &quot;Milli point two just to hurt you, ah&quot;, 
+            &quot;Synth&quot;, &quot;Electronic&quot;, &quot;Starboy&quot;, 230, false);
+            
+<span class="nc" id="L1065">        Music oneMoreTime = createMusic(&quot;One More Time&quot;, &quot;Daft Punk&quot;, &quot;Virgin&quot;, </span>
+            &quot;One more time\n&quot; +
+            &quot;We're gonna celebrate\n&quot; +
+            &quot;Oh yeah, all right&quot;, 
+            &quot;Vocoder&quot;, &quot;Electronic&quot;, &quot;Discovery&quot;, 320, false);
+            
+<span class="nc" id="L1071">        Music titanium = createMusic(&quot;Titanium&quot;, &quot;David Guetta&quot;, &quot;EMI&quot;, </span>
+            &quot;You shout it out\n&quot; +
+            &quot;But I can't hear a word you say\n&quot; +
+            &quot;I'm talking loud not saying much&quot;, 
+            &quot;Synth&quot;, &quot;Electronic&quot;, &quot;Nothing but the Beat&quot;, 245, false);
+    
+        // Clássicos
+<span class="nc" id="L1078">        Music billieJean = createMusic(&quot;Billie Jean&quot;, &quot;Michael Jackson&quot;, &quot;Epic&quot;, </span>
+            &quot;She was more like a beauty queen from a movie scene\n&quot; +
+            &quot;I said don't mind, but what do you mean\n&quot; +
+            &quot;I am the one who will dance on the floor&quot;, 
+            &quot;Bass&quot;, &quot;Pop&quot;, &quot;Thriller&quot;, 294, false);
+            
+<span class="nc" id="L1084">        Music beatIt = createMusic(&quot;Beat It&quot;, &quot;Michael Jackson&quot;, &quot;Epic&quot;, </span>
+            &quot;They told him don't you ever come around here\n&quot; +
+            &quot;Don't wanna see your face, you better disappear\n&quot; +
+            &quot;The fire's in their eyes and their words are really clear&quot;, 
+            &quot;Guitar&quot;, &quot;Pop&quot;, &quot;Thriller&quot;, 258, false);
+            
+<span class="nc" id="L1090">        Music hinoPorto = createMusic(&quot;Hino do Futebol Clube do Porto&quot;, &quot;Maria Amélia Canossa&quot;, &quot;FC Porto&quot;, </span>
+            &quot;Hino do Futebol Clube do Porto\n&quot; +
+            &quot;Cantado com orgulho e amor\n&quot; +
+            &quot;Por todos os portistas no mundo&quot;, 
+            &quot;Voz&quot;, &quot;Hino&quot;, &quot;Tanto Porto!&quot;, 120, false);
+
+<span class="nc" id="L1096">        MusicMultimedia neverGonnaGiveYouUp = new MusicMultimedia(&quot;Never Gonna Give You Up&quot;, &quot;Rick Astley&quot;, &quot;RCA&quot;, </span>
+            &quot;We're no strangers to love\n&quot; +
+            &quot;You know the rules and so do I\n&quot; +
+            &quot;A full commitment's what I'm thinking of&quot;, 
+            &quot;Synth&quot;, &quot;Pop&quot;, &quot;Rick Roll&quot;, 215, false, &quot;https://www.youtube.com/watch?v=dQw4w9WgXcQ&quot;);
+    
+        // Adiciona todas as músicas ao mapa
+<span class="nc" id="L1103">        Arrays.asList(shapeOfYou, blindingLights, levitating, watermelonSugar, dontStartNow,</span>
+                     bohemian, stairway, sweetChildOMine, hotelCalifornia, smellsLikeTeenSpirit,
+                     sickoMode, godPlan, humble, rapGod, starboy, oneMoreTime, titanium,
+<span class="nc" id="L1106">                     billieJean, beatIt, hinoPorto,neverGonnaGiveYouUp).forEach(m -&gt; musics.put(m.getName(), m));</span>
+    
+        // ================================== ÁLBUNS ==================================
+<span class="nc" id="L1109">        Album divide = new Album(&quot;Divide&quot;, &quot;Ed Sheeran&quot;, Arrays.asList(shapeOfYou));</span>
+<span class="nc" id="L1110">        Album afterHours = new Album(&quot;After Hours&quot;, &quot;The Weeknd&quot;, Arrays.asList(blindingLights));</span>
+<span class="nc" id="L1111">        Album futureNostalgia = new Album(&quot;Future Nostalgia&quot;, &quot;Dua Lipa&quot;, Arrays.asList(levitating, dontStartNow));</span>
+<span class="nc" id="L1112">        Album fineLine = new Album(&quot;Fine Line&quot;, &quot;Harry Styles&quot;, Arrays.asList(watermelonSugar));</span>
+<span class="nc" id="L1113">        Album nightAtTheOpera = new Album(&quot;A Night at the Opera&quot;, &quot;Queen&quot;, Arrays.asList(bohemian));</span>
+<span class="nc" id="L1114">        Album ledZeppelinIV = new Album(&quot;Led Zeppelin IV&quot;, &quot;Led Zeppelin&quot;, Arrays.asList(stairway));</span>
+<span class="nc" id="L1115">        Album appetiteForDestruction = new Album(&quot;Appetite for Destruction&quot;, &quot;Guns N' Roses&quot;, Arrays.asList(sweetChildOMine));</span>
+<span class="nc" id="L1116">        Album hotelCaliforniaAlbum = new Album(&quot;Hotel California&quot;, &quot;Eagles&quot;, Arrays.asList(hotelCalifornia));</span>
+<span class="nc" id="L1117">        Album nevermind = new Album(&quot;Nevermind&quot;, &quot;Nirvana&quot;, Arrays.asList(smellsLikeTeenSpirit));</span>
+<span class="nc" id="L1118">        Album astroworld = new Album(&quot;ASTROWORLD&quot;, &quot;Travis Scott&quot;, Arrays.asList(sickoMode));</span>
+<span class="nc" id="L1119">        Album scorpion = new Album(&quot;Scorpion&quot;, &quot;Drake&quot;, Arrays.asList(godPlan));</span>
+<span class="nc" id="L1120">        Album damn = new Album(&quot;DAMN.&quot;, &quot;Kendrick Lamar&quot;, Arrays.asList(humble));</span>
+<span class="nc" id="L1121">        Album marshallMathersLP2 = new Album(&quot;The Marshall Mathers LP 2&quot;, &quot;Eminem&quot;, Arrays.asList(rapGod));</span>
+<span class="nc" id="L1122">        Album starboyAlbum = new Album(&quot;Starboy&quot;, &quot;The Weeknd&quot;, Arrays.asList(starboy));</span>
+<span class="nc" id="L1123">        Album discovery = new Album(&quot;Discovery&quot;, &quot;Daft Punk&quot;, Arrays.asList(oneMoreTime));</span>
+<span class="nc" id="L1124">        Album nothingButTheBeat = new Album(&quot;Nothing but the Beat&quot;, &quot;David Guetta&quot;, Arrays.asList(titanium));</span>
+<span class="nc" id="L1125">        Album thriller = new Album(&quot;Thriller&quot;, &quot;Michael Jackson&quot;, Arrays.asList(billieJean, beatIt));</span>
+<span class="nc" id="L1126">        Album tantoPorto = new Album(&quot;Tanto Porto!&quot;, &quot;FC Porto&quot;, Arrays.asList(hinoPorto));</span>
+<span class="nc" id="L1127">        Album rickRoll = new Album(&quot;Rick Roll&quot;, &quot;Rick Astley&quot;, Arrays.asList(neverGonnaGiveYouUp));</span>
+
+        // Adiciona álbuns ao map
+<span class="nc" id="L1130">        Arrays.asList(divide, afterHours, futureNostalgia, fineLine, nightAtTheOpera,</span>
+                     ledZeppelinIV, appetiteForDestruction, hotelCaliforniaAlbum, nevermind,
+                     astroworld, scorpion, damn, marshallMathersLP2, starboyAlbum, discovery,
+<span class="nc" id="L1133">                     nothingButTheBeat, thriller, tantoPorto,rickRoll).forEach(a -&gt; albums.put(a.getName(), a));</span>
+    
+        // ================================== PLAYLISTS PÚBLICAS ==================================
+<span class="nc" id="L1136">        Playlist topGlobal = new Playlist(&quot;Top Global&quot;, &quot;Spotify&quot;, </span>
+<span class="nc" id="L1137">            Arrays.asList(shapeOfYou, blindingLights, levitating, godPlan, starboy));</span>
+            
+<span class="nc" id="L1139">        Playlist rockLegends = new Playlist(&quot;Rock Legends&quot;, &quot;RockFM&quot;, </span>
+<span class="nc" id="L1140">            Arrays.asList(bohemian, stairway, sweetChildOMine, hotelCalifornia, smellsLikeTeenSpirit));</span>
+            
+<span class="nc" id="L1142">        Playlist hipHopNation = new Playlist(&quot;Hip-Hop Nation&quot;, &quot;HipHopTV&quot;, </span>
+<span class="nc" id="L1143">            Arrays.asList(sickoMode, godPlan, humble, rapGod));</span>
+            
+<span class="nc" id="L1145">        Playlist electronicVibes = new Playlist(&quot;Electronic Vibes&quot;, &quot;EDM.com&quot;, </span>
+<span class="nc" id="L1146">            Arrays.asList(starboy, oneMoreTime, titanium));</span>
+            
+<span class="nc" id="L1148">        Playlist throwbackHits = new Playlist(&quot;Throwback Hits&quot;, &quot;OldiesFM&quot;, </span>
+<span class="nc" id="L1149">            Arrays.asList(billieJean, beatIt, hotelCalifornia, bohemian));</span>
+            
+<span class="nc" id="L1151">        Playlist portuguesePride = new Playlist(&quot;Portuguese Pride&quot;, &quot;RTP&quot;, </span>
+<span class="nc" id="L1152">            Arrays.asList(hinoPorto));</span>
+    
+        // Adiciona playlists públicas
+<span class="nc" id="L1155">        Arrays.asList(topGlobal, rockLegends, hipHopNation, electronicVibes, throwbackHits, portuguesePride)</span>
+<span class="nc" id="L1156">              .forEach(p -&gt; publicPlaylists.put(p.getId(), p));</span>
+    
+        // ================================== UTILIZADORES ==================================
+        // (Mantido igual ao original)
+<span class="nc" id="L1160">        User premiumUser = new User(&quot;simao&quot;, &quot;love@music.com&quot;, &quot;Avenida Central&quot;, </span>
+<span class="nc" id="L1161">            &quot;root&quot;, new PlanPremiumBase(), Arrays.asList(</span>
+<span class="nc" id="L1162">                new Playlist(&quot;My Mix&quot;, &quot;simao&quot;, Arrays.asList(sickoMode, bohemian)),</span>
+<span class="nc" id="L1163">                new Playlist(&quot;Tesouros Portugueses&quot;, &quot;simao&quot;, Arrays.asList(hinoPorto))</span>
+            ), new ArrayList&lt;&gt;());
+    
+<span class="nc" id="L1166">        User freeUser = new User(&quot;gabriel&quot;, &quot;student@uni.com&quot;, &quot;Campus Residence&quot;, </span>
+<span class="nc" id="L1167">            &quot;root&quot;, new PlanFree(), Arrays.asList(</span>
+<span class="nc" id="L1168">                new Playlist(&quot;Study Time&quot;, &quot;gabriel&quot;, Arrays.asList(bohemian, stairway))</span>
+            ), new ArrayList&lt;&gt;());
+    
+<span class="nc" id="L1171">        User artistAccount = new User(&quot;jose&quot;, &quot;weeknd@xo.com&quot;, &quot;Los Angeles&quot;, </span>
+            &quot;root&quot;, new PlanPremiumTop(), new ArrayList&lt;&gt;(), new ArrayList&lt;&gt;());
+    
+        // Adiciona usuários
+<span class="nc" id="L1175">        Arrays.asList(premiumUser, freeUser, artistAccount)</span>
+<span class="nc" id="L1176">              .forEach(u -&gt; users.put(u.getUsername(), u));</span>
+<span class="nc" id="L1177">    }</span>
+
+    /**
+     * Cria uma nova música com os parâmetros fornecidos.
+     * @param name Nome da música
+     * @param artist Nome do artista
+     * @param label Editora
+     * @param lyrics Letra da música
+     * @param instrument Instrumento principal
+     * @param genre Género musical
+     * @param album Nome do álbum
+     * @param duration Duração em segundos
+     * @param explicit true se for explícita, false caso contrário
+     * @return Objeto Music criado
+     */
+    private Music createMusic(String name, String artist, String label, String lyrics, 
+                             String instrument, String genre, String album, int duration, boolean explicit) {
+<span class="nc" id="L1194">        return new Music(name, artist, label, lyrics, instrument, genre, album, duration, explicit);</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

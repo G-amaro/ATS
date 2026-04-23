@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Album.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Model.Album</a> &gt; <span class="el_source">Album.java</span></div><h1>Album.java</h1><pre class="source lang-java linenums">package org.Model.Album;
+import java.io.Serializable;
+import java.util.List;
+
+import org.Model.Music.Music;
+import java.util.ArrayList;
+
+/**
+ * Representa um álbum musical.
+ */
+public class Album implements Serializable{
+    /**
+     * Nome do álbum.
+     */
+    private String name;
+    /**
+     * Nome do artista.
+     */
+    private String artist;
+    /**
+     * Lista de faixas musicais do álbum.
+     */
+    private List&lt;Music&gt; musics;
+
+    /**
+     * Construtor da classe Album.
+     *
+     * @param name Nome do álbum.
+     * @param artist Nome do artista.
+     * @param musics Lista de faixas musicais.
+     */
+<span class="fc" id="L32">    public Album(String name, String artist, List&lt;Music&gt; musics) {</span>
+<span class="fc" id="L33">        this.name = name;</span>
+<span class="fc" id="L34">        this.artist = artist;</span>
+<span class="fc" id="L35">        this.musics = new ArrayList&lt;Music&gt;();</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (Music m : musics) {</span>
+<span class="fc" id="L37">            this.musics.add(m.clone());</span>
+<span class="fc" id="L38">        }</span>
+<span class="fc" id="L39">    }</span>
+
+    /**
+     * Construtor vazio da classe Album.
+     */
+<span class="fc" id="L44">    public Album() {</span>
+<span class="fc" id="L45">        this.name = &quot;&quot;;</span>
+<span class="fc" id="L46">        this.artist = &quot;&quot;;</span>
+<span class="fc" id="L47">        this.musics = null;</span>
+<span class="fc" id="L48">    }</span>
+
+    /**
+     * Construtor de cópia da classe Album.
+     *
+     * @param album Objeto Album a ser copiado.
+     */
+<span class="fc" id="L55">    public Album(Album album) {</span>
+<span class="fc" id="L56">        this.name = album.getName();</span>
+<span class="fc" id="L57">        this.artist = album.getArtist();</span>
+<span class="fc" id="L58">        this.musics = album.getMusics(); // Faz uma cópia profunda da lista de músicas</span>
+<span class="fc" id="L59">    }</span>
+
+    /**
+     * Construtor da classe Album.
+     *
+     * @param name Nome do álbum.
+     * @param artist Nome do artista.
+     */
+<span class="fc" id="L67">    public Album(String name, String artist) {</span>
+<span class="fc" id="L68">        this.name = name;</span>
+<span class="fc" id="L69">        this.artist = artist;</span>
+<span class="fc" id="L70">        this.musics = new ArrayList&lt;Music&gt;();</span>
+<span class="fc" id="L71">    }</span>
+
+    /**
+     * Retorna o nome do álbum.
+     * @return Nome do álbum.
+     */
+    public String getName() {
+<span class="fc" id="L78">        return name;</span>
+    }
+
+    /**
+     * Define o nome do álbum.
+     * @param name Nome do álbum.
+     */
+    public void setName(String name) {
+<span class="nc" id="L86">        this.name = name;</span>
+<span class="nc" id="L87">    }</span>
+
+    /**
+     * Retorna o nome do artista.
+     * @return Nome do artista.
+     */
+    public String getArtist() {
+<span class="fc" id="L94">        return artist;</span>
+    }
+
+    /**
+     * Define o nome do artista.
+     * @param artist Nome do artista.
+     */
+    public void setArtist(String artist) {
+<span class="nc" id="L102">        this.artist = artist;</span>
+<span class="nc" id="L103">    }</span>
+
+    /**
+     * Retorna a lista de faixas musicais.
+     * @return Lista de faixas musicais.
+     */
+    public List&lt;Music&gt; getMusics() {
+<span class="fc" id="L110">        List&lt;Music&gt; musicList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        for (Music m : this.musics) {</span>
+<span class="fc" id="L112">            musicList.add(m.clone());</span>
+<span class="fc" id="L113">        }</span>
+<span class="fc" id="L114">        return musicList;</span>
+    }
+
+    /**
+     * Define a lista de faixas musicais.
+     * @param musics Lista de faixas musicais.
+     */
+    public void setMusics(List&lt;Music&gt; musics) {
+<span class="fc" id="L122">        this.musics = musics;</span>
+<span class="fc" id="L123">    }</span>
+
+    /**
+     * Método clone que cria uma cópia do objeto Album.
+     * @return Novo objeto Album com os mesmos dados.
+     */
+    public Album clone() {
+<span class="fc" id="L130">        return new Album(this);</span>
+    }
+
+    /**
+     * Método toString que retorna uma representação em string do objeto Album.
+     * @return String descrevendo o álbum e suas faixas.
+     */
+    public String toString() {
+<span class="fc" id="L138">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L139">        sb.append(&quot;Album: &quot;).append(name).append(&quot;\n&quot;);</span>
+<span class="fc" id="L140">        sb.append(&quot;Artista: &quot;).append(artist).append(&quot;\n&quot;);</span>
+<span class="fc" id="L141">        sb.append(&quot;Músicas:\n&quot;);</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        for (Music music : musics) {</span>
+<span class="fc" id="L143">            sb.append(music.toString()).append(&quot;\n&quot;);</span>
+<span class="fc" id="L144">        }</span>
+<span class="fc" id="L145">        return sb.toString();</span>
+    }
+
+    /**
+     * Adiciona uma faixa musical ao álbum.
+     * @param music Faixa musical a ser adicionada.
+     */
+    public void addMusic(Music music) {
+<span class="fc" id="L153">        this.musics.add(music);</span>
+<span class="fc" id="L154">    }</span>
+
+    /**
+     * Remove uma faixa musical do álbum.
+     * @param music Faixa musical a ser removida.
+     */
+    public void removeMusic(Music music) {
+<span class="fc" id="L161">        this.musics.remove(music);</span>
+<span class="fc" id="L162">    }</span>
+
+    /**
+     * Retorna uma faixa musical pelo nome.
+     * @param name Nome da faixa musical a ser pesquisada.
+     * @return Faixa musical correspondente ao nome fornecido.
+     */
+    public Music getMusicByName(String name){
+<span class="fc bfc" id="L170" title="All 2 branches covered.">        for (Music music : musics) {</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">            if (music.getName().equals(name)) {</span>
+<span class="fc" id="L172">                return music;</span>
+            }
+<span class="fc" id="L174">        }</span>
+<span class="fc" id="L175">        return null;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,49 @@
+[MASTER] 16:10:30.776 [pool-2-thread-1] ERROR ConcreteClassAnalyzer - Problem for org.View.PlanMenu. Class not found: org.mockito.internal.creation.bytebuddy.MockMethodAdvice$Identifier
+java.lang.NoClassDefFoundError: org/mockito/internal/creation/bytebuddy/MockMethodAdvice
+	at java.lang.Class.getDeclaringClass0(Native Method) ~[na:1.8.0_482]
+	at java.lang.Class.getDeclaringClass(Class.java:1235) ~[na:1.8.0_482]
+	at java.lang.Class.getEnclosingClass(Class.java:1277) ~[na:1.8.0_482]
+	at java.lang.Class.getSimpleBinaryName(Class.java:1443) ~[na:1.8.0_482]
+	at java.lang.Class.getSimpleName(Class.java:1309) ~[na:1.8.0_482]
+	at java.lang.Class.isAnonymousClass(Class.java:1411) ~[na:1.8.0_482]
+	at org.evosuite.setup.TestUsageChecker.canUse(TestUsageChecker.java:155) ~[evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.setup.ConcreteClassAnalyzer.getConcreteClassesImpl(ConcreteClassAnalyzer.java:133) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.setup.ConcreteClassAnalyzer.getConcreteClasses(ConcreteClassAnalyzer.java:61) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.setup.TestClusterGenerator.addDependency(TestClusterGenerator.java:878) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.setup.TestClusterGenerator.addDependencies(TestClusterGenerator.java:789) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.setup.TestClusterGenerator.addDependencyClass(TestClusterGenerator.java:985) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.setup.TestClusterGenerator.resolveDependencies(TestClusterGenerator.java:358) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.setup.TestClusterGenerator.generateCluster(TestClusterGenerator.java:137) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.setup.DependencyAnalysis.analyze(DependencyAnalysis.java:118) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.setup.DependencyAnalysis.analyzeClass(DependencyAnalysis.java:132) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.TestSuiteGenerator.initializeTargetClass(TestSuiteGenerator.java:110) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.TestSuiteGenerator.generateTestSuite(TestSuiteGenerator.java:130) [evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.rmi.service.ClientNodeImpl$1.run(ClientNodeImpl.java:145) [evosuite-master-1.0.6.jar:1.0.6]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [na:1.8.0_482]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [na:1.8.0_482]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_482]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_482]
+	at java.lang.Thread.run(Thread.java:750) [na:1.8.0_482]
+Caused by: java.lang.ClassNotFoundException: org/mockito/internal/creation/bytebuddy/inject/MockMethodDispatcher
+	at org.evosuite.instrumentation.InstrumentingClassLoader.instrumentClass(InstrumentingClassLoader.java:201) ~[evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.instrumentation.InstrumentingClassLoader.loadClass(InstrumentingClassLoader.java:168) ~[evosuite-master-1.0.6.jar:1.0.6]
+	... 24 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: org/mockito/internal/creation/bytebuddy/inject/MockMethodDispatcher
+	at java.lang.ClassLoader.defineClass1(Native Method) ~[na:1.8.0_482]
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756) ~[na:1.8.0_482]
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:635) ~[na:1.8.0_482]
+	at org.evosuite.instrumentation.InstrumentingClassLoader.instrumentClass(InstrumentingClassLoader.java:194) ~[evosuite-master-1.0.6.jar:1.0.6]
+	... 25 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Class 'org/mockito/internal/creation/bytebuddy/inject/MockMethodDispatcher.class' should be in target project, but could not be found!
+	at org.evosuite.instrumentation.InstrumentingClassLoader.instrumentClass(InstrumentingClassLoader.java:201) ~[evosuite-master-1.0.6.jar:1.0.6]
+	at org.evosuite.instrumentation.InstrumentingClassLoader.loadClass(InstrumentingClassLoader.java:168) ~[evosuite-master-1.0.6.jar:1.0.6]
+	... 29 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Class 'org/mockito/internal/creation/bytebuddy/inject/MockMethodDispatcher.class' should be in target project, but could not be found!
+	at org.evosuite.instrumentation.InstrumentingClassLoader.instrumentClass(InstrumentingClassLoader.java:188) ~[evosuite-master-1.0.6.jar:1.0.6]
+	... 30 common frames omitted
+[MASTER] 16:10:30.777 [pool-2-thread-1] ERROR ConcreteClassAnalyzer - Removing class from inheritance tree
+[MASTER] 16:10:37.878 [pool-2-thread-1] ERROR TestCluster - Failed to check cache for java.util.Enumeration<E> : Type points to itself
+[MASTER] 16:10:39.926 [TEST_EXECUTION_THREAD_0] ERROR AbstractStatement - Error assigning value of type FileAttribute[] defined at statement FileAttribute<String>[] fileAttributeArray0 = (FileAttribute<String>[]) Array.newInstance(FileAttribute.class, 3), assignment statement: fileAttributeArray0[0] = (FileAttribute<String>) fileAttributeArray0; SUT=org.View.PlanMenu
+[MASTER] 16:11:41.920 [pool-2-thread-1] ERROR ClassStateSupport - Could not initialize net.bytebuddy.build.HashCodeAndEqualsPlugin: null
+[MASTER] 16:11:41.967 [pool-2-thread-1] ERROR ClassStateSupport - Could not initialize net.bytebuddy.implementation.EqualsMethod: Could not initialize class net.bytebuddy.description.type.TypeDescription$ForLoadedType
+[MASTER] 16:11:41.976 [pool-2-thread-1] ERROR ClassStateSupport - Could not initialize net.bytebuddy.implementation.HashCodeMethod: Could not initialize class net.bytebuddy.description.type.TypeDescription$ForLoadedType

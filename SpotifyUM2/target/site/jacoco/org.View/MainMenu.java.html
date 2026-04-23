@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainMenu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.View</a> &gt; <span class="el_source">MainMenu.java</span></div><h1>MainMenu.java</h1><pre class="source lang-java linenums">package org.View;
+import org.Controller.Controller;
+
+/**
+ * Menu principal da aplicação.
+ *
+ * Permite ao utilizador navegar pelas principais funcionalidades do sistema.
+ */
+public class MainMenu extends Menu {
+    /**
+     * Construtor do menu principal.
+     * @param controller Controlador principal da aplicação.
+     * @param menuManager Gestor de menus.
+     */
+    public MainMenu(Controller controller, MenuManager menuManager) {
+<span class="fc" id="L16">        super(controller, menuManager);</span>
+<span class="fc" id="L17">    }</span>
+
+    /**
+     * Mostra o menu principal e trata a seleção do utilizador.
+     */
+    @Override
+    public void show() {
+<span class="nc" id="L24">        System.out.println(&quot;\n🎵✨ Bem-vindo ao SpotifUM! ✨🎵&quot;);</span>
+<span class="nc" id="L25">        System.out.println(&quot;\n🎵━━━━━━━━━━━━━━━【 MENU PRINCIPAL 】━━━━━━━━━━━━━━━🎵\n&quot;);</span>
+<span class="nc" id="L26">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;1️⃣&quot;, &quot;▶️   Menu de Reprodução&quot;);</span>
+<span class="nc" id="L27">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;2️⃣&quot;, &quot;👤  Menu de Perfil&quot;);</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if (this.getController().currentUserHasLibrary()) {</span>
+<span class="nc" id="L29">            System.out.printf(&quot;%-5s %s\n&quot;, &quot;3️⃣&quot;, &quot;🎶  Menu de Playlists&quot;);</span>
+        }
+<span class="nc" id="L31">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;0️⃣&quot;, &quot;🔙  Logout&quot;);</span>
+<span class="nc" id="L32">        System.out.print(&quot;\n👉 Escolhe uma opção: &quot;);</span>
+<span class="nc" id="L33">        handleInput();</span>
+<span class="nc" id="L34">    }</span>
+    
+    /**
+     * Lê e processa a opção escolhida pelo utilizador.
+     */
+    public void handleInput() {
+        try{
+<span class="fc" id="L41">            int choice = getScanner().nextInt();</span>
+<span class="fc" id="L42">            getScanner().nextLine();</span>
+<span class="fc" id="L43">            cleanTerminal();</span>
+
+<span class="pc bpc" id="L45" title="1 of 5 branches missed.">            switch (choice) {</span>
+                case 1:
+<span class="fc" id="L47">                    getMenuManager().setMenu(new ReproductionMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L48">                    break;</span>
+                case 2:
+<span class="fc" id="L50">                    getMenuManager().setMenu(new ProfileMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L51">                    break;</span>
+                case 3:
+<span class="nc bnc" id="L53" title="All 2 branches missed.">                    if(this.getController().currentUserHasLibrary())</span>
+<span class="nc" id="L54">                        getMenuManager().setMenu(new PlaylistMenu(getController(), getMenuManager()));</span>
+                    else
+<span class="nc" id="L56">                        System.out.println(&quot;\n🚫 Opção inválida. Tenta novamente.&quot;);</span>
+<span class="nc" id="L57">                    break;</span>
+                case 0:
+<span class="fc" id="L59">                    System.out.println(&quot;\n👋 Logout bem-sucedido. Até à próxima!&quot;);</span>
+<span class="fc" id="L60">                    getMenuManager().setMenu(new LoginMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L61">                    break;</span>
+                default:
+<span class="fc" id="L63">                    System.out.println(&quot;❌ Opção inválida. Tenta novamente.&quot;);</span>
+                    break;
+            }
+<span class="fc" id="L66">        } catch (Exception e) {</span>
+<span class="fc" id="L67">            System.out.println(&quot;Por favor, insira apenas Números.&quot;);</span>
+<span class="fc" id="L68">            getScanner().nextLine(); // limpar buffer</span>
+<span class="fc" id="L69">        }</span>
+<span class="fc" id="L70">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

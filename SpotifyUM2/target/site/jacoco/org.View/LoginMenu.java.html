@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginMenu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.View</a> &gt; <span class="el_source">LoginMenu.java</span></div><h1>LoginMenu.java</h1><pre class="source lang-java linenums">package org.View;
+
+import org.Controller.Controller;
+
+/**
+ * Classe que representa o menu de login.
+ * Permite autenticação e registo de utilizadores.
+ */
+public class LoginMenu extends Menu {
+    /**
+     * Construtor do menu de login.
+     * @param controller Controlador principal da aplicação.
+     * @param menuManager Gestor de menus.
+     */
+    public LoginMenu(Controller controller, MenuManager menuManager) {
+<span class="fc" id="L16">        super(controller, menuManager);</span>
+<span class="fc" id="L17">    }</span>
+
+    /**
+     * Mostra o menu de login e trata a seleção do utilizador.
+     */
+    @Override
+    public void show() {
+<span class="nc" id="L24">        System.out.println(&quot;\n🔐━━━━━━━━━━━━━━━【 MENU DE LOGIN 】━━━━━━━━━━━━━━━🔐\n&quot;);</span>
+<span class="nc" id="L25">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;1️⃣&quot;, &quot;🔓 Iniciar Sessão&quot;);</span>
+<span class="nc" id="L26">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;2️⃣&quot;, &quot;🆕 Registar Novo Utilizador&quot;);</span>
+<span class="nc" id="L27">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;3️⃣&quot;, &quot;❌ Sair&quot;);</span>
+<span class="nc" id="L28">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;4️⃣&quot;, &quot;👑 Entrar como Administrador&quot;);</span>
+<span class="nc" id="L29">        System.out.print(&quot;\n👉 Escolhe uma opção: &quot;);</span>
+<span class="nc" id="L30">        handleInput();</span>
+<span class="nc" id="L31">    }</span>
+    
+    /**
+     * Lê e processa a opção escolhida pelo utilizador.
+     */
+    public void handleInput() {
+        try{
+<span class="fc" id="L38">            int choice = getScanner().nextInt();</span>
+<span class="fc" id="L39">            getScanner().nextLine(); // limpar buffer</span>
+<span class="fc" id="L40">            cleanTerminal();</span>
+<span class="pc bpc" id="L41" title="2 of 5 branches missed.">            switch (choice) {</span>
+                case 1:
+<span class="nc" id="L43">                    login();</span>
+<span class="nc" id="L44">                    break;</span>
+                case 2:
+<span class="nc" id="L46">                    register();</span>
+<span class="nc" id="L47">                    break;</span>
+                case 3:
+<span class="fc" id="L49">                    System.out.println(&quot;👋 Até à próxima!&quot;);</span>
+<span class="fc" id="L50">                    this.setRunning(false);</span>
+<span class="fc" id="L51">                    break;</span>
+                case 4:
+<span class="fc" id="L53">                    getMenuManager().setMenu(new AdminMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L54">                    break;</span>
+                default:
+<span class="fc" id="L56">                    System.out.println(&quot;❌ Opção inválida. Tenta novamente.&quot;);</span>
+                    break;
+            }
+<span class="fc" id="L59">        } catch (Exception e) {</span>
+<span class="fc" id="L60">            System.out.println(&quot;Por favor, insira apenas Números.&quot;);</span>
+<span class="fc" id="L61">            getScanner().nextLine(); // limpar buffer</span>
+<span class="fc" id="L62">        }</span>
+<span class="fc" id="L63">    }</span>
+
+    /**
+     * Realiza o login do utilizador.
+     */
+    public void login() {
+<span class="fc" id="L69">        System.out.print(&quot;\n👤 Nome de utilizador: &quot;);</span>
+<span class="fc" id="L70">        String nome = getScanner().nextLine();</span>
+<span class="fc" id="L71">        System.out.print(&quot;🔑 Palavra-passe: &quot;);</span>
+<span class="fc" id="L72">        String password = getScanner().nextLine();</span>
+        
+<span class="fc" id="L74">        boolean loginSuccessful = getController().loginWithMessage(nome, password);</span>
+        
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        if (loginSuccessful) {</span>
+<span class="fc" id="L77">            System.out.println(&quot;✅ Login bem-sucedido! Bem-vindo(a), &quot; + nome + &quot;!&quot;);</span>
+<span class="fc" id="L78">            getMenuManager().setMenu(new MainMenu(getController(), getMenuManager()));</span>
+        } else {
+<span class="nc" id="L80">            System.out.println(&quot;❌ Nome de utilizador ou palavra-passe inválidos.&quot;);</span>
+        }
+<span class="fc" id="L82">    }</span>
+
+    /**
+     * Regista um novo utilizador.
+     */
+    public void register() {
+<span class="fc" id="L88">        System.out.println(&quot;\n📝 === Registar Novo Utilizador ===&quot;);</span>
+<span class="fc" id="L89">        System.out.print(&quot;👤 Nome de utilizador: &quot;);</span>
+<span class="fc" id="L90">        String nome = getScanner().nextLine();</span>
+<span class="fc" id="L91">        System.out.print(&quot;📧 Email: &quot;);</span>
+<span class="fc" id="L92">        String email = getScanner().nextLine();</span>
+<span class="fc" id="L93">        System.out.print(&quot;🏠 Morada: &quot;);</span>
+<span class="fc" id="L94">        String morada = getScanner().nextLine();</span>
+<span class="fc" id="L95">        System.out.print(&quot;🔑 Palavra-passe: &quot;);</span>
+<span class="fc" id="L96">        String password = getScanner().nextLine();</span>
+<span class="fc" id="L97">        System.out.println(this.getController().addNewUser(nome, email, morada, password));</span>
+<span class="fc" id="L98">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
