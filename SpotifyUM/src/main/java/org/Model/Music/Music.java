@@ -281,20 +281,13 @@ public class Music implements Serializable {
      * @param o Objeto a ser comparado.
      * @return true se igual, false caso contrário.
      */
-    public boolean equals(Object o) {
+    public boolean equals(Object o){
         if (this == o) return true;
         if (!(o instanceof Music)) return false;
 
         Music that = (Music) o;
 
-        if (this.duration != that.duration) return false;
-        if (this.explicit != that.explicit) return false;
-        if (this.name != null ? !this.name.equals(that.name) : that.name != null) return false;
-        if (this.interpreter != null ? !this.interpreter.equals(that.interpreter) : that.interpreter != null) return false;
-        if (this.genre != null ? !this.genre.equals(that.genre) : that.genre != null) return false;
-        if (this.album != null ? !this.album.equals(that.album) : that.album != null) return false;
-
-        return true;
+        return name != null ? name.equals(that.name) : that.name == null;
     }
 
     /**

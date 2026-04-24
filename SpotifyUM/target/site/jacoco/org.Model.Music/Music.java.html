@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Music.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Model.Music</a> &gt; <span class="el_source">Music.java</span></div><h1>Music.java</h1><pre class="source lang-java linenums">package org.Model.Music;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Music.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Model.Music</a> &gt; <span class="el_source">Music.java</span></div><h1>Music.java</h1><pre class="source lang-java linenums">package org.Model.Music;
 
 import java.io.Serializable;
 
@@ -281,20 +281,13 @@ public class Music implements Serializable {
      * @param o Objeto a ser comparado.
      * @return true se igual, false caso contrário.
      */
-    public boolean equals(Object o) {
+    public boolean equals(Object o){
 <span class="fc bfc" id="L285" title="All 2 branches covered.">        if (this == o) return true;</span>
 <span class="fc bfc" id="L286" title="All 2 branches covered.">        if (!(o instanceof Music)) return false;</span>
 
 <span class="fc" id="L288">        Music that = (Music) o;</span>
 
-<span class="fc bfc" id="L290" title="All 2 branches covered.">        if (this.duration != that.duration) return false;</span>
-<span class="fc bfc" id="L291" title="All 2 branches covered.">        if (this.explicit != that.explicit) return false;</span>
-<span class="fc bfc" id="L292" title="All 6 branches covered.">        if (this.name != null ? !this.name.equals(that.name) : that.name != null) return false;</span>
-<span class="fc bfc" id="L293" title="All 6 branches covered.">        if (this.interpreter != null ? !this.interpreter.equals(that.interpreter) : that.interpreter != null) return false;</span>
-<span class="fc bfc" id="L294" title="All 6 branches covered.">        if (this.genre != null ? !this.genre.equals(that.genre) : that.genre != null) return false;</span>
-<span class="fc bfc" id="L295" title="All 6 branches covered.">        if (this.album != null ? !this.album.equals(that.album) : that.album != null) return false;</span>
-
-<span class="fc" id="L297">        return true;</span>
+<span class="pc bpc" id="L290" title="3 of 4 branches missed.">        return name != null ? name.equals(that.name) : that.name == null;</span>
     }
 
     /**
@@ -302,8 +295,8 @@ public class Music implements Serializable {
      * @return Letra da faixa musical.
      */
     public String play(){
-<span class="fc" id="L305">        this.reproductions++;</span>
-<span class="fc" id="L306">        return this.lyrics;</span>
+<span class="fc" id="L298">        this.reproductions++;</span>
+<span class="fc" id="L299">        return this.lyrics;</span>
     }
 
 }

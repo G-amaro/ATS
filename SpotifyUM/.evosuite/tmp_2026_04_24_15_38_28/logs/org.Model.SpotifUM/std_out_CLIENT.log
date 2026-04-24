@@ -1,0 +1,49 @@
+* Starting client
+* Connecting to master process on port 21620
+* Analyzing classpath: 
+  - /home/gongas/Desktop/3ano2sem/ATS_Aulas/ATS/SpotifyUM/target/test-classes
+  - /home/gongas/Desktop/3ano2sem/ATS_Aulas/ATS/SpotifyUM/target/classes
+  - /home/gongas/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar
+  - /home/gongas/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar
+  - /home/gongas/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+  - /home/gongas/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar
+  - /home/gongas/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar
+  - /home/gongas/.m2/repository/org/mockito/mockito-core/4.11.0/mockito-core-4.11.0.jar
+  - /home/gongas/.m2/repository/net/bytebuddy/byte-buddy/1.12.19/byte-buddy-1.12.19.jar
+  - /home/gongas/.m2/repository/net/bytebuddy/byte-buddy-agent/1.12.19/byte-buddy-agent-1.12.19.jar
+  - /home/gongas/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar
+  - /home/gongas/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar
+  - /home/gongas/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar
+  - /home/gongas/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
+  - /home/gongas/.m2/repository/org/junit/vintage/junit-vintage-engine/5.8.2/junit-vintage-engine-5.8.2.jar
+  - /home/gongas/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar
+  - /home/gongas/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik/1.7.3/jqwik-1.7.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik-api/1.7.3/jqwik-api-1.7.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik-web/1.7.3/jqwik-web-1.7.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik-time/1.7.3/jqwik-time-1.7.3.jar
+  - /home/gongas/.m2/repository/net/jqwik/jqwik-engine/1.7.3/jqwik-engine-1.7.3.jar
+* Finished analyzing classpath
+* Generating tests for class org.Model.SpotifUM
+* Test criteria:
+  - Line Coverage
+  - Branch Coverage
+  - Exception
+  - Mutation testing (weak)
+  - Method-Output Coverage
+  - Top-Level Method Coverage
+  - No-Exception Top-Level Method Coverage
+  - Context Branch Coverage
+* Setting up search algorithm for whole suite generation
+* Loaded 166 tests from /home/gongas/Desktop/3ano2sem/ATS_Aulas/ATS/SpotifyUM/.evosuite/evosuite-seeds/org.Model.SpotifUM.seed
+* Total number of test goals: 
+  - Line 372
+  - Branch 158
+  - Exception 0
+  - MutationFactory 586
+  - Output 136
+  - Method 70
+  - MethodNoException 70
+  - CBranchFitnessFactory 158
+* Using seed 1777041510915
+* Starting evolution

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.StringJoiner;
 
 
 import org.Exceptions.AlreadyExistsException;
@@ -256,12 +257,17 @@ public class User implements Serializable{
      * @return String com os dados do utilizador.
      */
     public String toString() {
+        StringBuilder passwordBuilder = new StringBuilder();
+        for (int i = 0; i < password.length(); i++) {
+            passwordBuilder.append("•");
+        }
+        String hiddenPassword = passwordBuilder.toString();
         return 
             "╔═══════════════ DADOS DO UTILIZADOR ═══════════════╗\n" +
             "  👤 Nome de Utilizador: " + username + "\n" +
             "  📧 Email: " + email + "\n" +
             "  🏠 Morada: " + adress + "\n" +
-            "  🔑 Password: " + "•".repeat(password.length()) + "\n" +
+            "  🔑 Password: " + hiddenPassword + "\n" +
             "  📋 Plano: " + plan + "\n" +
             "╚═══════════════════════════════════════════════════╝";
     }
