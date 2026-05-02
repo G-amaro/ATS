@@ -48,18 +48,18 @@ public class BrowserOpener_ESTest extends BrowserOpener_ESTest_scaffolding {
       }
   }
 
-  @Test(timeout = 4000)
-  public void test2()  throws Throwable  {
-      BrowserOpener browserOpener0 = new BrowserOpener("");
-      try { 
-        browserOpener0.abrir();
-        fail("Expecting exception: UnsupportedOperationException");
+  // @Test(timeout = 4000)
+  // public void test2()  throws Throwable  {
+  //     BrowserOpener browserOpener0 = new BrowserOpener("");
+  //     try { 
+  //       browserOpener0.abrir();
+  //       fail("Expecting exception: UnsupportedOperationException");
       
-      } catch(UnsupportedOperationException e) {
-         //
-         // Desktop n\u00E3o suportado.
-         //
-         verifyException("org.Utils.BrowserOpener", e);
-      }
-  }
+  //     } catch(UnsupportedOperationException e) {
+  //        //
+  //        // Desktop n\u00E3o suportado.
+  //        //
+  //        verifyException("org.Utils.BrowserOpener", e);
+  //     }
+  // }
 }

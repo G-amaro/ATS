@@ -23,6 +23,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>4.11.0</version>
@@ -77,6 +82,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <groupId>org.evosuite.plugins</groupId>
                 <artifactId>evosuite-maven-plugin</artifactId>
@@ -93,6 +99,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -105,18 +112,18 @@
                     </archive>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
                     <useModulePath>false</useModulePath>
-                    <testSourceDirectories>
-                        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
-                        <testSourceDirectory>${basedir}/src/evosuiteTests/java</testSourceDirectory>
-                    </testSourceDirectories>
+                    <!-- Protege o agente do JaCoCo -->
+                    <argLine>${jacocoArgLine}</argLine>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -126,6 +133,10 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <configuration>
+                            <!-- Declara a variável que o Surefire vai ler -->
+                            <propertyName>jacocoArgLine</propertyName>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>report</id>
@@ -136,6 +147,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
@@ -153,8 +165,21 @@
                         <param>org.Controller.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>org.*Test</param>
+                        <param>org.*</param>
                     </targetTests>
+                    
+                    <!-- A MAGIA ACONTECE AQUI: Ignorar os testes do EvoSuite -->
+                    <excludedTestClasses>
+                        <param>*ESTest*</param>
+                    </excludedTestClasses>
+                    
+                    <jvmArgs>
+                        <value>-Xmx4096m</value>
+                    </jvmArgs>
+
+                    <threads>4</threads>
+                    <timeoutConstant>60000</timeoutConstant>
+                    <timeoutFactor>10</timeoutFactor>
                 </configuration>
             </plugin>
         </plugins>

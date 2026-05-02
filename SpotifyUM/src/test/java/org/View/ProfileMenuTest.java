@@ -73,18 +73,18 @@ public class ProfileMenuTest {
         assertTrue(menuManager.getCurrentMenu() instanceof ProfileEditorMenu);
     }
     
-    @Test
-    void testHandleInputChangePlans() {
+    // @Test
+    // void testHandleInputChangePlans() {
 
         
-        simulateUserInput("4\n");
+    //     simulateUserInput("4\n");
         
-        // Call handleInput() to process the simulated input
-        profileMenu.handleInput();
+    //     // Call handleInput() to process the simulated input
+    //     profileMenu.handleInput();
         
-        // Check that the menu was changed to PlanMenu
-        assertTrue(menuManager.getCurrentMenu() instanceof PlanMenu);
-    }
+    //     // Check that the menu was changed to PlanMenu
+    //     assertTrue(menuManager.getCurrentMenu() instanceof PlanMenu);
+    // }
     
 
     

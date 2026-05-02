@@ -3,67 +3,119 @@ package org.Model.Plan;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
-/**
- * Test class for PlanFree.
- */
 public class PlanFreeTest {
 
     @Test
-    public void testDefaultConstructor() {
-        PlanFree plan = new PlanFree();
-        assertEquals(0, plan.getPoints(), "Default points should be 0");
+    void testDefaultConstructorSetsPointsToZero() {
+    PlanFree plan = new PlanFree();
+    assertEquals(0, plan.getPoints());
+    plan.setPoints(99);
+    assertEquals(99, plan.getPoints());
+    PlanFree plan2 = new PlanFree();
+    assertNotEquals(99, plan2.getPoints());
+}
+
+    @Test
+    void testCopyConstructor() {
+        PlanFree original = new PlanFree();
+        original.setPoints(30);
+        PlanFree copy = new PlanFree(original);
+        assertEquals(30, copy.getPoints());
     }
 
     @Test
-    public void testCopyConstructor() {
-        PlanFree originalPlan = new PlanFree();
-        originalPlan.addPoints();
-        PlanFree copiedPlan = new PlanFree(originalPlan);
-        assertEquals(originalPlan.getPoints(), copiedPlan.getPoints(), "Copied plan should have the same points as the original");
+    void testCopyConstructorZeroPoints() {
+        PlanFree original = new PlanFree();
+        PlanFree copy = new PlanFree(original);
+        assertEquals(0, copy.getPoints());
     }
 
     @Test
-    public void testAddPoints() {
+    void testAddPointsFromZero() {
         PlanFree plan = new PlanFree();
         plan.addPoints();
-        assertEquals(5, plan.getPoints(), "Points should increase by 5 after calling addPoints");
+        assertEquals(5, plan.getPoints());
     }
 
     @Test
-    public void testCanAccessLibrary() {
+    void testAddPointsMultipleTimes() {
         PlanFree plan = new PlanFree();
-        assertFalse(plan.canAccessLibrary(), "Free plan users should not have access to the library");
+        plan.addPoints();
+        plan.addPoints();
+        plan.addPoints();
+        assertEquals(15, plan.getPoints());
     }
 
     @Test
-    public void testCanSkip() {
+    void testAddPointsFromNonZero() {
         PlanFree plan = new PlanFree();
-        assertFalse(plan.canSkip(), "Free plan users should not be able to skip tracks");
+        plan.setPoints(10);
+        plan.addPoints();
+        assertEquals(15, plan.getPoints());
     }
 
     @Test
-    public void testCanChooseWhatToPlay() {
+    void testSetAndGetPoints() {
         PlanFree plan = new PlanFree();
-        assertFalse(plan.canChooseWhatToPlay(), "Free plan users should not be able to choose what to play");
+        plan.setPoints(100);
+        assertEquals(100, plan.getPoints());
+        plan.setPoints(0);
+        assertEquals(0, plan.getPoints());
+        plan.setPoints(999);
+        assertEquals(999, plan.getPoints());
     }
 
     @Test
-    public void testHasAccessToFavorites() {
+    void testCanAccessLibrary() {
         PlanFree plan = new PlanFree();
-        assertFalse(plan.hasAccessToFavorites(), "Free plan users should not have access to favorites");
+        assertFalse(plan.canAccessLibrary());
     }
 
     @Test
-    public void testToString() {
+    void testCanSkip() {
         PlanFree plan = new PlanFree();
-        String expected = "Plano: Free\n    Pontos: 0";
-        assertEquals(expected, plan.toString(), "toString should return the correct representation of the plan");
+        assertFalse(plan.canSkip());
     }
 
     @Test
-    public void testGetPlanName() {
+    void testCanChooseWhatToPlay() {
         PlanFree plan = new PlanFree();
-        assertEquals("Free", plan.getPlanName(), "getPlanName should return 'Free'");
+        assertFalse(plan.canChooseWhatToPlay());
+    }
+
+    @Test
+    void testHasAccessToFavorites() {
+        PlanFree plan = new PlanFree();
+        assertFalse(plan.hasAccessToFavorites());
+    }
+
+    @Test
+    void testToStringZeroPoints() {
+        PlanFree plan = new PlanFree();
+        assertEquals("Plano: Free\n    Pontos: 0", plan.toString());
+    }
+
+    @Test
+    void testToStringWithPoints() {
+        PlanFree plan = new PlanFree();
+        plan.setPoints(42);
+        assertEquals("Plano: Free\n    Pontos: 42", plan.toString());
+    }
+
+    @Test
+    void testGetPlanName() {
+        PlanFree plan = new PlanFree();
+        assertEquals("Free", plan.getPlanName());
+        assertNotEquals("PremiumBase", plan.getPlanName());
+        assertNotEquals("PremiumTop", plan.getPlanName());
+    }
+
+    @Test
+    void testAddPointsExactIncrement() {
+        PlanFree plan = new PlanFree();
+        int before = plan.getPoints();
+        plan.addPoints();
+        int after = plan.getPoints();
+        assertEquals(5, after - before);
     }
 }
