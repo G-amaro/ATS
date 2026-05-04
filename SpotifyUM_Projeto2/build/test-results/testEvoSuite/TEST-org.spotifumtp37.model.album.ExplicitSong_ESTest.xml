@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.spotifumtp37.model.album.ExplicitSong_ESTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-05-04T22:16:46" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.006">
+  <properties/>
+  <testcase name="test1" classname="org.spotifumtp37.model.album.ExplicitSong_ESTest" time="0.001"/>
+  <testcase name="test0" classname="org.spotifumtp37.model.album.ExplicitSong_ESTest" time="0.001"/>
+  <testcase name="test7" classname="org.spotifumtp37.model.album.ExplicitSong_ESTest" time="0.001"/>
+  <testcase name="test6" classname="org.spotifumtp37.model.album.ExplicitSong_ESTest" time="0.0"/>
+  <testcase name="test5" classname="org.spotifumtp37.model.album.ExplicitSong_ESTest" time="0.001"/>
+  <testcase name="test4" classname="org.spotifumtp37.model.album.ExplicitSong_ESTest" time="0.001"/>
+  <testcase name="test3" classname="org.spotifumtp37.model.album.ExplicitSong_ESTest" time="0.0"/>
+  <testcase name="test2" classname="org.spotifumtp37.model.album.ExplicitSong_ESTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

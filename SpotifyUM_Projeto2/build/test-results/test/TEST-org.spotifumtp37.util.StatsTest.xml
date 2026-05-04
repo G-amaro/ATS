@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.spotifumtp37.util.StatsTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-05-04T21:13:59" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.011">
+  <properties/>
+  <testcase name="userWithMostPlaylists()" classname="org.spotifumtp37.util.StatsTest" time="0.004"/>
+  <testcase name="getUserWithMostPoints()" classname="org.spotifumtp37.util.StatsTest" time="0.001"/>
+  <testcase name="getMostListenedArtist()" classname="org.spotifumtp37.util.StatsTest" time="0.001"/>
+  <testcase name="countPublicPlaylists()" classname="org.spotifumtp37.util.StatsTest" time="0.002"/>
+  <testcase name="mostListenedGenre()" classname="org.spotifumtp37.util.StatsTest" time="0.001"/>
+  <testcase name="getMostPlayedSong()" classname="org.spotifumtp37.util.StatsTest" time="0.0"/>
+  <testcase name="getTopListener()" classname="org.spotifumtp37.util.StatsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
