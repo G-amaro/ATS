@@ -116,11 +116,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.1.2</version>
                 <configuration>
-                    <useModulePath>false</useModulePath>
-                    <!-- Protege o agente do JaCoCo -->
-                    <argLine>${jacocoArgLine}</argLine>
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                    <!-- Adicionado para o JaCoCo funcionar com forks e para ignorar o teste do Browser -->
+                    <argLine>${jacocoArgLine}</argLine> 
+                    <excludes>
+                        <exclude>**/BrowserOpenerTest.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             
@@ -134,7 +138,6 @@
                             <goal>prepare-agent</goal>
                         </goals>
                         <configuration>
-                            <!-- Declara a variável que o Surefire vai ler -->
                             <propertyName>jacocoArgLine</propertyName>
                         </configuration>
                     </execution>
@@ -167,16 +170,12 @@
                     <targetTests>
                         <param>org.*</param>
                     </targetTests>
-                    
-                    <!-- A MAGIA ACONTECE AQUI: Ignorar os testes do EvoSuite -->
                     <excludedTestClasses>
                         <param>*ESTest*</param>
                     </excludedTestClasses>
-                    
                     <jvmArgs>
                         <value>-Xmx4096m</value>
                     </jvmArgs>
-
                     <threads>4</threads>
                     <timeoutConstant>60000</timeoutConstant>
                     <timeoutFactor>10</timeoutFactor>
