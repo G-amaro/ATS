@@ -47,7 +47,7 @@ The generated tests are saved in `src/evosuite-tests/` and integrated into the G
 
 To run them:
 ```bash
-./gradlew testEvoSuite
+./gradlew cleanTestEvoSuite testEvoSuite
 ```
 
 To run all tests (standard + EvoSuite):
