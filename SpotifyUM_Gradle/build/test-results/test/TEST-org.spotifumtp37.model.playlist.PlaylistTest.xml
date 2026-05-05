@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.spotifumtp37.model.playlist.PlaylistTest" tests="34" skipped="0" failures="0" errors="0" timestamp="2026-05-04T21:13:59" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.03">
+<testsuite name="org.spotifumtp37.model.playlist.PlaylistTest" tests="34" skipped="0" failures="0" errors="0" timestamp="2026-05-05T09:43:41" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.034">
   <properties/>
-  <testcase name="getPlaylistName()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
-  <testcase name="addSong_SubscriptionDoesNotAllow()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.004"/>
+  <testcase name="getPlaylistName()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
+  <testcase name="addSong_SubscriptionDoesNotAllow()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
   <testcase name="setCurrentSong()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
-  <testcase name="constructor_WithParameters()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
+  <testcase name="constructor_WithParameters()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="getPlaylistDescription()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="addSong_Success()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="next_FreeUser()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
   <testcase name="testClone()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
-  <testcase name="next_PremiumUser()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
+  <testcase name="next_PremiumUser()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
   <testcase name="setPlaylistName()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
-  <testcase name="testToString()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
-  <testcase name="isPrivate()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
+  <testcase name="testToString()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
+  <testcase name="isPrivate()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="nextShuffle()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="setCreatorUsername()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="deleteSong_Success()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="setPlaylistDescription()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="previous_PremiumUser()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
-  <testcase name="previous_FreeUser()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
-  <testcase name="isPublic()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
+  <testcase name="previous_FreeUser()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
+  <testcase name="isPublic()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
   <testcase name="addSong_AlreadyExists()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
   <testcase name="constructor_Copy()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
-  <testcase name="getCurrentSong()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
-  <testcase name="play()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
-  <testcase name="setNumberOfFollowers()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
-  <testcase name="setStatus()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
-  <testcase name="getStatus()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
-  <testcase name="getNumberOfFollowers()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
-  <testcase name="testEquals()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
+  <testcase name="getCurrentSong()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
+  <testcase name="play()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
+  <testcase name="setNumberOfFollowers()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
+  <testcase name="setStatus()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
+  <testcase name="getStatus()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
+  <testcase name="getNumberOfFollowers()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
+  <testcase name="testEquals()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="setSongs()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="deleteSong_SubscriptionDoesNotAllow()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
-  <testcase name="deleteSong_DoesNotExist()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
+  <testcase name="deleteSong_DoesNotExist()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.001"/>
   <testcase name="getSongs()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="getCreator()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>
   <testcase name="testSingleSongBehavior()" classname="org.spotifumtp37.model.playlist.PlaylistTest" time="0.0"/>

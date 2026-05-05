@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.spotifumtp37.model.user.UserTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2026-05-04T21:13:59" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.015">
+<testsuite name="org.spotifumtp37.model.user.UserTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2026-05-05T09:43:41" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.025">
   <properties/>
-  <testcase name="createTopGenrePlaylist()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
+  <testcase name="createTopGenrePlaylist()" classname="org.spotifumtp37.model.user.UserTest" time="0.002"/>
   <testcase name="constructors()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
   <testcase name="getSubscriptionPlan()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
-  <testcase name="createTopGenreExplicitPlaylist()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
+  <testcase name="createTopGenreExplicitPlaylist()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
   <testcase name="createTopGenrePlaylistWithinTime()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
   <testcase name="testClone()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
   <testcase name="setPassword()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
-  <testcase name="testToString()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
+  <testcase name="testToString()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
   <testcase name="getPassword()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
   <testcase name="updatePremiumTop()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
   <testcase name="updateHistory()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
-  <testcase name="setHistory()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
-  <testcase name="getAddress()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
-  <testcase name="addPoints()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
+  <testcase name="setHistory()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
+  <testcase name="getAddress()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
+  <testcase name="addPoints()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
   <testcase name="getName()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
-  <testcase name="setPontos()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
-  <testcase name="getPontos()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
-  <testcase name="setSubscriptionPlan()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
+  <testcase name="setPontos()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
+  <testcase name="getPontos()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
+  <testcase name="setSubscriptionPlan()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
   <testcase name="getTopGenre()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
   <testcase name="testEquals()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
   <testcase name="setEmail()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
-  <testcase name="setAddress()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
+  <testcase name="setAddress()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
   <testcase name="getEmail()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
-  <testcase name="getHistory()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
-  <testcase name="setName()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
+  <testcase name="getHistory()" classname="org.spotifumtp37.model.user.UserTest" time="0.0"/>
+  <testcase name="setName()" classname="org.spotifumtp37.model.user.UserTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

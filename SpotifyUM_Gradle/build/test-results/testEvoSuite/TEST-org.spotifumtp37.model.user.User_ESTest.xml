@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.spotifumtp37.model.user.User_ESTest" tests="62" skipped="0" failures="0" errors="0" timestamp="2026-05-04T22:16:47" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.038">
+<testsuite name="org.spotifumtp37.model.user.User_ESTest" tests="62" skipped="0" failures="0" errors="0" timestamp="2026-05-05T09:43:45" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.067">
   <properties/>
-  <testcase name="test40" classname="org.spotifumtp37.model.user.User_ESTest" time="0.003"/>
+  <testcase name="test40" classname="org.spotifumtp37.model.user.User_ESTest" time="0.004"/>
   <testcase name="test41" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test08" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test09" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test09" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test06" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test07" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test04" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test48" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test05" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
-  <testcase name="test49" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test05" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
+  <testcase name="test49" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test02" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test46" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test03" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test47" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
-  <testcase name="test00" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test44" classname="org.spotifumtp37.model.user.User_ESTest" time="0.002"/>
+  <testcase name="test03" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test47" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
+  <testcase name="test00" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test44" classname="org.spotifumtp37.model.user.User_ESTest" time="0.003"/>
   <testcase name="test01" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test45" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test45" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test42" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test43" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test43" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test51" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test52" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test52" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test50" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test19" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test19" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test17" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test18" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test18" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test15" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test59" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
-  <testcase name="test16" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test59" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
+  <testcase name="test16" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test13" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test57" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
+  <testcase name="test57" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
   <testcase name="test14" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
-  <testcase name="test58" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test11" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test58" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test11" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test55" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test12" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test12" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test56" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test53" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test53" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test10" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test54" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test54" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test60" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test61" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test61" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test28" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test29" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
-  <testcase name="test26" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test29" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
+  <testcase name="test26" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test27" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test24" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
-  <testcase name="test25" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test24" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
+  <testcase name="test25" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test22" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test23" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test23" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test20" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test21" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test21" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test30" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test39" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test39" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test37" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test38" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
+  <testcase name="test38" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
   <testcase name="test35" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
-  <testcase name="test36" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
-  <testcase name="test33" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
+  <testcase name="test36" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
+  <testcase name="test33" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
   <testcase name="test34" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
-  <testcase name="test31" classname="org.spotifumtp37.model.user.User_ESTest" time="0.001"/>
+  <testcase name="test31" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
   <testcase name="test32" classname="org.spotifumtp37.model.user.User_ESTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

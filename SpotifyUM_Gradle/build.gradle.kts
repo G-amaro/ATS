@@ -4,10 +4,15 @@ import javax.inject.Inject
 plugins {
     id("java")
     id("application")
+    id("jacoco")
 }
 
 group = "org.spotifumtp37"
 version = "1.0-SNAPSHOT"
+
+jacoco {
+    toolVersion = "0.8.12"
+}
 
 repositories {
     mavenCentral()
@@ -38,6 +43,19 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test, tasks.named("testEvoSuite")) // tests are required to run before generating the report
+    
+    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/*.exec"))
+    
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco"))
+    }
 }
 
 tasks.register<Test>("testEvoSuite") {

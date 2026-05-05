@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.spotifumtp37.delegate.PlayerUI_ESTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-05-04T22:16:46" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.004">
+<testsuite name="org.spotifumtp37.delegate.PlayerUI_ESTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-05-05T09:43:44" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.007">
   <properties/>
-  <testcase name="test0" classname="org.spotifumtp37.delegate.PlayerUI_ESTest" time="0.002"/>
-  <testcase name="test1" classname="org.spotifumtp37.delegate.PlayerUI_ESTest" time="0.001"/>
+  <testcase name="test0" classname="org.spotifumtp37.delegate.PlayerUI_ESTest" time="0.003"/>
+  <testcase name="test1" classname="org.spotifumtp37.delegate.PlayerUI_ESTest" time="0.002"/>
   <testcase name="test2" classname="org.spotifumtp37.delegate.PlayerUI_ESTest" time="0.001"/>
   <system-out><![CDATA[Now playing "" by 
 Lyrics:

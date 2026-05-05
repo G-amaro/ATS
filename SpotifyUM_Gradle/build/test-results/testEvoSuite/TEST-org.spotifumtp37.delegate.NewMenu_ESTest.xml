@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.spotifumtp37.delegate.NewMenu_ESTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-05-04T22:16:46" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.008">
+<testsuite name="org.spotifumtp37.delegate.NewMenu_ESTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-05-05T09:43:44" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.012">
   <properties/>
-  <testcase name="test6" classname="org.spotifumtp37.delegate.NewMenu_ESTest" time="0.002"/>
+  <testcase name="test6" classname="org.spotifumtp37.delegate.NewMenu_ESTest" time="0.003"/>
   <testcase name="test2" classname="org.spotifumtp37.delegate.NewMenu_ESTest" time="0.001"/>
   <testcase name="test3" classname="org.spotifumtp37.delegate.NewMenu_ESTest" time="0.001"/>
   <testcase name="test4" classname="org.spotifumtp37.delegate.NewMenu_ESTest" time="0.001"/>
-  <testcase name="test5" classname="org.spotifumtp37.delegate.NewMenu_ESTest" time="0.001"/>
+  <testcase name="test5" classname="org.spotifumtp37.delegate.NewMenu_ESTest" time="0.002"/>
   <testcase name="test0" classname="org.spotifumtp37.delegate.NewMenu_ESTest" time="0.001"/>
   <testcase name="test1" classname="org.spotifumtp37.delegate.NewMenu_ESTest" time="0.001"/>
   <system-out><![CDATA[
