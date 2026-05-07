@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StatisticsMenu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.View</a> &gt; <span class="el_source">StatisticsMenu.java</span></div><h1>StatisticsMenu.java</h1><pre class="source lang-java linenums">package org.View;
+
+import org.Controller.Controller;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+/**
+ * Classe que representa o menu de estatísticas.
+ * Permite consultar estatísticas do sistema e do utilizador.
+ */
+public class StatisticsMenu extends Menu {
+    /**
+     * Construtor do menu de estatísticas.
+     * @param controller Controlador principal da aplicação.
+     * @param menuManager Gestor de menus.
+     */
+    public StatisticsMenu(Controller controller, MenuManager menuManager) {
+<span class="fc" id="L19">        super(controller, menuManager);</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * Mostra o menu de estatísticas e trata a seleção do utilizador.
+     */
+    @Override
+    public void show() {
+<span class="nc" id="L27">        System.out.println(&quot;\n📊━━━━━━━━━━━━━━━【 MENU DE ESTATÍSTICAS 】━━━━━━━━━━━━━━━📊\n&quot;);</span>
+<span class="nc" id="L28">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;1️⃣&quot;, &quot;🎵 Música mais reproduzida&quot;);</span>
+<span class="nc" id="L29">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;2️⃣&quot;, &quot;🎤 Intérprete mais reproduzido&quot;);</span>
+<span class="nc" id="L30">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;3️⃣&quot;, &quot;🧑‍🎤 Utilizador que ouviu mais músicas&quot;);</span>
+<span class="nc" id="L31">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;4️⃣&quot;, &quot;🏆 Utilizador com mais pontos&quot;);</span>
+<span class="nc" id="L32">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;5️⃣&quot;, &quot;🎼 Tipo de música mais reproduzido&quot;);</span>
+<span class="nc" id="L33">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;6️⃣&quot;, &quot;📚 Número de playlists públicas&quot;);</span>
+<span class="nc" id="L34">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;7️⃣&quot;, &quot;👑 Utilizador com mais playlists&quot;);</span>
+<span class="nc" id="L35">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;0️⃣&quot;, &quot;🔙 Voltar ao Menu De Administrador&quot;);</span>
+<span class="nc" id="L36">        System.out.print(&quot;\n👉 Escolhe uma opção: &quot;);</span>
+<span class="nc" id="L37">        handleInput();</span>
+<span class="nc" id="L38">    }</span>
+
+    /**
+     * Lê e processa a opção escolhida pelo utilizador.
+     */
+    @Override
+    public void handleInput() {
+        try {
+<span class="fc" id="L46">            int choice = getScanner().nextInt();</span>
+<span class="fc" id="L47">            getScanner().nextLine(); // limpar buffer</span>
+<span class="fc" id="L48">            cleanTerminal();</span>
+
+<span class="fc bfc" id="L50" title="All 9 branches covered.">            switch (choice) {</span>
+                case 1:
+<span class="fc" id="L52">                    System.out.println(getController().getMostReproducedMusic());</span>
+<span class="fc" id="L53">                    break;</span>
+                case 2:
+<span class="fc" id="L55">                    System.out.println(getController().getMostReproducedArtist());</span>
+<span class="fc" id="L56">                    break;</span>
+                case 3:
+<span class="fc" id="L58">                    getUserWithMostReproductions();</span>
+<span class="fc" id="L59">                    break;</span>
+                case 4:
+<span class="fc" id="L61">                    System.out.println(getController().getUserWithMostPoints());</span>
+<span class="fc" id="L62">                    break;</span>
+                case 5:
+<span class="fc" id="L64">                    System.out.println(getController().getMostReproducedGenre());</span>
+<span class="fc" id="L65">                    break;</span>
+                case 6:
+<span class="fc" id="L67">                    System.out.println(getController().getPublicPlaylistCount());</span>
+<span class="fc" id="L68">                    break;</span>
+                case 7:
+<span class="fc" id="L70">                    System.out.println(getController().getUserWithMostPlaylists());</span>
+<span class="fc" id="L71">                    break;</span>
+                case 0:
+<span class="fc" id="L73">                    getMenuManager().setMenu(new AdminMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L74">                    break;</span>
+                default:
+<span class="fc" id="L76">                    System.out.println(&quot;❌ Opção inválida. Por favor tenta novamente!&quot;);</span>
+                    break;
+            }
+
+<span class="fc" id="L80">        } catch (Exception e) {</span>
+<span class="fc" id="L81">            System.out.println(&quot;⚠️ Entrada inválida. Por favor insere apenas números.&quot;);</span>
+<span class="fc" id="L82">            getScanner().nextLine(); </span>
+<span class="fc" id="L83">        }</span>
+<span class="fc" id="L84">    }</span>
+
+    /**
+     * Método que converte uma string para uma data no formato &quot;dd-MM-yyyy&quot;.
+     * @param input String a ser convertida.
+     * @return Data convertida ou null se a conversão falhar.
+     */
+    public LocalDate parseDate(String input) {
+<span class="fc" id="L92">        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd-MM-yyyy&quot;);</span>
+        try {
+<span class="fc" id="L94">            return LocalDate.parse(input, formatter);</span>
+<span class="nc" id="L95">        } catch (DateTimeParseException e) {</span>
+<span class="nc" id="L96">            System.out.println(&quot;❌ Data inválida! Por favor insira uma data no formato correto (DD-MM-YYYY).&quot;);</span>
+<span class="nc" id="L97">            return null;</span>
+        }
+    }
+
+    /**
+     * Método que permite ao utilizador ver o utilizador com mais reproduções.
+     * Pergunta se o utilizador quer ver as reproduções num certo intervalo de tempo.
+     * Se sim, pede as datas inicial e final.
+     * Se não, mostra o utilizador com mais reproduções sem filtro de data.
+     */
+    public void getUserWithMostReproductions() {
+<span class="fc" id="L108">        System.out.println(&quot;Deseja ver as reproduções num certo intervalo de tempo? (s/n)&quot;);</span>
+<span class="fc" id="L109">        String choice = getScanner().nextLine();</span>
+        
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (choice.equalsIgnoreCase(&quot;s&quot;)) {</span>
+<span class="fc" id="L112">            System.out.print(&quot;Insira o intervalo de tempo inicial no formato DD-MM-YYYY: &quot;);</span>
+<span class="fc" id="L113">            String startInput = getScanner().nextLine();</span>
+<span class="fc" id="L114">            LocalDate startDate = parseDate(startInput);</span>
+            
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">            if (startDate == null) return; // Se a data for inválida, para a função.</span>
+    
+<span class="fc" id="L118">            System.out.print(&quot;Insira o intervalo de tempo final no formato DD-MM-YYYY: &quot;);</span>
+<span class="fc" id="L119">            String endInput = getScanner().nextLine();</span>
+<span class="fc" id="L120">            LocalDate endDate = parseDate(endInput);</span>
+            
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">            if (endDate == null) return;</span>
+    
+<span class="fc" id="L124">            System.out.println(getController().getUserWithMostReproductions(startDate, endDate));</span>
+            
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">        } else if (choice.equalsIgnoreCase(&quot;n&quot;)) {</span>
+<span class="fc" id="L127">            System.out.println(getController().getUserWithMostReproductions());</span>
+        } else {
+<span class="nc" id="L129">            System.out.println(&quot;❌ Opção inválida. Por favor tenta novamente!&quot;);</span>
+        }
+<span class="fc" id="L131">    }</span>
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

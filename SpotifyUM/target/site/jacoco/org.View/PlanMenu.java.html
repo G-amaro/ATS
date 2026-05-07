@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlanMenu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.View</a> &gt; <span class="el_source">PlanMenu.java</span></div><h1>PlanMenu.java</h1><pre class="source lang-java linenums">package org.View;
+
+import org.Controller.*;
+
+/**
+ * Classe que representa o menu de seleção de planos.
+ * Permite ao utilizador alterar o seu plano de subscrição.
+ */
+public class PlanMenu extends Menu {
+    /**
+     * Construtor do menu de planos.
+     * @param controller Controlador principal da aplicação.
+     * @param menuManager Gestor de menus.
+     */
+    PlanMenu(Controller controller, MenuManager menuManager) {
+<span class="fc" id="L16">        super(controller, menuManager);</span>
+<span class="fc" id="L17">    }</span>
+    /**
+     * Mostra o menu de planos e trata a seleção do utilizador.
+     */
+    @Override
+    public void show() {
+<span class="nc" id="L23">        System.out.println(&quot;\n💼━━━━━━━━━━━━━━━【 MENU DE PLANOS 】━━━━━━━━━━━━━━━💼\n&quot;);</span>
+    
+<span class="nc" id="L25">        String currentPlan = getController().getCurrentUserPlan();</span>
+    
+<span class="nc" id="L27">        System.out.printf(&quot;%-5s %s%s\n&quot;, &quot;1️⃣&quot;, &quot;🎧 Plano Free - Acesso limitado, mas grátis!&quot;, </span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">                          currentPlan.equals(&quot;Free&quot;) ? &quot;  ✅ (Plano Atual)&quot; : &quot;&quot;);</span>
+<span class="nc" id="L29">        System.out.printf(&quot;%-5s %s%s\n&quot;, &quot;2️⃣&quot;, &quot;💎 Plano PremiumBase - Acesso a criação de playlists!&quot;, </span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">                          currentPlan.equals(&quot;PremiumBase&quot;) ? &quot;  ✅ (Plano Atual)&quot; : &quot;&quot;);</span>
+<span class="nc" id="L31">        System.out.printf(&quot;%-5s %s%s\n&quot;, &quot;3️⃣&quot;, &quot;👑 Plano PremiumTop - Tudo incluído + benefícios extra!&quot;, </span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                          currentPlan.equals(&quot;PremiumTop&quot;) ? &quot;  ✅ (Plano Atual)&quot; : &quot;&quot;);</span>
+<span class="nc" id="L33">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;0️⃣&quot;, &quot;🔙 Voltar ao Menu de Perfil&quot;);</span>
+    
+<span class="nc" id="L35">        System.out.print(&quot;\n👉 Escolha a sua opção: &quot;);</span>
+<span class="nc" id="L36">        handleInput();</span>
+<span class="nc" id="L37">    }</span>
+    
+    /**
+     * Lê e processa a opção escolhida pelo utilizador.
+     */
+    public void handleInput() {
+        try{
+<span class="fc" id="L44">            int choice = getScanner().nextInt();</span>
+<span class="fc" id="L45">            getScanner().nextLine(); // limpar buffer</span>
+<span class="fc" id="L46">            cleanTerminal();</span>
+
+<span class="fc bfc" id="L48" title="All 5 branches covered.">            switch (choice) {</span>
+                case 1:
+<span class="fc" id="L50">                    System.out.println(getController().setFreePlan());</span>
+<span class="fc" id="L51">                    break;</span>
+                case 2:
+<span class="fc" id="L53">                    System.out.println(getController().setPremiumBasePlan());</span>
+<span class="fc" id="L54">                    break;</span>
+                case 3:
+<span class="fc" id="L56">                    System.out.println(getController().setPremiumTopPlan());</span>
+<span class="fc" id="L57">                    break;</span>
+                case 0:
+<span class="fc" id="L59">                    System.out.println(&quot;🔙 A voltar ao Menu de Perfil...&quot;);</span>
+<span class="fc" id="L60">                    getMenuManager().setMenu(new ProfileMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L61">                    return;</span>
+                default:
+<span class="fc" id="L63">                    System.out.println(&quot;❌ Opção inválida. Por favor, tenta novamente.&quot;);</span>
+<span class="fc" id="L64">                    return;</span>
+            }
+<span class="fc" id="L66">        } catch (Exception e) {</span>
+<span class="fc" id="L67">            System.out.println(&quot;Por favor, insira apenas Números.&quot;);</span>
+<span class="fc" id="L68">            getScanner().nextLine(); // limpar buffer</span>
+<span class="fc" id="L69">        }</span>
+<span class="fc" id="L70">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

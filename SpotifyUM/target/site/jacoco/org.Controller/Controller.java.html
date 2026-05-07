@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Controller.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.Controller</a> &gt; <span class="el_source">Controller.java</span></div><h1>Controller.java</h1><pre class="source lang-java linenums">package org.Controller;
+
+import org.Model.*;
+import org.Model.Album.*;
+import org.Model.Music.*;
+import org.Model.Playlist.*;
+import org.Model.User.*;
+import org.Model.Plan.*;
+import org.Utils.Serialization;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.Controller.dtos.*;
+import java.time.LocalDate;
+
+/**
+ * Controlador principal da aplicação, responsável por gerenciar a lógica de negócios e interagir com o modelo.
+ */
+public class Controller {
+    /**
+     * Instância do modelo principal da aplicação.
+     */
+    private SpotifUM spotifUM;
+    
+    /**
+     * Construtor padrão da classe Controller.
+     * Inicializa a instância do modelo SpotifUM.
+     */
+<span class="fc" id="L31">    public Controller() {</span>
+<span class="fc" id="L32">        this.spotifUM = new SpotifUM();</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Construtor de cópia da classe Controller.
+     * @param controller Instância de Controller a ser copiada.
+     */
+<span class="fc" id="L39">    public Controller(Controller controller) {</span>
+<span class="fc" id="L40">        this.spotifUM = controller.getSpotifUM();</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Construtor da classe Controller.
+     * @param spotifUM Instância do modelo SpotifUM a ser utilizada.
+     */
+<span class="fc" id="L47">    public Controller(SpotifUM spotifUM) {</span>
+<span class="fc" id="L48">        this.spotifUM = spotifUM;</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * Retorna a instância do modelo SpotifUM.
+     * @return Instância do modelo SpotifUM.
+     */
+    public SpotifUM getSpotifUM() {
+<span class="fc" id="L56">        return spotifUM;</span>
+    }
+
+    /**
+     * Define a instância do modelo SpotifUM.
+     * @param spotifUM Instância do modelo SpotifUM a ser definida.
+     */
+    public void setSpotifUM(SpotifUM spotifUM) {
+<span class="fc" id="L64">        this.spotifUM = new SpotifUM(spotifUM);</span>
+<span class="fc" id="L65">    }</span>
+
+    // ===================== AUTENTICAÇÃO E UTILIZADOR =====================
+
+    /**
+     * Tenta fazer login e devolve a mensagem de erro se falhar.
+     * @param nome Nome do utilizador.
+     * @param password Password do utilizador.
+     * @return true se o login for bem-sucedido, false caso contrário.
+     */
+    public boolean loginWithMessage(String nome, String password) {
+        try {
+<span class="fc" id="L77">            this.getSpotifUM().authenticateUser(nome, password);</span>
+<span class="fc" id="L78">            return true;</span>
+<span class="fc" id="L79">        } catch (Exception e) {</span>
+<span class="fc" id="L80">            return false;</span>
+        }
+    }
+
+    /**
+     * Regista um novo utilizador.
+     * @param nome Nome do utilizador.
+     * @param email Email do utilizador.
+     * @param morada Morada do utilizador.
+     * @param password Password do utilizador.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String addNewUser(String nome, String email, String morada, String password) {
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if (spotifUM.userExists(nome)) {</span>
+<span class="fc" id="L94">            return &quot;⚠️ Já existe um utilizador com esse nome. Tenta outro!&quot;;</span>
+        }
+        else {
+<span class="fc" id="L97">            spotifUM.addNewUser(nome, email, morada, password);</span>
+<span class="fc" id="L98">            return &quot;✅ Utilizador registado com sucesso! Já podes iniciar sessão.&quot;;</span>
+        }
+    }
+
+
+    //ADMINMENU
+
+
+
+    /**
+     * Importa um modelo de dados a partir de um ficheiro.
+     * @param filePath Caminho do ficheiro a ser importado.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String importModel(String filePath){
+        try {
+<span class="fc" id="L114">            this.setSpotifUM(Serialization.importar(filePath));</span>
+<span class="fc" id="L115">            return &quot;✅ Base de dados importada com sucesso!&quot;;</span>
+<span class="fc" id="L116">        } catch (Exception e) {</span>
+<span class="fc" id="L117">            return &quot;❌ Erro ao importar a base de dados: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Exporta o modelo de dados para um ficheiro.
+     * @param filePath Caminho do ficheiro a ser exportado.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String exportModel(String filePath){
+        try {
+<span class="fc" id="L128">            Serialization.exportar(this.getSpotifUM(), filePath);</span>
+<span class="fc" id="L129">            return &quot;✅ Base de dados exportada com sucesso!&quot;;</span>
+<span class="fc" id="L130">        } catch (Exception e) {</span>
+<span class="fc" id="L131">            return &quot;❌ Erro ao exportar a base de dados: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Adiciona uma nova música ao modelo.
+     * @param musicName Nome da música.
+     * @param artistName Nome do artista.
+     * @param publisher Nome do editor.
+     * @param lyrics Letra da música.
+     * @param musicalFigures Figuras musicais.
+     * @param genre Género da música.
+     * @param albumName Nome do álbum.
+     * @param duration Duração da música em segundos.
+     * @param explicit Se a música é explícita ou não.
+     * @param url URL da música (opcional).
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String addMusic(String musicName, String artistName, String publisher, String lyrics, String musicalFigures, String genre, String albumName, int duration, boolean explicit, String url){
+        try {
+<span class="fc" id="L151">            this.getSpotifUM().addNewMusic(musicName, artistName, publisher, lyrics, musicalFigures, genre, albumName, duration, explicit, url);</span>
+<span class="fc" id="L152">            return &quot;✅ Música \&quot;&quot; + musicName + &quot;\&quot; adicionada com sucesso!&quot;;</span>
+<span class="fc" id="L153">        } catch (Exception e) {</span>
+<span class="fc" id="L154">            return &quot;❌ Erro ao adicionar a música: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Adiciona um novo álbum ao modelo.
+     * @param albumName Nome do álbum.
+     * @param artistName Nome do artista.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String createAlbum(String albumName, String artistName){
+        try {
+<span class="fc" id="L166">            this.getSpotifUM().addNewAlbum(albumName, artistName);</span>
+<span class="fc" id="L167">            return &quot;✅ Álbum \&quot;&quot; + albumName + &quot;\&quot; criado com sucesso!&quot;;</span>
+<span class="fc" id="L168">        } catch (Exception e) {</span>
+<span class="fc" id="L169">            return &quot;❌ Erro ao criar o álbum: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Verifica se um álbum existe no modelo.
+     * @param albumName Nome do álbum.
+     * @return true se o álbum existir, false caso contrário.
+     */
+    public boolean albumExists(String albumName){
+<span class="fc" id="L179">        return this.getSpotifUM().albumExists(albumName);</span>
+    }
+
+
+    //MAINMENU
+
+    /**
+     * Verifica se o utilizador atual tem uma biblioteca.
+     * @return true se o utilizador tiver uma biblioteca, false caso contrário.
+     */
+    public boolean currentUserHasLibrary() {
+<span class="fc" id="L190">        User user = this.getSpotifUM().getCurrentUser();</span>
+<span class="fc bfc" id="L191" title="All 4 branches covered.">        return user != null &amp;&amp; user.hasLibrary();</span>
+    }
+
+    /**
+     * Verifica se o utilizador atual tem uma playlist.
+     * @param newName Novo nome do utilizador.
+     * @return true se o utilizador tiver uma playlist, false caso contrário.
+     */
+    public String changeCurrentUserUserName(String newName){
+        try{
+<span class="fc" id="L201">            this.getSpotifUM().changeCurrentUserName(newName);</span>
+<span class="fc" id="L202">        } catch (Exception e){</span>
+<span class="fc" id="L203">            return &quot;❌ Erro ao alterar o nome de utilizador: &quot; + e.getMessage();</span>
+<span class="fc" id="L204">        }</span>
+<span class="fc" id="L205">        return &quot;✅ Nome de utilizador alterado com sucesso!&quot;;</span>
+    }
+
+    /**
+     * Altera o email do utilizador atual.
+     * @param newEmail Novo email do utilizador.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String changeCurrentUserEmail(String newEmail){
+<span class="fc" id="L214">        this.getSpotifUM().setCurrentUserEmail(newEmail);</span>
+<span class="fc" id="L215">        return &quot;✅ Email alterado com sucesso!&quot;;</span>
+    }
+
+    /**
+     * Verifica se a password do utilizador atual está correta.
+     * @param password Password a ser verificada.
+     * @return true se a password estiver correta, false caso contrário.
+     */
+    public boolean isPasswordCorrect(String password) {
+<span class="fc" id="L224">        return this.getSpotifUM().isPasswordCorrect(password);</span>
+    }
+    
+    /**
+     * Altera a password do utilizador atual.
+     * @param newPassword Nova password do utilizador.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String changeCurrentUserPassword(String newPassword) {
+<span class="fc" id="L233">        this.getSpotifUM().setCurrentUserPassword(newPassword);</span>
+<span class="fc" id="L234">        return &quot;✅ Password alterada com sucesso!&quot;;</span>
+    }
+
+    /**
+     * Obtém informações do utilizador atual.
+     * @return String com as informações do utilizador.
+     */
+    public String getCurrentUser() {
+<span class="fc" id="L242">        return &quot;📄 Informações do Perfil:\n&quot; + this.getSpotifUM().getCurrentUser().toString();</span>
+    }
+
+    /**
+     * Define o plano do utilizador atual como Free.
+     * @return Mensagem de sucesso.
+     */
+    public String setFreePlan(){
+<span class="fc" id="L250">        this.getSpotifUM().getCurrentUser().setPlan(new PlanFree(this.getSpotifUM().getCurrentUser().getPlan()));</span>
+<span class="fc" id="L251">        return &quot;✅ Plano Free selecionado. Desfrute da música com anúncios!&quot;;</span>
+    }
+
+    /**
+     * Define o plano do utilizador atual como PremiumBase.
+     * @return Mensagem de sucesso.
+     */
+    public String setPremiumBasePlan(){
+<span class="fc" id="L259">        this.getSpotifUM().getCurrentUser().setPlan(new PlanPremiumBase(this.getSpotifUM().getCurrentUser().getPlan()));</span>
+<span class="fc" id="L260">        return &quot;✨ Plano PremiumBase ativado. Boa escolha!&quot;;</span>
+    }
+
+    /**
+     * Define o plano do utilizador atual como PremiumTop.
+     * @return Mensagem de sucesso.
+     */
+    public String setPremiumTopPlan(){
+<span class="fc" id="L268">        this.getSpotifUM().getCurrentUser().setPlan(new PlanPremiumTop(this.getSpotifUM().getCurrentUser().getPlan()));</span>
+<span class="fc" id="L269">        return &quot;👑 Bem-vindo ao topo! Plano PremiumTop ativado com sucesso.&quot;;</span>
+    }
+
+    /**
+     * Adiciona uma playlist à lista de playlists do utilizador atual.
+     * @param playlistName Nome da playlist a ser adicionada.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String addToCurrentUserPlaylists(String playlistName){
+        try{
+<span class="fc" id="L279">            this.getSpotifUM().addToCurrentUserPlaylist(playlistName);</span>
+<span class="fc" id="L280">        } catch (Exception e){</span>
+<span class="fc" id="L281">            return &quot;❌ Erro ao adicionar a playlist: &quot; + e.getMessage();</span>
+<span class="fc" id="L282">        }</span>
+<span class="fc" id="L283">        return &quot;✅ Playlist \&quot;&quot; + playlistName + &quot;\&quot; adicionada à lista de playlists do utilizador.&quot;;</span>
+    }
+
+    /**
+     * Adiciona uma música à playlist do utilizador atual.
+     * @param playlistId ID da playlist.
+     * @param musicName Nome da música a ser adicionada.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String addMusicToCurrentUserPlaylist(int playlistId,String musicName){
+        try{
+<span class="fc" id="L294">            this.getSpotifUM().addMusicToCurrentUserPlaylist(playlistId, musicName);</span>
+<span class="fc" id="L295">        } catch (Exception e){</span>
+<span class="fc" id="L296">            return &quot;❌ Erro ao adicionar a música à playlist: &quot; + e.getMessage();</span>
+<span class="fc" id="L297">        }</span>
+<span class="fc" id="L298">        return &quot;✅ Música \&quot;&quot; + musicName + &quot;\&quot; adicionada à playlist \&quot;&quot; + this.getSpotifUM().getUserPlaylistById(playlistId).getName() + &quot;\&quot;.&quot;;</span>
+    }
+    
+    /**
+     * Lista as playlists do utilizador atual.
+     * @return String com as playlists do utilizador.
+     */
+    public String listUserPlaylists(){
+        try {
+<span class="fc" id="L307">            String playlists = this.getSpotifUM().listCurrentUserPlaylists();</span>
+<span class="fc bfc" id="L308" title="All 2 branches covered.">            if (playlists.isEmpty()) {</span>
+<span class="fc" id="L309">                return &quot;📭 Não existem playlists.&quot;;</span>
+            } else {
+<span class="fc" id="L311">                return &quot;📚 As tuas playlists:\n&quot; + playlists;</span>
+            }
+<span class="fc" id="L313">        } catch (Exception e) {</span>
+<span class="fc" id="L314">            return &quot;❌ Erro ao listar playlists: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Lista as playlists públicas.
+     * @return String com as playlists públicas.
+     */
+    public String listPublicPlaylists(){
+        try {
+<span class="fc" id="L324">            String playlists = getSpotifUM().listPublicPlaylists();</span>
+<span class="fc bfc" id="L325" title="All 2 branches covered.">            if (playlists.isEmpty()) {</span>
+<span class="fc" id="L326">                return &quot;📭 Não existem playlists públicas.&quot;;</span>
+            } else {
+<span class="fc" id="L328">                return &quot;📚 Playlists Públicas:\n&quot; + playlists;</span>
+            }
+<span class="fc" id="L330">        } catch (Exception e) {</span>
+<span class="fc" id="L331">            return &quot;❌ Erro ao listar playlists: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Lista todas as músicas disponíveis.
+     * @return String com as músicas disponíveis.
+     */
+    public String listAllMusics() {
+        try {
+<span class="fc" id="L341">            String musics = this.getSpotifUM().listAllMusics();</span>
+<span class="fc bfc" id="L342" title="All 2 branches covered.">            if (musics.isEmpty()) {</span>
+<span class="fc" id="L343">                return &quot;📭 Não existem músicas disponíveis.&quot;;</span>
+            } else {
+<span class="fc" id="L345">                return &quot;🎵 Lista de músicas disponíveis:\n\n&quot; + musics;</span>
+            }
+<span class="fc" id="L347">        } catch (Exception e) {</span>
+<span class="fc" id="L348">            return &quot;❌ Erro ao listar músicas: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Lista todas as músicas de uma playlist específica.
+     * @param playlistId ID da playlist.
+     * @return String com as músicas da playlist.
+     */
+    public String listPlaylistMusics(int playlistId) {
+        try {
+<span class="fc" id="L359">            String musics = this.getSpotifUM().listAllMusicsInPlaylist(playlistId);</span>
+<span class="fc bfc" id="L360" title="All 2 branches covered.">            if (musics.isEmpty()) {</span>
+<span class="fc" id="L361">                return &quot;&quot;;</span>
+            } else {
+<span class="fc" id="L363">                return &quot;🎵 Lista de músicas na playlist:\n\n&quot; + musics;</span>
+            }
+<span class="fc" id="L365">        } catch (Exception e) {</span>
+<span class="fc" id="L366">            return &quot;❌ Erro ao listar músicas da playlist: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Lista todos os álbuns disponíveis.
+     * @return String com os álbuns disponíveis.
+     */
+    public String listAllAlbums() {
+        try {
+<span class="fc" id="L376">            String albums = this.getSpotifUM().listAllAlbums();</span>
+<span class="fc bfc" id="L377" title="All 2 branches covered.">            if (albums.isEmpty()) {</span>
+<span class="fc" id="L378">                return &quot;📭 Não existem álbuns disponíveis.&quot;;</span>
+            } else {
+<span class="fc" id="L380">                return &quot;🖼️  Lista de álbuns disponíveis:\n\n&quot; + albums;</span>
+            }
+<span class="fc" id="L382">        } catch (Exception e) {</span>
+<span class="fc" id="L383">            return &quot;❌ Erro ao listar álbuns: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Lista todos os géneros disponíveis.
+     * @return String com os géneros disponíveis.
+     */
+    public String listAllGenres(){
+        try {
+<span class="fc" id="L393">            String genres = this.getSpotifUM().listAllGenres();</span>
+<span class="fc bfc" id="L394" title="All 2 branches covered.">            if (genres.isEmpty()) {</span>
+<span class="fc" id="L395">                return &quot;📭 Não existem géneros disponíveis.&quot;;</span>
+            } else {
+<span class="fc" id="L397">                return &quot;🎶 Lista de géneros disponíveis:\n\n&quot; + genres;</span>
+            }
+<span class="fc" id="L399">        } catch (Exception e) {</span>
+<span class="fc" id="L400">            return &quot;❌ Erro ao listar géneros: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Adiciona uma playlist pública à biblioteca do utilizador atual.
+     * @param playlistId ID da playlist a ser adicionada.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String addPublicPlaylistToLibrary(int playlistId){
+        try{
+<span class="fc" id="L411">            this.getSpotifUM().addPlaylistToCurrentUserLibrary(playlistId);;</span>
+<span class="fc" id="L412">        } catch (Exception e){</span>
+<span class="fc" id="L413">            return &quot;❌ Erro ao adicionar a playlist à biblioteca: &quot; + e.getMessage();</span>
+<span class="fc" id="L414">        }</span>
+<span class="fc" id="L415">        return &quot;✅ Playlist \&quot;&quot; + this.getSpotifUM().getPublicPlaylistById(playlistId).getName() + &quot;\&quot; adicionada à biblioteca do utilizador.&quot;;</span>
+    }
+
+    /**
+     * Remove uma música de uma playlist do utilizador atual.
+     * @param musicName Nome da música a ser removida.
+     * @param playlistId ID da playlist.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String removeMusicFromPlaylist(String musicName, int playlistId){
+        try{
+<span class="fc" id="L426">            this.getSpotifUM().removeMusicFromPlaylist(musicName, playlistId);</span>
+<span class="fc" id="L427">        } catch (Exception e){</span>
+<span class="fc" id="L428">            return &quot;❌ Erro ao remover a música da playlist: &quot; + e.getMessage();</span>
+<span class="fc" id="L429">        }</span>
+<span class="fc" id="L430">        return &quot;✅ Música \&quot;&quot; + musicName + &quot;\&quot; removida da playlist \&quot;&quot; + this.getSpotifUM().getUserPlaylistById(playlistId).getName() + &quot;\&quot;.&quot;;</span>
+    }
+
+    /**
+     * Define uma playlist como pública.
+     * @param playlistId ID da playlist a ser definida como pública.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String setPlaylistAsPublic(int playlistId){
+        try {
+<span class="fc" id="L440">            this.getSpotifUM().setPlaylistAsPublic(playlistId);</span>
+<span class="fc" id="L441">            return &quot;✅ Playlist \&quot;&quot; + this.getSpotifUM().getUserPlaylistById(playlistId).getName() + &quot;\&quot; definida como pública.&quot;;</span>
+<span class="fc" id="L442">        } catch (Exception e) {</span>
+<span class="fc" id="L443">            return &quot;❌ Erro ao definir a playlist como pública: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Obtém o nome das músicas de uma playlist específica.
+     * @param playlistId ID da playlist.
+     * @return Lista de nomes das músicas da playlist.
+     */
+    public Optional&lt;List&lt;String&gt;&gt; getPlaylistMusicNames(int playlistId){
+        try{
+<span class="fc" id="L454">            Playlist p = spotifUM.getCurrentUser().getPlaylistById(playlistId);</span>
+<span class="fc" id="L455">            List&lt;String&gt; musicNames = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L456" title="All 2 branches covered.">            for(Music m: p.getMusics()){</span>
+<span class="fc" id="L457">                musicNames.add(m.getName());</span>
+<span class="fc" id="L458">            }</span>
+<span class="fc" id="L459">            return Optional.of(musicNames);</span>
+
+<span class="fc" id="L461">        } catch(Exception e){</span>
+<span class="fc" id="L462">            return Optional.empty();</span>
+        }
+    }
+
+    /**
+     * Obtém o nome de uma playlist específica.
+     * @param playlistId ID da playlist.
+     * @return Nome da playlist.
+     */
+    public String getPlaylistId(int playlistId){
+        try{
+<span class="fc" id="L473">            Playlist p = spotifUM.getCurrentUser().getPlaylistById(playlistId);</span>
+<span class="fc" id="L474">            return p.getName();</span>
+<span class="fc" id="L475">        } catch(Exception e){</span>
+<span class="fc" id="L476">            return &quot;❌ Erro ao obter o nome da playlist: &quot; + e.getMessage();</span>
+        }
+    }
+
+
+    /**
+     * Obtém o nome das músicas de um álbum específico.
+     * @param albumName Nome do álbum.
+     * @return Lista de nomes das músicas do álbum.
+     */
+    public Optional&lt;List&lt;String&gt;&gt; getAlbumMusicNames(String albumName){
+        try{
+<span class="fc" id="L488">            Album a = spotifUM.getAlbumByName(albumName);</span>
+<span class="fc" id="L489">            List&lt;String&gt; musicNames = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L490" title="All 2 branches covered.">            for(Music m: a.getMusics()){</span>
+<span class="fc" id="L491">                musicNames.add(m.getName());</span>
+<span class="fc" id="L492">            }</span>
+<span class="fc" id="L493">            return Optional.of(musicNames);</span>
+
+<span class="fc" id="L495">        } catch(Exception e){</span>
+<span class="fc" id="L496">            return Optional.empty();</span>
+        }
+    }
+
+    /**
+     * Obtém o nome das músicas de uma playlist de favoritos.
+     * @param explicit Se a música é explícita ou não.
+     * @param maxduration Duração máxima da música.
+     * @return Lista de nomes das músicas da playlist de favoritos.
+     */
+    public Optional&lt;List&lt;String&gt;&gt; getFavoritePlaylistMusicNames(boolean explicit, int maxduration){
+        try{
+<span class="fc" id="L508">            PlaylistFavorites p = this.getSpotifUM().createFavoritesPlaylist(maxduration, explicit);</span>
+<span class="fc" id="L509">            List&lt;Music&gt; musics = p.getMusics();</span>
+<span class="fc" id="L510">            List&lt;String&gt; musicNames = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L511" title="All 2 branches covered.">            for(Music m: musics){</span>
+<span class="fc" id="L512">                musicNames.add(m.getName());</span>
+<span class="fc" id="L513">            }</span>
+<span class="fc" id="L514">            return Optional.of(musicNames);</span>
+<span class="fc" id="L515">        } catch(Exception e){</span>
+<span class="fc" id="L516">            return Optional.empty();</span>
+        }
+    }
+
+    /**
+     * Cria uma playlist de gênero.
+     * @param playlistName Nome da playlist.
+     * @param genre Gênero da música.
+     * @param maxDuration Duração máxima da playlist.
+     * @return Mensagem de sucesso ou erro.
+     */
+    public String createGenrePlaylist(String playlistName, String genre, int maxDuration){
+        try {
+<span class="fc" id="L529">            this.getSpotifUM().createGenrePlaylist(playlistName, genre, maxDuration);</span>
+<span class="fc" id="L530">            return &quot;✅ Playlist \&quot;&quot; + playlistName + &quot;\&quot; criada com sucesso!&quot;;</span>
+<span class="fc" id="L531">        } catch (Exception e) {</span>
+<span class="fc" id="L532">            return &quot;❌ Erro ao criar a playlist: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Toca uma música.
+     * @param musicName Nome da música a ser tocada.
+     * @return Informações da música tocada.
+     */
+    public MusicInfo playMusic(String musicName){
+        try{
+<span class="fc" id="L543">            getSpotifUM().addPointsToCurrentUser();</span>
+<span class="fc" id="L544">            Music music = getSpotifUM().getMusicByName(musicName);</span>
+<span class="fc" id="L545">            getSpotifUM().incrementArtistReproductions(music.getInterpreter());</span>
+<span class="fc" id="L546">            getSpotifUM().incrementGenreReproductions(music.getGenre());</span>
+
+<span class="fc" id="L548">            String url = &quot;&quot;;</span>
+<span class="fc bfc" id="L549" title="All 2 branches covered.">            if(music.getClass() == MusicMultimedia.class){</span>
+<span class="fc" id="L550">                url = ((MusicMultimedia) music).getUrl();</span>
+            }
+            
+
+
+<span class="fc" id="L555">            MusicInfo mf = new MusicInfo(music.getName(), music.getInterpreter(), music.getLyrics(), url, music.isExplicit());</span>
+
+
+<span class="fc" id="L558">            getSpotifUM().playMusic(musicName);</span>
+<span class="fc" id="L559">            getSpotifUM().addToCurrentUserMusicReproductions(musicName);;</span>
+
+
+
+<span class="fc" id="L563">            return mf;</span>
+<span class="fc" id="L564">        }catch (Exception e){</span>
+<span class="fc" id="L565">            MusicInfo mf = new MusicInfo(e.getMessage());</span>
+<span class="fc" id="L566">            return mf;</span>
+        }
+    }
+
+    /**
+     * Obtém o nome das músicas de uma playlist aleatória.
+     * @return Lista de nomes das músicas da playlist aleatória.
+     */
+    public Optional&lt;List&lt;String&gt;&gt; getRandomPlaylistMusicNames(){
+        try{
+<span class="fc" id="L576">            PlaylistRandom p = this.getSpotifUM().getRandomPlaylist();</span>
+<span class="fc" id="L577">            List&lt;String&gt; musicNames = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L578" title="All 2 branches covered.">            for(Music m: p.getMusics()){</span>
+<span class="fc" id="L579">                musicNames.add(m.getName());</span>
+<span class="fc" id="L580">            }</span>
+<span class="fc" id="L581">            return Optional.of(musicNames);</span>
+<span class="fc" id="L582">        } catch(Exception e){</span>
+<span class="fc" id="L583">            return Optional.empty();</span>
+        }
+    }
+
+    /**
+     * Verifica se uma música existe no modelo.
+     * @param musicName Nome da música.
+     * @return true se a música existir, false caso contrário.
+     */
+    public boolean musicExists(String musicName){
+<span class="fc" id="L593">        return this.spotifUM.musicExists(musicName);</span>
+    }
+
+
+    /**
+     * Verifica se o utilizador atual pode pular músicas.
+     * @return true se o utilizador puder pular, false caso contrário.
+     */
+    public boolean canCurrentUserSkip(){
+<span class="fc" id="L602">        return this.spotifUM.canCurrentUserSkip();</span>
+    }
+
+    /**
+     * Verifica se o utilizador atual pode escolher o que tocar.
+     * @return true se o utilizador puder escolher, false caso contrário.
+     */
+    public boolean canCurrentUserChooseWhatToPlay(){
+<span class="fc" id="L610">        return this.spotifUM.canCurrentUserChooseWhatToPlay();</span>
+    }
+
+    /**
+     * Verifica se o utilizador atual tem acesso às músicas favoritas.
+     * @return true se o utilizador tiver acesso, false caso contrário.
+     */
+
+    public boolean currentUserAccessToFavorites(){
+<span class="fc" id="L619">        return this.spotifUM.currentUserAccessToFavorites();</span>
+    }
+
+    /**
+     * Obtém a música mais reproduzida.
+     * @return Mensagem com a música mais reproduzida.
+     */
+    public String getMostReproducedMusic(){
+        try {
+<span class="fc" id="L628">            Music music = this.spotifUM.mostReproducedMusic();</span>
+<span class="fc" id="L629">            return &quot;🎵 Música mais reproduzida: &quot; + music.getName() + &quot; - &quot; + music.getInterpreter();</span>
+<span class="fc" id="L630">        } catch (Exception e) {</span>
+<span class="fc" id="L631">            return &quot;❌ Erro ao obter a música mais reproduzida: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Obtém o artista mais reproduzido.
+     * @return Mensagem com o artista mais reproduzido.
+     */
+    public String getMostReproducedArtist(){
+        try {
+<span class="fc" id="L641">            String artist = this.spotifUM.getTopArtistName();</span>
+<span class="fc" id="L642">            return &quot;🎤 Artista mais reproduzido: &quot; + artist;</span>
+<span class="fc" id="L643">        } catch (Exception e) {</span>
+<span class="fc" id="L644">            return &quot;❌ Erro ao obter o artista mais reproduzido: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Obtém o utilizador com mais pontos.
+     * @return Mensagem com o utilizador com mais pontos.
+     */
+    public String getUserWithMostPoints(){
+        try {
+<span class="fc" id="L654">            User user = this.spotifUM.getUserWithMostPoints();</span>
+<span class="fc" id="L655">            return &quot;🏆 Utilizador com mais pontos: &quot; + user.getUsername() + &quot; com &quot; + user.getPlan().getPoints() + &quot; pontos.&quot;;</span>
+<span class="fc" id="L656">        } catch (Exception e) {</span>
+<span class="fc" id="L657">            return &quot;❌ Erro ao obter o utilizador com mais pontos: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Obtém o gênero mais reproduzido.
+     * @return Mensagem com o gênero mais reproduzido.
+     */
+    public String getMostReproducedGenre(){
+        try {
+<span class="fc" id="L667">            String genre = this.spotifUM.getGenreWithMostReproductions();</span>
+<span class="fc" id="L668">            return &quot;🎶 Género mais reproduzido: &quot; + genre;</span>
+<span class="fc" id="L669">        } catch (Exception e) {</span>
+<span class="fc" id="L670">            return &quot;❌ Erro ao obter o género mais reproduzido: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Obtém o plano atual do utilizador.
+     * @return Mensagem com o plano atual do utilizador.
+     */
+    public String getCurrentUserPlan(){
+<span class="fc" id="L679">        return this.spotifUM.getCurrentUserPlanName();</span>
+    }
+
+    /**
+     * Obtém o utilizador com mais playlists.
+     * @return Mensagem com o utilizador com mais playlists.
+    */
+    public String getUserWithMostPlaylists(){
+        try {
+<span class="fc" id="L688">            User user = this.spotifUM.getUserWithMostPlaylists();</span>
+<span class="fc bfc" id="L689" title="All 2 branches covered.">            if (user.getPlaylists().isEmpty()) {</span>
+<span class="fc" id="L690">                return &quot;Não existe utilizadores com playlists.&quot;;</span>
+            }
+<span class="fc" id="L692">            return &quot;📚 Utilizador com mais playlists: &quot; + user.getUsername() + &quot; com &quot; + user.getUserPlaylistCount() + &quot; playlists.&quot;;</span>
+<span class="fc" id="L693">        } catch (Exception e) {</span>
+<span class="fc" id="L694">            return &quot;❌ Erro ao obter o utilizador com mais playlists: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Obtém o utilizador que mais reproduziu músicas.
+     * @return Mensagem com o utilizador que mais reproduziu músicas.
+     */
+    public String getUserWithMostReproductions(){
+        try {
+<span class="fc" id="L704">            User user = this.spotifUM.getUserWithMostReproductions();</span>
+<span class="fc bfc" id="L705" title="All 2 branches covered.">            if (user.getMusicReproductions().isEmpty()) {</span>
+<span class="fc" id="L706">                return &quot;Não existe utilizadores com reproduções.&quot;;</span>
+            }
+<span class="fc" id="L708">            return &quot;👤 Utilizador que ouviu mais músicas: &quot; + user.getUsername() + &quot; com &quot; + user.getMusicReproductions().size() + &quot; reproduções.&quot;;</span>
+<span class="fc" id="L709">        } catch (Exception e) {</span>
+<span class="fc" id="L710">            return &quot;❌ Erro ao obter o utilizador que ouviu mais músicas: &quot; + e.getMessage();</span>
+        }
+    }
+
+    /**
+     * Obtém o utilizador que mais reproduziu músicas entre duas datas.
+     * @param startDate Data de início.
+     * @param endDate Data de fim.
+     * @return Mensagem com o utilizador que mais reproduziu músicas entre as datas especificadas.
+     */
+    public String getUserWithMostReproductions(LocalDate startDate, LocalDate endDate){
+        try {
+<span class="fc" id="L722">            User user = this.spotifUM.getUserWithMostReproductions(startDate, endDate);</span>
+<span class="fc bfc" id="L723" title="All 2 branches covered.">            if (user.getMusicReproductions().isEmpty()) {</span>
+<span class="fc" id="L724">                return &quot;Não existe utilizadores com reproduções.&quot;;</span>
+            }
+<span class="fc" id="L726">            return &quot;👤 Utilizador que ouviu mais músicas entre &quot; + startDate + &quot; e &quot; + endDate + &quot;: &quot; + user.getUsername() + &quot; com &quot; + user.getMusicReproductionsCount(startDate, endDate) + &quot; reproduções.&quot;;</span>
+<span class="fc" id="L727">        } catch (Exception e) {</span>
+<span class="fc" id="L728">            return &quot;❌ Erro ao obter o utilizador que ouviu mais músicas: &quot; + e.getMessage();</span>
+        }
+    }
+
+
+    /**
+     * Obtém o número de playlists públicas.
+     * @return String com o número de playlists públicas ou mensagem de erro
+     */
+    public String getPublicPlaylistCount(){
+        try {
+<span class="fc" id="L739">            int count = this.spotifUM.getPublicPlaylistSize();</span>
+<span class="fc" id="L740">            return &quot;📊 Número de playlists públicas: &quot; + count;</span>
+<span class="fc" id="L741">        } catch (Exception e) {</span>
+<span class="fc" id="L742">            return &quot;❌ Erro ao obter o número de playlists públicas: &quot; + e.getMessage();</span>
+        }
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

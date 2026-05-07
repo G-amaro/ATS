@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReproductionMenu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.View</a> &gt; <span class="el_source">ReproductionMenu.java</span></div><h1>ReproductionMenu.java</h1><pre class="source lang-java linenums">package org.View;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.Arrays;
+import javax.sound.sampled.Clip;
+import org.Controller.*;
+import org.Controller.dtos.MusicInfo;
+import org.Utils.MusicPlayer;
+import org.Utils.BrowserOpener;
+
+/**
+ * Classe que representa o menu de reprodução de músicas.
+ * Permite selecionar e ouvir músicas e playlists.
+ */
+public class ReproductionMenu extends Menu {
+
+    /**
+     * Enumeração das ações possíveis do player.
+     */
+<span class="fc" id="L22">    private enum PlayerAction {</span>
+<span class="fc" id="L23">        NEXT, PREVIOUS, QUIT, NONE</span>
+    }
+
+    /**
+     * Construtor do menu de reprodução.
+     * @param controller Controlador principal da aplicação.
+     * @param menuManager Gestor de menus.
+     */
+    public ReproductionMenu(Controller controller, MenuManager menuManager) {
+<span class="fc" id="L32">        super(controller, menuManager);</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Mostra o menu de reprodução e trata a seleção do utilizador.
+     */
+    @Override
+    public void show() {
+<span class="nc" id="L40">        System.out.println(&quot;\n🎵━━━━━━━━━━━━━━━【 MENU DE REPRODUÇÃO 】━━━━━━━━━━━━━━━🎵\n&quot;);</span>
+<span class="nc" id="L41">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;1️⃣&quot;, &quot;▶️   Reproduzir Playlist Aleatória&quot;);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (this.getController().canCurrentUserChooseWhatToPlay()) {</span>
+<span class="nc" id="L43">            System.out.printf(&quot;%-5s %s\n&quot;, &quot;2️⃣&quot;, &quot;🎶  Reproduzir Música&quot;);</span>
+<span class="nc" id="L44">            System.out.printf(&quot;%-5s %s\n&quot;, &quot;3️⃣&quot;, &quot;💿  Reproduzir Álbum&quot;);</span>
+<span class="nc" id="L45">            System.out.printf(&quot;%-5s %s\n&quot;, &quot;4️⃣&quot;, &quot;📚  Reproduzir Playlist da Sua Biblioteca&quot;);</span>
+        }
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if(this.getController().currentUserAccessToFavorites())</span>
+<span class="nc" id="L48">            System.out.printf(&quot;%-5s %s\n&quot;, &quot;5️⃣&quot;, &quot;✨  Feito para você&quot;);</span>
+<span class="nc" id="L49">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;0️⃣&quot;, &quot;🔙  Voltar&quot;);</span>
+<span class="nc" id="L50">        System.out.print(&quot;\n👉 Escolha uma opção: &quot;);</span>
+<span class="nc" id="L51">        handleInput();</span>
+<span class="nc" id="L52">    }</span>
+
+    /**
+     * Lê e processa a opção escolhida pelo utilizador.
+     */
+    @Override
+    public void handleInput() {
+        try {
+<span class="fc" id="L60">            int choice = getScanner().nextInt();</span>
+<span class="fc" id="L61">            getScanner().nextLine();</span>
+<span class="fc" id="L62">            cleanTerminal();</span>
+<span class="pc bpc" id="L63" title="5 of 7 branches missed.">            switch (choice) {</span>
+                case 1:
+<span class="nc" id="L65">                    playRandomPlaylist();</span>
+<span class="nc" id="L66">                    break;</span>
+                case 2:
+<span class="nc bnc" id="L68" title="All 2 branches missed.">                    if (this.getController().canCurrentUserChooseWhatToPlay()) playMusic();</span>
+<span class="nc" id="L69">                    else System.out.println(&quot;\n🚫 Opção inválida. Tente novamente.&quot;);</span>
+<span class="nc" id="L70">                    break;</span>
+                case 3:
+<span class="nc bnc" id="L72" title="All 2 branches missed.">                    if (this.getController().canCurrentUserChooseWhatToPlay()) playAlbum();</span>
+<span class="nc" id="L73">                    else System.out.println(&quot;\n🚫 Opção inválida. Tente novamente.&quot;);</span>
+<span class="nc" id="L74">                    break;</span>
+                case 4:
+<span class="nc bnc" id="L76" title="All 2 branches missed.">                    if (this.getController().canCurrentUserChooseWhatToPlay()) playPlaylist();</span>
+<span class="nc" id="L77">                    else System.out.println(&quot;\n🚫 Opção inválida. Tente novamente.&quot;);</span>
+<span class="nc" id="L78">                    break;</span>
+                case 5:
+<span class="nc bnc" id="L80" title="All 2 branches missed.">                    if(this.getController().currentUserAccessToFavorites()) playFavoritePlaylist();</span>
+<span class="nc" id="L81">                    else System.out.println(&quot;\n🚫 Opção inválida. Tente novamente.&quot;);</span>
+<span class="nc" id="L82">                    break;</span>
+                case 0:
+<span class="fc" id="L84">                    System.out.println(&quot;\n🔙 A voltar ao menu principal...&quot;);</span>
+<span class="fc" id="L85">                    getMenuManager().setMenu(new MainMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L86">                    break;</span>
+                default:
+<span class="fc" id="L88">                    System.out.println(&quot;\n🚫 Opção inválida. Tente novamente.&quot;);</span>
+            }
+<span class="fc" id="L90">        } catch (Exception e) {</span>
+<span class="fc" id="L91">            System.out.println(&quot;\n🚫 Por favor, insira apenas números.&quot;);</span>
+<span class="fc" id="L92">            getScanner().nextLine();</span>
+<span class="fc" id="L93">        }</span>
+<span class="fc" id="L94">    }</span>
+
+    // ===================== MÉTODOS DE REPRODUÇÃO =====================
+
+    /**
+     * Permite ao utilizador escolher e reproduzir uma música específica.
+     */
+    private void playMusic() {
+<span class="nc" id="L102">        System.out.println(this.getController().listAllMusics());</span>
+<span class="nc" id="L103">        System.out.print(&quot;\n🎶 Introduza o nome da música: &quot;);</span>
+<span class="nc" id="L104">        String musicName = getScanner().nextLine();</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (!this.getController().musicExists(musicName)) {</span>
+<span class="nc" id="L106">            System.out.println(&quot;\n🚫 Música não encontrada.&quot;);</span>
+<span class="nc" id="L107">            return;</span>
+        }
+<span class="nc" id="L109">        List&lt;String&gt; musicList = Arrays.asList(musicName);</span>
+<span class="nc" id="L110">        playMusicList(musicList, musicName);</span>
+<span class="nc" id="L111">    }</span>
+
+    /**
+     * Permite ao utilizador escolher e reproduzir um álbum.
+     * Pergunta se deseja modo aleatório.
+     */
+    private void playAlbum() {
+<span class="nc" id="L118">        System.out.println(this.getController().listAllAlbums());</span>
+<span class="nc" id="L119">        System.out.print(&quot;\n💿 Nome do álbum a reproduzir: &quot;);</span>
+<span class="nc" id="L120">        String albumName = getScanner().nextLine();</span>
+<span class="nc" id="L121">        Optional&lt;List&lt;String&gt;&gt; musicNames = getController().getAlbumMusicNames(albumName);</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (!musicNames.isPresent()) {</span>
+<span class="nc" id="L123">            System.out.println(&quot;\n🚫 Álbum não encontrado.&quot;);</span>
+<span class="nc" id="L124">            return;</span>
+        }
+<span class="nc" id="L126">        List&lt;String&gt; musics = musicNames.get();</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        if (askConfirmation(&quot;Deseja reproduzir o álbum em modo Aleatório?&quot;)) {</span>
+<span class="nc" id="L128">            Collections.shuffle(musics);</span>
+<span class="nc" id="L129">            System.out.println(&quot;\n🔀 Álbum em modo Aleatório.&quot;);</span>
+        } else {
+<span class="nc" id="L131">            System.out.println(&quot;\n▶️ Álbum em modo Normal.&quot;);</span>
+        }
+<span class="nc" id="L133">        playMusicList(musics, albumName);</span>
+<span class="nc" id="L134">    }</span>
+
+    /**
+     * Permite ao utilizador escolher e reproduzir uma playlist da sua biblioteca.
+     * Pergunta se deseja modo aleatório.
+     */
+    private void playPlaylist() {
+<span class="nc" id="L141">        System.out.println(this.getController().listUserPlaylists());</span>
+<span class="nc" id="L142">        System.out.print(&quot;\n📚 Id da playlist a reproduzir: &quot;);</span>
+<span class="nc" id="L143">        int playlistId = getScanner().nextInt();</span>
+<span class="nc" id="L144">        getScanner().nextLine(); // Limpar buffer</span>
+
+
+<span class="nc" id="L147">        Optional&lt;List&lt;String&gt;&gt; musicNames = this.getController().getPlaylistMusicNames(playlistId);</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (!musicNames.isPresent()) {</span>
+<span class="nc" id="L149">            System.out.println(&quot;\n🚫 Playlist não encontrada.&quot;);</span>
+<span class="nc" id="L150">            return;</span>
+        }
+<span class="nc" id="L152">        List&lt;String&gt; musics = musicNames.get();</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        if (askConfirmation(&quot;Deseja reproduzir a playlist em modo Aleatório?&quot;)) {</span>
+<span class="nc" id="L154">            Collections.shuffle(musics);</span>
+<span class="nc" id="L155">            System.out.println(&quot;\n🔀 Playlist em modo Aleatório.&quot;);</span>
+        } else {
+<span class="nc" id="L157">            System.out.println(&quot;\n▶️ Playlist em modo Normal.&quot;);</span>
+        }
+<span class="nc" id="L159">        playMusicList(musics, this.getController().getPlaylistId(playlistId));</span>
+<span class="nc" id="L160">    }</span>
+
+    /**
+     * Reproduz uma playlist aleatória.
+     */
+    public void playRandomPlaylist() {
+<span class="fc" id="L166">        Optional&lt;List&lt;String&gt;&gt; musicNames = this.getController().getRandomPlaylistMusicNames();</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">        if (!musicNames.isPresent()) {</span>
+<span class="fc" id="L168">            System.out.println(&quot;\n🚫 Não existem playlists aleatórias disponíveis.&quot;);</span>
+<span class="fc" id="L169">            return;</span>
+        }
+<span class="fc" id="L171">        List&lt;String&gt; musics = musicNames.get();</span>
+<span class="fc" id="L172">        playMusicList(musics, &quot;Playlist Aleatória&quot;);</span>
+<span class="fc" id="L173">    }</span>
+
+    /**
+     * Gera e reproduz uma playlist personalizada &quot;Feito para você&quot;.
+     * Pergunta se só quer músicas explícitas e se quer limitar a duração.
+     */
+    public void playFavoritePlaylist() {
+<span class="fc" id="L180">        boolean explicit = askConfirmation(&quot;🔞 Quer apenas músicas explícitas?&quot;);</span>
+        int duration;
+<span class="pc bpc" id="L182" title="1 of 2 branches missed.">        if (askConfirmation(&quot;⏳ Quer adicionar um limite de duração à playlist?&quot;)) {</span>
+<span class="nc" id="L183">            System.out.print(&quot;⏱️  Duração máxima da playlist (em minutos): &quot;);</span>
+<span class="nc" id="L184">            int maxDuration = getScanner().nextInt();</span>
+<span class="nc" id="L185">            getScanner().nextLine(); // Limpar buffer</span>
+<span class="nc" id="L186">            duration = maxDuration * 60;</span>
+<span class="nc" id="L187">        } else {</span>
+<span class="fc" id="L188">            System.out.println(&quot;⏱️  Por defeito, a duração máxima é de 60 minutos.&quot;);</span>
+<span class="fc" id="L189">            duration = 60 * 60;</span>
+        }
+<span class="fc" id="L191">        Optional&lt;List&lt;String&gt;&gt; musicNames = this.getController().getFavoritePlaylistMusicNames(explicit, duration);</span>
+<span class="pc bpc" id="L192" title="1 of 2 branches missed.">        if (!musicNames.isPresent()) {</span>
+<span class="fc" id="L193">            System.out.println(&quot;\n🚫 Não existem músicas disponíveis para a playlist.&quot;);</span>
+<span class="fc" id="L194">            return;</span>
+        }
+<span class="nc" id="L196">        List&lt;String&gt; musics = musicNames.get();</span>
+<span class="nc" id="L197">        playMusicList(musics, &quot;✨ Feito para você&quot;);</span>
+<span class="nc" id="L198">    }</span>
+
+    /**
+     * Reproduz uma lista de músicas, em modo áudio ou letra, com navegação.
+     * @param musics Lista de nomes das músicas
+     * @param name Nome da playlist/álbum
+     */
+    private void playMusicList(List&lt;String&gt; musics, String name) {
+        try {
+<span class="fc" id="L207">            boolean isLyricsMode = askConfirmation(&quot;Deseja reproduzir em modo de Letra?&quot;);</span>
+<span class="fc" id="L208">            System.out.println(&quot;\n🎧 A tocar: \&quot;&quot; + name + &quot;\&quot;&quot;);</span>
+<span class="fc" id="L209">            System.out.println(&quot;💡 Comandos disponíveis:&quot;);</span>
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">            System.out.println(getController().canCurrentUserSkip()</span>
+                ? &quot;▶️ 'f' → próxima | ⏪ 'b' → anterior | ❌ 'q' → sair\n&quot;
+                : &quot;❌ 'q' → sair\n&quot;);
+<span class="fc" id="L213">            player(musics, isLyricsMode);</span>
+<span class="nc" id="L214">        } catch (Exception e) {</span>
+<span class="nc" id="L215">            System.out.println(&quot;\n❌ Erro ao reproduzir: &quot; + e.getMessage());</span>
+<span class="fc" id="L216">        }</span>
+<span class="fc" id="L217">    }</span>
+
+    /**
+     * Controla a navegação entre músicas, chamando o modo de reprodução adequado.
+     * @param musicNames Lista de nomes das músicas
+     * @param lyricsMode true para modo letra, false para modo áudio
+     */
+    private void player(List&lt;String&gt; musicNames, boolean lyricsMode) {
+<span class="fc" id="L225">        int index = 0;</span>
+<span class="fc" id="L226">        boolean running = true;</span>
+<span class="fc" id="L227">        boolean lastSong = false;</span>
+<span class="pc bpc" id="L228" title="2 of 6 branches missed.">        while (running &amp;&amp; index &lt; musicNames.size() &amp;&amp; index &gt;= 0) {</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">            if (index == musicNames.size() - 1) {</span>
+<span class="fc" id="L230">                lastSong = true;</span>
+            }
+<span class="fc" id="L232">            System.out.println(&quot;\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&quot;);</span>
+<span class="fc" id="L233">            System.out.printf(&quot;\uD83C\uDFB5  Música %d de %d\n&quot;, index + 1, musicNames.size());</span>
+<span class="fc" id="L234">            System.out.println(&quot;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&quot;);</span>
+<span class="fc" id="L235">            MusicInfo mf = this.getController().playMusic(musicNames.get(index));</span>
+            PlayerAction result;
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">            if (!lyricsMode) {</span>
+<span class="fc" id="L238">                result = playAudioSingle(mf, musicNames.get(index));</span>
+<span class="pc bpc" id="L239" title="1 of 2 branches missed.">                if (result == PlayerAction.NONE) {</span>
+<span class="fc" id="L240">                    System.out.println(&quot;\n\uD83D\uDD0A  Áudio indisponível. A mostrar letra!\n&quot;);</span>
+<span class="fc" id="L241">                    result = playLyricsSingle(mf);</span>
+                }
+            } else {
+<span class="nc" id="L244">                result = playLyricsSingle(mf);</span>
+            }
+<span class="pc bpc" id="L246" title="1 of 2 branches missed.">            if (result == PlayerAction.NEXT) {</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">                if (index &lt; musicNames.size() - 1) {</span>
+<span class="fc" id="L248">                    System.out.println(&quot;\n➡️  Próxima música!&quot;);</span>
+<span class="fc" id="L249">                    index++;</span>
+<span class="pc bpc" id="L250" title="1 of 2 branches missed.">                } else if (lastSong){</span>
+<span class="fc" id="L251">                    index++;</span>
+                } else {
+<span class="nc" id="L253">                    System.out.println(&quot;\n🚫 Já estás na última música.&quot;);</span>
+                }
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            } else if (result == PlayerAction.PREVIOUS) {</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">                if (index &gt; 0) {</span>
+<span class="nc" id="L257">                    System.out.println(&quot;\n⬅️  Música anterior!&quot;);</span>
+<span class="nc" id="L258">                    index--;</span>
+                } else {
+<span class="nc" id="L260">                    System.out.println(&quot;\n🚫 Já estás na primeira música.&quot;);</span>
+                }
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            } else if (result == PlayerAction.QUIT) {</span>
+<span class="nc" id="L263">                System.out.println(&quot;\n⏹️  Parar reprodução.&quot;);</span>
+<span class="nc" id="L264">                running = false;</span>
+            }
+<span class="fc" id="L266">        }</span>
+<span class="fc" id="L267">        System.out.println(&quot;\n✅ Fim da reprodução! Obrigado por ouvir \uD83C\uDFB6\uD83C\uDFB5\n&quot;);</span>
+<span class="fc" id="L268">    }</span>
+
+    /**
+     * Reproduz uma música em modo áudio.
+     * Mostra barra de progresso e permite comandos do utilizador.
+     * @param mf Informações da música
+     * @param musicName Nome da música
+     * @return PlayerAction ação escolhida pelo utilizador
+     */
+    private PlayerAction playAudioSingle(MusicInfo mf, String musicName) {
+<span class="fc" id="L278">        MusicPlayer mp = new MusicPlayer();</span>
+        try {
+<span class="fc" id="L280">            Clip clip = mp.playMusic(musicName);</span>
+<span class="pc bpc" id="L281" title="1 of 2 branches missed.">            if (clip == null) {</span>
+<span class="fc" id="L282">                System.out.println(&quot;\n🚫 Arquivo de áudio não encontrado.&quot;);</span>
+<span class="fc" id="L283">                return PlayerAction.NONE;</span>
+            }
+<span class="nc" id="L285">            System.out.println(&quot;\n\uD83C\uDFB5🎧 Agora a tocar: &quot; + mf.getMusicName() + &quot; - &quot; + mf.getArtistName() + &quot;\n&quot;);</span>
+<span class="nc" id="L286">            long total = clip.getMicrosecondLength();</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            while (clip.isRunning()) {</span>
+<span class="nc" id="L288">                Thread.sleep(200);</span>
+<span class="nc" id="L289">                printBar(total / 1000, clip.getMicrosecondPosition() / 1000);</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">                if (System.in.available() &gt; 0) {</span>
+<span class="nc" id="L291">                    String command = getScanner().nextLine().trim().toLowerCase();</span>
+<span class="nc" id="L292">                    PlayerAction input = handleCommand(command);</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">                    if (input != PlayerAction.NONE) {</span>
+<span class="nc" id="L294">                        clip.stop();</span>
+<span class="nc" id="L295">                        return input;</span>
+                    }
+<span class="nc" id="L297">                }</span>
+            }
+<span class="nc" id="L299">            clip.close();</span>
+<span class="nc" id="L300">            return PlayerAction.NEXT; // Avança para próxima por defeito</span>
+<span class="nc" id="L301">        } catch (Exception e) {</span>
+<span class="nc" id="L302">            System.out.println(&quot;\n❌ Erro ao reproduzir: &quot; + e.getMessage());</span>
+<span class="nc" id="L303">            return PlayerAction.NONE;</span>
+        }
+    }
+
+    /**
+     * Reproduz a letra de uma música, palavra a palavra, permitindo comandos.
+     * Se existir URL, abre no navegador.
+     * @param mf Informações da música
+     * @return PlayerAction ação escolhida pelo utilizador
+     */
+    private PlayerAction playLyricsSingle(MusicInfo mf) {
+        try {
+<span class="pc bpc" id="L315" title="1 of 2 branches missed.">            if (!mf.getErrorMessage().isEmpty()) {</span>
+<span class="nc" id="L316">                System.out.println(&quot;\n🚫 &quot; + mf.getErrorMessage());</span>
+<span class="nc" id="L317">                return PlayerAction.NEXT;</span>
+            }
+<span class="pc bpc" id="L319" title="1 of 2 branches missed.">            if (!mf.getUrl().isEmpty()) {</span>
+<span class="nc" id="L320">                System.out.println(&quot;\n🌐 A abrir o link da música no navegador...&quot;);</span>
+<span class="nc" id="L321">                BrowserOpener browserOpener = new BrowserOpener(mf.getUrl());</span>
+<span class="nc" id="L322">                browserOpener.abrir();</span>
+            }
+<span class="pc bpc" id="L324" title="1 of 2 branches missed.">            if (mf.isExplicit()) {</span>
+<span class="nc" id="L325">                System.out.println(&quot;\n🔞 Música com conteúdo explícito.&quot;);</span>
+            }
+<span class="fc" id="L327">            System.out.println(&quot;\n\uD83C\uDFB6 Letra de: &quot; + mf.getMusicName() + &quot; - &quot; + mf.getArtistName());</span>
+<span class="fc" id="L328">            System.out.println(&quot;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&quot;);</span>
+<span class="fc bfc" id="L329" title="All 2 branches covered.">            for (String word : mf.getLyrics()) {</span>
+<span class="fc" id="L330">                System.out.print(word + &quot; &quot;);</span>
+<span class="fc" id="L331">                Thread.sleep(500);</span>
+<span class="pc bpc" id="L332" title="1 of 2 branches missed.">                if (System.in.available() &gt; 0) {</span>
+<span class="nc" id="L333">                    String command = getScanner().nextLine().trim().toLowerCase();</span>
+<span class="nc" id="L334">                    PlayerAction input = handleCommand(command);</span>
+<span class="nc bnc" id="L335" title="All 2 branches missed.">                    if (input != PlayerAction.NONE) {</span>
+<span class="nc" id="L336">                        System.out.println();</span>
+<span class="nc" id="L337">                        return input;</span>
+                    }
+                }
+            }
+<span class="fc" id="L341">            System.out.println();</span>
+<span class="fc" id="L342">            return PlayerAction.NEXT; // Avança para próxima por defeito</span>
+<span class="nc" id="L343">        } catch (Exception e) {</span>
+<span class="nc" id="L344">            System.out.println(&quot;\n❌ Erro ao reproduzir: &quot; + e.getMessage());</span>
+<span class="nc" id="L345">            return PlayerAction.NEXT;</span>
+        }
+    }
+
+    /**
+     * Interpreta comandos do utilizador durante a reprodução.
+     * @param command Comando inserido
+     * @return PlayerAction correspondente
+     */
+    private PlayerAction handleCommand(String command) {
+<span class="nc bnc" id="L355" title="All 4 branches missed.">        if (command.equals(&quot;f&quot;) &amp;&amp; getController().canCurrentUserSkip())</span>
+<span class="nc" id="L356">            return PlayerAction.NEXT;</span>
+<span class="nc bnc" id="L357" title="All 4 branches missed.">        else if (command.equals(&quot;b&quot;) &amp;&amp; getController().canCurrentUserSkip())</span>
+<span class="nc" id="L358">            return PlayerAction.PREVIOUS;</span>
+<span class="nc bnc" id="L359" title="All 2 branches missed.">        else if (command.equals(&quot;q&quot;))</span>
+<span class="nc" id="L360">            return PlayerAction.QUIT;</span>
+<span class="nc" id="L361">        return PlayerAction.NONE;</span>
+    }
+
+    /**
+     * Mostra uma barra de progresso da música.
+     * @param total Duração total
+     * @param current Posição atual
+     */
+    private void printBar(long total, long current) {
+<span class="nc" id="L370">        int barLength = 50;</span>
+<span class="nc" id="L371">        int progress = (int) ((current * barLength) / total);</span>
+<span class="nc" id="L372">        StringBuilder bar = new StringBuilder(&quot;\r|&quot;);</span>
+<span class="nc bnc" id="L373" title="All 2 branches missed.">        for (int i = 0; i &lt; barLength; i++) {</span>
+<span class="nc bnc" id="L374" title="All 2 branches missed.">            if (i &lt; progress) bar.append(&quot;█&quot;);</span>
+<span class="nc" id="L375">            else bar.append(&quot;░&quot;);</span>
+        }
+<span class="nc" id="L377">        bar.append(&quot;| &quot;);</span>
+<span class="nc" id="L378">        long elapsedTime = current / 1000;</span>
+<span class="nc" id="L379">        long totalTime = total / 1000;</span>
+<span class="nc" id="L380">        int percentage = (int) ((current * 100) / total);</span>
+<span class="nc" id="L381">        bar.append(String.format(&quot;%02d:%02d / %02d:%02d (%d%%)&quot;,</span>
+<span class="nc" id="L382">                elapsedTime / 60, elapsedTime % 60,</span>
+<span class="nc" id="L383">                totalTime / 60, totalTime % 60,</span>
+<span class="nc" id="L384">                percentage));</span>
+<span class="nc" id="L385">        System.out.print(bar.toString());</span>
+<span class="nc" id="L386">        System.out.flush();</span>
+<span class="nc" id="L387">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
