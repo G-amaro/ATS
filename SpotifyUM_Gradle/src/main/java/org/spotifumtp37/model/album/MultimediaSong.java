@@ -54,7 +54,7 @@ public class MultimediaSong extends Song implements Serializable {
      * @param durationInSeconds The duration of the song in seconds
      * @param videoLink The URL or reference to the video content
      */
-    MultimediaSong(String name, String artist, String publisher, String lyrics, String musicalNotes, String genre, int durationInSeconds, String videoLink) {
+    public MultimediaSong(String name, String artist, String publisher, String lyrics, String musicalNotes, String genre, int durationInSeconds, String videoLink) {
         super(name, artist, publisher, lyrics, musicalNotes, genre, durationInSeconds);
         this.multimedia = true;
         this.videoLink = videoLink;

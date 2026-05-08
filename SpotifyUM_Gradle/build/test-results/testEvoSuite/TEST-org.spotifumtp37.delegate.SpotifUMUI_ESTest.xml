@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.spotifumtp37.delegate.SpotifUMUI_ESTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-05-05T09:43:44" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.056">
+<testsuite name="org.spotifumtp37.delegate.SpotifUMUI_ESTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-05-08T21:23:36" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.039">
   <properties/>
-  <testcase name="test03" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.004"/>
-  <testcase name="test14" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.005"/>
-  <testcase name="test02" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
-  <testcase name="test13" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.003"/>
+  <testcase name="test03" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
+  <testcase name="test14" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.003"/>
+  <testcase name="test02" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.001"/>
+  <testcase name="test13" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
   <testcase name="test05" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
-  <testcase name="test04" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.003"/>
+  <testcase name="test04" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.001"/>
   <testcase name="test15" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
   <testcase name="test10" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
   <testcase name="test01" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
-  <testcase name="test12" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.004"/>
+  <testcase name="test12" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
   <testcase name="test00" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
   <testcase name="test11" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
-  <testcase name="test07" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
-  <testcase name="test06" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.003"/>
-  <testcase name="test09" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.002"/>
-  <testcase name="test08" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.013"/>
+  <testcase name="test07" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.001"/>
+  <testcase name="test06" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.001"/>
+  <testcase name="test09" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.001"/>
+  <testcase name="test08" classname="org.spotifumtp37.delegate.SpotifUMUI_ESTest" time="0.01"/>
   <system-out><![CDATA[
  *** SpotifUM *** 
 1 - Login as User

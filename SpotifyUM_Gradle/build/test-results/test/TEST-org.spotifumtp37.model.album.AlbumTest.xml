@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.spotifumtp37.model.album.AlbumTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2026-05-05T09:43:40" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.085">
+<testsuite name="org.spotifumtp37.model.album.AlbumTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2026-05-08T21:26:50" hostname="gongas-Legion-Y540-15IRH-PG0" time="0.06">
   <properties/>
-  <testcase name="setCurrentSong()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.029"/>
-  <testcase name="previous()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.002"/>
+  <testcase name="setCurrentSong()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.022"/>
+  <testcase name="previous()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
   <testcase name="testClone()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
-  <testcase name="addSong()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.005"/>
-  <testcase name="testToString()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
-  <testcase name="getReleaseYear()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.0"/>
+  <testcase name="addSong()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.003"/>
+  <testcase name="testToString()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.0"/>
+  <testcase name="getReleaseYear()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
   <testcase name="getCurrentSong()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
   <testcase name="next()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.002"/>
-  <testcase name="play()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.013"/>
-  <testcase name="setArtist()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.0"/>
-  <testcase name="getArtist()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
-  <testcase name="getSongsCopy()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
-  <testcase name="getTotalDuration()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.003"/>
+  <testcase name="play()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.01"/>
+  <testcase name="setArtist()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
+  <testcase name="getArtist()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.0"/>
+  <testcase name="getSongsCopy()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.0"/>
+  <testcase name="getTotalDuration()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
   <testcase name="setGenre()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
   <testcase name="setTitle()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
-  <testcase name="copySongs()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
-  <testcase name="deleteSong()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.002"/>
-  <testcase name="getGenre()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.0"/>
+  <testcase name="copySongs()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.0"/>
+  <testcase name="deleteSong()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
+  <testcase name="getGenre()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
   <testcase name="getSongs()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
   <testcase name="getTitle()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.001"/>
   <testcase name="setReleaseYear()" classname="org.spotifumtp37.model.album.AlbumTest" time="0.0"/>

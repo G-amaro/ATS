@@ -29,6 +29,8 @@ dependencies {
 sourceSets {
     val test by getting {
         java.srcDir("src/evosuite-tests")
+        java.srcDir("src/hypothesis-tests")
+        resources.srcDir("src/hypothesis-tests")
     }
 }
 
@@ -66,6 +68,8 @@ tasks.register<Test>("testEvoSuite") {
         events("passed", "skipped", "failed")
     }
 }
+
+
 
 abstract class EvoSuiteGenerateAllTask @Inject constructor(private val execOperations: ExecOperations) : DefaultTask() {
     @TaskAction

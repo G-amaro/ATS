@@ -15,11 +15,11 @@ public class SpotifUMData implements Serializable {
     private Map&lt;String, User&gt; users;
     private Map&lt;String, Playlist&gt; playlists;
 
-<span class="nc" id="L18">    public SpotifUMData() {</span>
-<span class="nc" id="L19">        this.albums = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L20">        this.users = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L21">        this.playlists = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L22">    }</span>
+<span class="fc" id="L18">    public SpotifUMData() {</span>
+<span class="fc" id="L19">        this.albums = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L20">        this.users = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L21">        this.playlists = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L22">    }</span>
 
 <span class="nc" id="L24">    public SpotifUMData(SpotifUMData outro) {</span>
 <span class="nc" id="L25">        this.albums = new HashMap&lt;&gt;();</span>
@@ -71,11 +71,11 @@ public class SpotifUMData implements Serializable {
     }
 
     public Map&lt;String, User&gt; getMapUsers() {
-<span class="nc" id="L74">        Map&lt;String, User&gt; mapUsers = new HashMap&lt;&gt;();</span>
-<span class="nc bnc" id="L75" title="All 2 branches missed.">        for (Map.Entry&lt;String, User&gt; entry : users.entrySet()) {</span>
-<span class="nc" id="L76">            mapUsers.put(entry.getKey(), entry.getValue().clone());</span>
-<span class="nc" id="L77">        }</span>
-<span class="nc" id="L78">        return mapUsers;</span>
+<span class="fc" id="L74">        Map&lt;String, User&gt; mapUsers = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        for (Map.Entry&lt;String, User&gt; entry : users.entrySet()) {</span>
+<span class="fc" id="L76">            mapUsers.put(entry.getKey(), entry.getValue().clone());</span>
+<span class="fc" id="L77">        }</span>
+<span class="fc" id="L78">        return mapUsers;</span>
     }
 
     public User getCurrentUserPointer(String username) {
@@ -115,7 +115,7 @@ public class SpotifUMData implements Serializable {
 <span class="nc" id="L115">    }</span>
 
     public boolean existsAlbum(String title) {
-<span class="nc" id="L118">        return albums.containsKey(title);</span>
+<span class="fc" id="L118">        return albums.containsKey(title);</span>
     }
 
     public boolean existsSong(String title, String albumTitle) {
@@ -135,14 +135,14 @@ public class SpotifUMData implements Serializable {
     }
 
     public boolean existsUser(String username) {
-<span class="nc" id="L138">        return users.containsKey(username);</span>
+<span class="fc" id="L138">        return users.containsKey(username);</span>
     }
 
     public Album getAlbum(String title) throws DoesntExistException {
-<span class="nc bnc" id="L142" title="All 2 branches missed.">        if (!existsAlbum(title)) {</span>
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">        if (!existsAlbum(title)) {</span>
 <span class="nc" id="L143">            throw new DoesntExistException(title);</span>
         } else {
-<span class="nc" id="L145">            return albums.get(title);</span>
+<span class="fc" id="L145">            return albums.get(title);</span>
         }
     }
 
@@ -185,12 +185,12 @@ public class SpotifUMData implements Serializable {
     }
 
     public void addAlbum(Album album) throws AlreadyExistsException {
-<span class="nc bnc" id="L188" title="All 2 branches missed.">        if (!albums.containsKey(album.getTitle())) {</span>
-<span class="nc" id="L189">            albums.put(album.getTitle(), album.clone());</span>
+<span class="pc bpc" id="L188" title="1 of 2 branches missed.">        if (!albums.containsKey(album.getTitle())) {</span>
+<span class="fc" id="L189">            albums.put(album.getTitle(), album.clone());</span>
         } else {
 <span class="nc" id="L191">            throw new AlreadyExistsException(album.getTitle());</span>
         }
-<span class="nc" id="L193">    }</span>
+<span class="fc" id="L193">    }</span>
 
     public void addPlaylist(Playlist playlist) throws AlreadyExistsException {
 <span class="nc bnc" id="L196" title="All 2 branches missed.">        if (!playlists.containsKey(playlist.getPlaylistName())) {</span>
@@ -201,12 +201,12 @@ public class SpotifUMData implements Serializable {
 <span class="nc" id="L201">    }</span>
 
     public void addUser(User user) throws AlreadyExistsException {
-<span class="nc bnc" id="L204" title="All 2 branches missed.">        if (!users.containsKey(user.getName())) {</span>
-<span class="nc" id="L205">            users.put(user.getName(), user.clone());</span>
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">        if (!users.containsKey(user.getName())) {</span>
+<span class="fc" id="L205">            users.put(user.getName(), user.clone());</span>
         } else {
 <span class="nc" id="L207">            throw new AlreadyExistsException(user.getName());</span>
         }
-<span class="nc" id="L209">    }</span>
+<span class="fc" id="L209">    }</span>
 
     public void removeAlbum(String title) throws DoesntExistException {
 <span class="nc bnc" id="L212" title="All 2 branches missed.">        if (albums.containsKey(title)) {</span>
