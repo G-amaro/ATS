@@ -8,7 +8,7 @@ public class PlanPremiumTopTest {
     @Test
     void testDefaultConstructorSetsPointsToZero() {
     PlanPremiumTop plan = new PlanPremiumTop();
-    assertEquals(100, plan.getPoints());
+    assertEquals(0, plan.getPoints());
     plan.setPoints(99);
     assertEquals(99, plan.getPoints());
     PlanPremiumTop plan2 = new PlanPremiumTop();
@@ -27,7 +27,7 @@ public class PlanPremiumTopTest {
     void testCopyConstructorFromZero() {
         PlanPremiumTop base = new PlanPremiumTop();
         PlanPremiumTop plan = new PlanPremiumTop(base);
-        assertEquals(200, plan.getPoints());
+        assertEquals(100, plan.getPoints());
     }
 
     @Test
@@ -115,7 +115,7 @@ public class PlanPremiumTopTest {
     @Test
     void testToStringZeroPoints() {
         PlanPremiumTop plan = new PlanPremiumTop();
-        assertEquals("Plano: PremiumTop\n    Pontos: 100", plan.toString());
+        assertEquals("Plano: PremiumTop\n    Pontos: 0", plan.toString());
     }
 
     @Test

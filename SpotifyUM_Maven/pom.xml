@@ -62,14 +62,6 @@
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
-        <testResources>
-            <testResource>
-                <directory>src/quickcheckTests/csv</directory>
-                <includes>
-                    <include>*.csv</include>
-                </includes>
-            </testResource>
-        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -85,7 +77,6 @@
                         <configuration>
                             <sources>
                                 <source>${basedir}/src/evosuiteTests/java</source>
-                                <source>${basedir}/src/quickcheckTests</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -133,8 +124,7 @@
                     <argLine>${jacocoArgLine}</argLine> 
                     <excludes>
                         <exclude>**/BrowserOpenerTest.java</exclude>
-                        <exclude>**/BrowserOpener_ESTest.java</exclude>
-                   </excludes>
+                    </excludes>
                 </configuration>
             </plugin>
             

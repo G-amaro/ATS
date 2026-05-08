@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlaylistCreationMenu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpotifyUM</a> &gt; <a href="index.source.html" class="el_package">org.View</a> &gt; <span class="el_source">PlaylistCreationMenu.java</span></div><h1>PlaylistCreationMenu.java</h1><pre class="source lang-java linenums">package org.View;
+
+import org.Controller.Controller;
+
+/**
+ * Classe que representa o menu de criação de playlists.
+ * Permite criar novas playlists para o utilizador.
+ */
+public class PlaylistCreationMenu extends Menu {
+
+    /**
+     * Construtor do menu de criação de playlists.
+     * @param controller Controlador principal da aplicação.
+     * @param menuManager Gestor de menus.
+     */
+    public PlaylistCreationMenu(Controller controller, MenuManager menuManager) {
+<span class="fc" id="L17">        super(controller, menuManager);</span>
+<span class="fc" id="L18">    }</span>
+
+    /**
+     * Mostra o menu de criação de playlists e trata a seleção do utilizador.
+     */
+    @Override
+    public void show() {
+<span class="nc" id="L25">        System.out.println(&quot;\n🎵━━━━━━━━━━━━━━━【 MENU DE CRIAÇÃO DE PLAYLIST 】━━━━━━━━━━━━━━━🎵\n&quot;);</span>
+<span class="nc" id="L26">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;1️⃣&quot;, &quot;➕📝 Criar Playlist&quot;);</span>
+<span class="nc" id="L27">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;2️⃣&quot;, &quot;🎼🎚️ Criar Playlist por Género e Duração&quot;);</span>
+<span class="nc" id="L28">        System.out.printf(&quot;%-5s %s\n&quot;, &quot;0️⃣&quot;, &quot;🔙 Voltar ao Menu de Playlists&quot;);</span>
+<span class="nc" id="L29">        System.out.print(&quot;\n👉 Escolhe uma opção: &quot;);</span>
+<span class="nc" id="L30">        handleInput();</span>
+<span class="nc" id="L31">    }</span>
+
+    /**
+     * Lê e processa a opção escolhida pelo utilizador.
+     */
+    public void handleInput() {
+        try {
+<span class="fc" id="L38">            int choice = getScanner().nextInt();</span>
+<span class="fc" id="L39">            getScanner().nextLine(); // Limpar buffer</span>
+<span class="fc" id="L40">            cleanTerminal();</span>
+<span class="fc bfc" id="L41" title="All 4 branches covered.">            switch (choice) {</span>
+                case 1:
+<span class="fc" id="L43">                    createPlaylist();</span>
+<span class="fc" id="L44">                    break;</span>
+                case 2:
+<span class="fc" id="L46">                    createPlaylistWithGenreAndDuration();</span>
+<span class="fc" id="L47">                    break;</span>
+                case 0:
+<span class="fc" id="L49">                    getMenuManager().setMenu(new PlaylistMenu(getController(), getMenuManager()));</span>
+<span class="fc" id="L50">                    break;</span>
+                default:
+<span class="fc" id="L52">                    System.out.println(&quot;❌ Opção inválida. Tenta novamente.\n&quot;);</span>
+                    break;
+            }
+<span class="fc" id="L55">        } catch (Exception e) {</span>
+<span class="fc" id="L56">            System.out.println(&quot;❌ Erro: &quot; + e.getMessage());</span>
+<span class="fc" id="L57">            getScanner().nextLine(); // Limpar buffer</span>
+<span class="fc" id="L58">        }</span>
+<span class="fc" id="L59">    }</span>
+
+    /**
+     * Cria uma nova playlist com o nome fornecido pelo utilizador.
+     */
+    public void createPlaylist() {
+<span class="fc" id="L65">        System.out.print(&quot;📝 Nome da nova playlist: &quot;);</span>
+<span class="fc" id="L66">        String playlistName = getScanner().nextLine();</span>
+<span class="fc" id="L67">        String result = getController().addToCurrentUserPlaylists(playlistName);</span>
+<span class="fc" id="L68">        System.out.println(&quot;\n&quot; + result + &quot;\n&quot;);</span>
+<span class="fc" id="L69">    }</span>
+
+    /**
+     * Cria uma nova playlist com um género musical e duração máxima fornecidos pelo utilizador.
+     */
+    public void createPlaylistWithGenreAndDuration() {
+<span class="fc" id="L75">        System.out.print(&quot;📝 Nome da nova playlist: &quot;);</span>
+<span class="fc" id="L76">        String playlistName = getScanner().nextLine();</span>
+
+<span class="fc" id="L78">        System.out.println(getController().listAllGenres());</span>
+<span class="fc" id="L79">        System.out.print(&quot;🎵 Género da nova playlist: &quot;);</span>
+<span class="fc" id="L80">        String genre = getScanner().nextLine();</span>
+
+<span class="fc" id="L82">        System.out.print(&quot;⏳ Duração máxima da nova playlist (em minutos): &quot;);</span>
+<span class="fc" id="L83">        int maxDuration = getScanner().nextInt();</span>
+<span class="fc" id="L84">        getScanner().nextLine(); // Limpar buffer</span>
+
+<span class="fc" id="L86">        System.out.println(getController().createGenrePlaylist(playlistName, genre, maxDuration*60));</span>
+<span class="fc" id="L87">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

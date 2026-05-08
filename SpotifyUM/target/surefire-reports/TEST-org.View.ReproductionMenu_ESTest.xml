@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.View.ReproductionMenu_ESTest" time="4.094" tests="15" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/tomas/Desktop/3ºano 2ºsemestre/ATS/projeto/ATS/SpotifyUM/target/test-classes:/home/tomas/Desktop/3ºano 2ºsemestre/ATS/projeto/ATS/SpotifyUM/target/classes:/home/tomas/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/home/tomas/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/home/tomas/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/tomas/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/home/tomas/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/home/tomas/.m2/repository/org/pitest/pitest-junit5-plugin/1.2.2/pitest-junit5-plugin-1.2.2.jar:/home/tomas/.m2/repository/org/mockito/mockito-core/4.11.0/mockito-core-4.11.0.jar:/home/tomas/.m2/repository/net/bytebuddy/byte-buddy/1.12.19/byte-buddy-1.12.19.jar:/home/tomas/.m2/repository/net/bytebuddy/byte-buddy-agent/1.12.19/byte-buddy-agent-1.12.19.jar:/home/tomas/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/tomas/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/home/tomas/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/home/tomas/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/tomas/.m2/repository/org/junit/vintage/junit-vintage-engine/5.8.2/junit-vintage-engine-5.8.2.jar:/home/tomas/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/tomas/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik/1.7.3/jqwik-1.7.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik-api/1.7.3/jqwik-api-1.7.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik-web/1.7.3/jqwik-web-1.7.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik-time/1.7.3/jqwik-time-1.7.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik-engine/1.7.3/jqwik-engine-1.7.3.jar:/home/tomas/.m2/repository/org/evosuite/evosuite-standalone-runtime/1.0.6/evosuite-standalone-runtime-1.0.6.jar:"/>
+    <property name="java.vm.vendor" value="Private Build"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value=""/>
+    <property name="user.country.format" value="PT"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="os.name" value="Linux"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
+    <property name="sun.java.command" value="/home/tomas/Desktop/3ºano 2ºsemestre/ATS/projeto/ATS/SpotifyUM/target/surefire/surefirebooter-20260507193104324_66.jar /home/tomas/Desktop/3ºano 2ºsemestre/ATS/projeto/ATS/SpotifyUM/target/surefire 2026-05-07T19-31-03_222-jvmRun1 surefire-20260507193104324_64tmp surefire_3-20260507193104324_65tmp"/>
+    <property name="surefire.test.class.path" value="/home/tomas/Desktop/3ºano 2ºsemestre/ATS/projeto/ATS/SpotifyUM/target/test-classes:/home/tomas/Desktop/3ºano 2ºsemestre/ATS/projeto/ATS/SpotifyUM/target/classes:/home/tomas/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/home/tomas/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/home/tomas/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/tomas/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/home/tomas/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/home/tomas/.m2/repository/org/pitest/pitest-junit5-plugin/1.2.2/pitest-junit5-plugin-1.2.2.jar:/home/tomas/.m2/repository/org/mockito/mockito-core/4.11.0/mockito-core-4.11.0.jar:/home/tomas/.m2/repository/net/bytebuddy/byte-buddy/1.12.19/byte-buddy-1.12.19.jar:/home/tomas/.m2/repository/net/bytebuddy/byte-buddy-agent/1.12.19/byte-buddy-agent-1.12.19.jar:/home/tomas/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/tomas/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/home/tomas/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/home/tomas/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/tomas/.m2/repository/org/junit/vintage/junit-vintage-engine/5.8.2/junit-vintage-engine-5.8.2.jar:/home/tomas/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/tomas/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik/1.7.3/jqwik-1.7.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik-api/1.7.3/jqwik-api-1.7.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik-web/1.7.3/jqwik-web-1.7.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik-time/1.7.3/jqwik-time-1.7.3.jar:/home/tomas/.m2/repository/net/jqwik/jqwik-engine/1.7.3/jqwik-engine-1.7.3.jar:/home/tomas/.m2/repository/org/evosuite/evosuite-standalone-runtime/1.0.6/evosuite-standalone-runtime-1.0.6.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/tomas"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="/usr/lib/jvm/java-8-openjdk-amd64/jre"/>
+    <property name="basedir" value="/home/tomas/Desktop/3ºano 2ºsemestre/ATS/projeto/ATS/SpotifyUM"/>
+    <property name="file.separator" value="/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/home/tomas/Desktop/3ºano 2ºsemestre/ATS/projeto/ATS/SpotifyUM/target/surefire/surefirebooter-20260507193104324_66.jar:/home/tomas/.m2/repository/org/jacoco/org.jacoco.agent/0.8.8/org.jacoco.agent-0.8.8-runtime.jar"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/classes"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_482-8u482-ga~us1-0ubuntu1~24.04-b08"/>
+    <property name="user.name" value="tomas"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="6.8.0-111-generic"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/endorsed"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/home/tomas/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="1.8.0_482"/>
+    <property name="user.dir" value="/home/tomas/Desktop/3ºano 2ºsemestre/ATS/projeto/ATS/SpotifyUM"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="user.language.format" value="pt"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Private Build"/>
+    <property name="java.vm.version" value="25.482-b08"/>
+    <property name="java.specification.maintenance.version" value="6"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="52.0"/>
+  </properties>
+  <testcase name="test06" classname="org.View.ReproductionMenu_ESTest" time="3.034">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$7.run(ReproductionMenu_ESTest.java:160)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$7.run(ReproductionMenu_ESTest.java:161)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🔞 Quer apenas músicas explícitas? (s/n)
+]]></system-out>
+    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+  </testcase>
+  <testcase name="test07" classname="org.View.ReproductionMenu_ESTest" time="0.015">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$8.run(ReproductionMenu_ESTest.java:184)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$8.run(ReproductionMenu_ESTest.java:185)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🔞 Quer apenas músicas explícitas? (s/n)
+]]></system-out>
+  </testcase>
+  <testcase name="test08" classname="org.View.ReproductionMenu_ESTest" time="0.026">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$9.run(ReproductionMenu_ESTest.java:210)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$9.run(ReproductionMenu_ESTest.java:211)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🚫 Por favor, insira apenas números.
+]]></system-out>
+  </testcase>
+  <testcase name="test09" classname="org.View.ReproductionMenu_ESTest" time="0.032">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$10.run(ReproductionMenu_ESTest.java:234)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$10.run(ReproductionMenu_ESTest.java:235)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🚫 Por favor, insira apenas números.
+]]></system-out>
+  </testcase>
+  <testcase name="test10" classname="org.View.ReproductionMenu_ESTest" time="0.022">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$11.run(ReproductionMenu_ESTest.java:258)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🚫 Por favor, insira apenas números.
+]]></system-out>
+  </testcase>
+  <testcase name="test00" classname="org.View.ReproductionMenu_ESTest" time="0.014">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$1.run(ReproductionMenu_ESTest.java:35)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$1.run(ReproductionMenu_ESTest.java:36)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+Deseja reproduzir em modo de Letra? (s/n)
+
+🎧 A tocar: "Playlist Aleatória"
+💡 Comandos disponíveis:
+
+❌ Erro ao reproduzir: null
+]]></system-out>
+  </testcase>
+  <testcase name="test11" classname="org.View.ReproductionMenu_ESTest" time="0.011">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$12.run(ReproductionMenu_ESTest.java:282)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$12.run(ReproductionMenu_ESTest.java:283)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+Deseja reproduzir em modo de Letra? (s/n)
+
+❌ Erro ao reproduzir: null
+
+🚫 Por favor, insira apenas números.
+]]></system-out>
+  </testcase>
+  <testcase name="test01" classname="org.View.ReproductionMenu_ESTest" time="0.007">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$2.run(ReproductionMenu_ESTest.java:51)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🚫 Por favor, insira apenas números.
+]]></system-out>
+  </testcase>
+  <testcase name="test12" classname="org.View.ReproductionMenu_ESTest" time="0.009">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$13.run(ReproductionMenu_ESTest.java:312)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$13.run(ReproductionMenu_ESTest.java:313)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🚫 Por favor, insira apenas números.
+]]></system-out>
+  </testcase>
+  <testcase name="test02" classname="org.View.ReproductionMenu_ESTest" time="0.014">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$3.run(ReproductionMenu_ESTest.java:66)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$3.run(ReproductionMenu_ESTest.java:67)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🎵━━━━━━━━━━━━━━━【 MENU DE REPRODUÇÃO 】━━━━━━━━━━━━━━━🎵
+
+1️⃣   ▶️   Reproduzir Playlist Aleatória
+]]></system-out>
+  </testcase>
+  <testcase name="test13" classname="org.View.ReproductionMenu_ESTest" time="0.011">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$14.run(ReproductionMenu_ESTest.java:336)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$14.run(ReproductionMenu_ESTest.java:337)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🔞 Quer apenas músicas explícitas? (s/n)
+
+⏳ Quer adicionar um limite de duração à playlist? (s/n)
+⏱️  Por defeito, a duração máxima é de 60 minutos.
+
+🚫 Não existem músicas disponíveis para a playlist.
+]]></system-out>
+  </testcase>
+  <testcase name="test03" classname="org.View.ReproductionMenu_ESTest" time="0.007">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$4.run(ReproductionMenu_ESTest.java:88)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$4.run(ReproductionMenu_ESTest.java:89)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+]]></system-out>
+  </testcase>
+  <testcase name="test14" classname="org.View.ReproductionMenu_ESTest" time="0.008">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$15.run(ReproductionMenu_ESTest.java:352)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$15.run(ReproductionMenu_ESTest.java:353)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🚫 Não existem playlists aleatórias disponíveis.
+]]></system-out>
+  </testcase>
+  <testcase name="test04" classname="org.View.ReproductionMenu_ESTest" time="0.004">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$5.run(ReproductionMenu_ESTest.java:111)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$5.run(ReproductionMenu_ESTest.java:112)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🔞 Quer apenas músicas explícitas? (s/n)
+]]></system-out>
+  </testcase>
+  <testcase name="test05" classname="org.View.ReproductionMenu_ESTest" time="0.012">
+    <system-out><![CDATA[Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.LoginMenu.<init>(LoginMenu.java:16)
+org.View.MenuManager.<init>(MenuManager.java:16)
+org.View.ReproductionMenu_ESTest$6.run(ReproductionMenu_ESTest.java:135)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+Erro ao limpar o terminal: Security manager blocks ("java.io.FilePermission" "<<ALL FILES>>" "execute")
+java.lang.Thread.getStackTrace(Thread.java:1564)
+org.evosuite.runtime.sandbox.MSecurityManager.checkPermission(MSecurityManager.java:434)
+java.lang.SecurityManager.checkExec(SecurityManager.java:799)
+java.lang.ProcessBuilder.start(ProcessBuilder.java:1018)
+org.View.Menu.cleanTerminal(Menu.java:113)
+org.View.Menu.<init>(Menu.java:29)
+org.View.ReproductionMenu.<init>(ReproductionMenu.java:32)
+org.View.ReproductionMenu_ESTest$6.run(ReproductionMenu_ESTest.java:136)
+java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+java.util.concurrent.FutureTask.run(FutureTask.java:266)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:750)
+
+
+🔞 Quer apenas músicas explícitas? (s/n)
+]]></system-out>
+  </testcase>
+</testsuite>

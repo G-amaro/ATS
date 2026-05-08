@@ -15,6 +15,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Collections;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -454,5 +460,79 @@ class UserTest {
         assertEquals(0, defaultUser.getPontos());
         assertTrue(defaultUser.getHistory().isEmpty());
         assertTrue(defaultUser.getSubscriptionPlan() instanceof FreePlan);
+    }
+
+    @Test
+    void testGetTopGenreWithNullOrEmptyHistory() throws Exception {
+        User user = new User();
+
+        // 1. Caminho onde history.isEmpty() é verdadeiro (Porque acabámos de o criar)
+        assertNull(user.getTopGenre());
+
+        // 2. Caminho onde history == null
+        // Como todos os construtores da classe User inicializam a lista, 'history' nunca é null naturalmente.
+        // O JaCoCo queixa-se disso! Usamos "Reflection" para forçar a variável interna a null e cobrir a linha.
+        Field historyField = User.class.getDeclaredField("history");
+        historyField.setAccessible(true);
+        historyField.set(user, null);
+
+        assertNull(user.getTopGenre());
+    }
+
+    @Test
+    void testGetTopGenreWithNullSongOrNullGenre() {
+        User user = new User();
+
+        // Para atingir 100% de cobertura num "&&", precisamos de testar 3 caminhos:
+
+        // Caminho 1: song == null (Avalia para Falso e sai logo)
+        History mockHistoryNoSong = mock(History.class);
+        when(mockHistoryNoSong.getSong()).thenReturn(null);
+        when(mockHistoryNoSong.clone()).thenReturn(mockHistoryNoSong); // Necessário pois o setHistory faz .clone()
+
+        // Caminho 2: song != null MAS song.getGenre() == null (Avalia para Falso na segunda condição)
+        History mockHistoryNullGenre = mock(History.class);
+        Song mockSongNullGenre = mock(Song.class);
+        when(mockSongNullGenre.getGenre()).thenReturn(null);
+        when(mockHistoryNullGenre.getSong()).thenReturn(mockSongNullGenre);
+        when(mockHistoryNullGenre.clone()).thenReturn(mockHistoryNullGenre);
+
+        // Caminho 3: Tudo correto (Avalia para Verdadeiro e conta o género)
+        History mockHistoryNormal = mock(History.class);
+        Song mockSongNormal = mock(Song.class);
+        when(mockSongNormal.getGenre()).thenReturn("Rock");
+        when(mockHistoryNormal.getSong()).thenReturn(mockSongNormal);
+        when(mockHistoryNormal.clone()).thenReturn(mockHistoryNormal);
+
+        // Colocamos os três históricos simulados no User
+        user.setHistory(Arrays.asList(mockHistoryNoSong, mockHistoryNullGenre, mockHistoryNormal));
+
+        // Ao calcular, vai ignorar os dois primeiros (entrando nos caminhos falsos) e registar o "Rock"
+        assertEquals("Rock", user.getTopGenre());
+    }
+
+    @Test
+    void testCreatePlaylistsWithNullConditions() {
+        User user = new User();
+        Map<String, Album> emptyMap = new HashMap<>();
+
+        // Cenário A: topGenre == null (porque a história está vazia) E albumMap != null
+        assertTrue(user.createTopGenrePlaylist(emptyMap).isEmpty());
+        assertTrue(user.createTopGenrePlaylistWithinTime(emptyMap, 100).isEmpty());
+        assertTrue(user.createTopGenreExplicitPlaylist(emptyMap).isEmpty());
+
+        // Vamos dar-lhe um histórico válido para o topGenre deixar de ser null
+        History mockHistory = mock(History.class);
+        Song mockSong = mock(Song.class);
+        when(mockSong.getGenre()).thenReturn("Pop");
+        when(mockHistory.getSong()).thenReturn(mockSong);
+        when(mockHistory.clone()).thenReturn(mockHistory);
+        user.setHistory(Collections.singletonList(mockHistory));
+
+        // Cenário B: topGenre != null (agora é "Pop"), MAS o albumMap == null
+        // As três funções devem bater na segunda condição do '||' e retornar a lista vazia.
+        assertTrue(user.createTopGenrePlaylist(null).isEmpty());
+        assertTrue(user.createTopGenrePlaylistWithinTime(null, 100).isEmpty());
+        assertTrue(user.createTopGenreExplicitPlaylist(null).isEmpty());
     }
 }

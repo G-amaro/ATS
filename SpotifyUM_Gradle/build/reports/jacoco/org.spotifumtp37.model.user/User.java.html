@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GrupoTP-37</a> &gt; <a href="index.source.html" class="el_package">org.spotifumtp37.model.user</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package org.spotifumtp37.model.user;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GrupoTP-37</a> &gt; <a href="index.source.html" class="el_package">org.spotifumtp37.model.user</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package org.spotifumtp37.model.user;
 
 import org.spotifumtp37.model.album.Album;
 import org.spotifumtp37.model.album.Song;
@@ -326,12 +326,12 @@ public class User implements Serializable {
      * @return The top genre as a String, or null if the history is empty or genres are not available.
      */
     public String getTopGenre() {
-<span class="pc bpc" id="L329" title="1 of 4 branches missed.">        if (history == null || history.isEmpty()) return null;</span>
+<span class="fc bfc" id="L329" title="All 4 branches covered.">        if (history == null || history.isEmpty()) return null;</span>
 
 <span class="fc" id="L331">        Map&lt;String, Integer&gt; genreCount = new HashMap&lt;&gt;();</span>
 <span class="fc bfc" id="L332" title="All 2 branches covered.">        for (History h : history) {</span>
 <span class="fc" id="L333">            Song song = h.getSong();</span>
-<span class="pc bpc" id="L334" title="2 of 4 branches missed.">            if (song != null &amp;&amp; song.getGenre() != null) {</span>
+<span class="fc bfc" id="L334" title="All 4 branches covered.">            if (song != null &amp;&amp; song.getGenre() != null) {</span>
 <span class="fc" id="L335">                String genre = song.getGenre();</span>
 <span class="fc" id="L336">                genreCount.put(genre, genreCount.getOrDefault(genre, 0) + 1);</span>
             }
@@ -351,7 +351,7 @@ public class User implements Serializable {
      */
     public List&lt;Song&gt; createTopGenrePlaylist(Map&lt;String, Album&gt; albumMap) {
 <span class="fc" id="L353">        String topGenre = getTopGenre();</span>
-<span class="pc bpc" id="L354" title="1 of 4 branches missed.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
+<span class="fc bfc" id="L354" title="All 4 branches covered.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
 
 <span class="fc" id="L356">        List&lt;Song&gt; result = new ArrayList&lt;&gt;();</span>
 <span class="fc bfc" id="L357" title="All 2 branches covered.">        for (Album album : albumMap.values()) {</span>
@@ -374,7 +374,7 @@ public class User implements Serializable {
      */
     public List&lt;Song&gt; createTopGenrePlaylistWithinTime(Map&lt;String, Album&gt; albumMap, int maxTime) {
 <span class="fc" id="L376">        String topGenre = getTopGenre();</span>
-<span class="pc bpc" id="L377" title="1 of 4 branches missed.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
+<span class="fc bfc" id="L377" title="All 4 branches covered.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
 
 <span class="fc" id="L379">        int totalTime = 0;</span>
 <span class="fc" id="L380">        List&lt;Song&gt; playlist = new ArrayList&lt;&gt;();</span>
@@ -400,7 +400,7 @@ public class User implements Serializable {
      */
     public List&lt;Song&gt; createTopGenreExplicitPlaylist(Map&lt;String, Album&gt; albumMap) {
 <span class="fc" id="L402">        String topGenre = getTopGenre();</span>
-<span class="pc bpc" id="L403" title="1 of 4 branches missed.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
+<span class="fc bfc" id="L403" title="All 4 branches covered.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
 
 <span class="fc" id="L405">        List&lt;Song&gt; result = new ArrayList&lt;&gt;();</span>
 <span class="fc bfc" id="L406" title="All 2 branches covered.">        for (Album album : albumMap.values()) {</span>

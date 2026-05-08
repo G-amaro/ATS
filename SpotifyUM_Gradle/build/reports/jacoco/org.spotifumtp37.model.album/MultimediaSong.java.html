@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MultimediaSong.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GrupoTP-37</a> &gt; <a href="index.source.html" class="el_package">org.spotifumtp37.model.album</a> &gt; <span class="el_source">MultimediaSong.java</span></div><h1>MultimediaSong.java</h1><pre class="source lang-java linenums">package org.spotifumtp37.model.album;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MultimediaSong.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GrupoTP-37</a> &gt; <a href="index.source.html" class="el_package">org.spotifumtp37.model.album</a> &gt; <span class="el_source">MultimediaSong.java</span></div><h1>MultimediaSong.java</h1><pre class="source lang-java linenums">package org.spotifumtp37.model.album;
 
 import java.io.Serializable;
 
@@ -39,8 +39,8 @@ public class MultimediaSong extends Song implements Serializable {
      * @param videoLink The URL or reference to the video content
      */
     public void setVideoLink(String videoLink) {
-<span class="nc" id="L42">        this.videoLink = videoLink;</span>
-<span class="nc" id="L43">    }</span>
+<span class="fc" id="L42">        this.videoLink = videoLink;</span>
+<span class="fc" id="L43">    }</span>
 
     /**
      * Parameterized constructor to create a multimedia song with specific attributes.
@@ -54,7 +54,7 @@ public class MultimediaSong extends Song implements Serializable {
      * @param durationInSeconds The duration of the song in seconds
      * @param videoLink The URL or reference to the video content
      */
-    public MultimediaSong(String name, String artist, String publisher, String lyrics, String musicalNotes, String genre, int durationInSeconds, String videoLink) {
+    MultimediaSong(String name, String artist, String publisher, String lyrics, String musicalNotes, String genre, int durationInSeconds, String videoLink) {
 <span class="fc" id="L58">        super(name, artist, publisher, lyrics, musicalNotes, genre, durationInSeconds);</span>
 <span class="fc" id="L59">        this.multimedia = true;</span>
 <span class="fc" id="L60">        this.videoLink = videoLink;</span>

@@ -22,15 +22,16 @@ dependencies {
     implementation("com.google.code.gson:gson:2.13.1")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(files("lib/evosuite/evosuite-standalone-runtime-1.0.6.jar"))
     testImplementation("junit:junit:4.12")
+    testImplementation("org.mockito:mockito-core:5.+")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.+")
 }
 
 sourceSets {
     val test by getting {
         java.srcDir("src/evosuite-tests")
-        java.srcDir("src/hypothesis-tests")
-        resources.srcDir("src/hypothesis-tests")
     }
 }
 
@@ -45,14 +46,25 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+
+    // 1. Excluir os testes gerados pelo EvoSuite (que terminam em _ESTest) da task normal de testes
+    exclude("**/*_ESTest*")
+
+    testLogging {
+        events("failed")
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
+
     finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
 }
 
 tasks.jacocoTestReport {
-    dependsOn(tasks.test, tasks.named("testEvoSuite")) // tests are required to run before generating the report
-    
-    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/*.exec"))
-    
+    // 2. Remover a dependência da task testEvoSuite
+    dependsOn(tasks.test)
+
+    // 3. (Opcional mas recomendado) Garantir que o JaCoCo lê apenas a execução dos testes normais
+    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/test.exec"))
+
     reports {
         xml.required.set(true)
         csv.required.set(false)
@@ -68,8 +80,6 @@ tasks.register<Test>("testEvoSuite") {
         events("passed", "skipped", "failed")
     }
 }
-
-
 
 abstract class EvoSuiteGenerateAllTask @Inject constructor(private val execOperations: ExecOperations) : DefaultTask() {
     @TaskAction

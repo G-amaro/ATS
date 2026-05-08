@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+
 /**
  * Represents a playlist of songs in a music application.
  * <p>
@@ -269,6 +270,9 @@ public class Playlist implements Serializable, Playable {
      * @param songs The list of {@link Song} objects to add. Each song will be cloned.
      */
     public void setSongs(List<Song> songs) {
+        // CORREÇÃO: Limpa a lista antiga para substituir pelas novas músicas
+        this.songs = new ArrayList<>();
+
         if (songs != null) {
             for (Song song : songs) {
                 this.songs.add(song.clone()); // Assuming Song has a clone method
@@ -281,7 +285,6 @@ public class Playlist implements Serializable, Playable {
             this.currentSong = null;
         }
     }
-
     /**
      * Sets the currently selected song in the playlist.
      * The provided song should ideally be one of the songs already in the playlist.
@@ -491,4 +494,6 @@ public class Playlist implements Serializable, Playable {
             throw new SubscriptionDoesNotAllowException("Your subscription does not allow deleting songs from the playlist.");
         }
     }
+
+
 }
