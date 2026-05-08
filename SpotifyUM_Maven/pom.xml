@@ -133,7 +133,8 @@
                     <argLine>${jacocoArgLine}</argLine> 
                     <excludes>
                         <exclude>**/BrowserOpenerTest.java</exclude>
-                    </excludes>
+                        <exclude>**/BrowserOpener_ESTest.java</exclude>
+                   </excludes>
                 </configuration>
             </plugin>
             

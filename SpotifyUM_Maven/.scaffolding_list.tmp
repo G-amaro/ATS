@@ -37,4 +37,3 @@ org.Model.Music.MusicReproduction_ESTest_scaffolding
 org.Model.SpotifUM_ESTest_scaffolding
 org.Utils.MusicPlayer_ESTest_scaffolding
 org.Utils.Serialization_ESTest_scaffolding
-org.Utils.BrowserOpener_ESTest_scaffolding

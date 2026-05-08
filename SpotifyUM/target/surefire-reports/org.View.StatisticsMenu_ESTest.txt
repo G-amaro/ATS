@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.View.StatisticsMenu_ESTest
--------------------------------------------------------------------------------
-Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.409 s -- in org.View.StatisticsMenu_ESTest
