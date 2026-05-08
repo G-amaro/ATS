@@ -9,7 +9,7 @@ public class PlanPremiumTop extends Plan {
      * Construtor vazio da classe PlanPremiumTop.
      */
     public PlanPremiumTop() {
-        this.setPoints(0);
+        this.setPoints(100);   //CORREÇÃO
     }
 
     /**
