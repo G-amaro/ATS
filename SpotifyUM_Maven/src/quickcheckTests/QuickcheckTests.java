@@ -84,7 +84,7 @@ class QuickcheckTests {
         
         assertTrue(encontrada, "A playlist deve ter sido criada no sistema");
     }
-
+    
     @ParameterizedTest
     @DisplayName("Propriedade: Acumulação de Pontos por Plano (Incluindo 2.5% PremiumTop)")
     @CsvFileSource(resources = "/test_plans.csv", delimiter = '|')
@@ -92,13 +92,18 @@ class QuickcheckTests {
         controller.addNewUser(email, email, "Morada", "pass");
         User u = spotifUM.getUsers().get(email);
         
-        // Aplicação do plano conforme o enunciado [cite: 77, 82]
-        if (planoInicial.equals("PremiumBase")) u.setPlan(new PlanPremiumBase());
-        else if (planoInicial.equals("PremiumTop")) {
-            u.setPlan(new PlanPremiumTop());
-            // Premium Top recebe 100 pontos imediatos na adesão 
-            assertEquals(100, u.getPlan().getPoints(), "PremiumTop deve iniciar com 100 pontos");
-        } else u.setPlan(new PlanFree());
+        // Aplicação do plano conforme o enunciado
+        if (planoInicial.equals("PremiumBase")) {
+            u.setPlan(new PlanPremiumBase());
+        } else if (planoInicial.equals("PremiumTop")) {
+            // Usamos o construtor que recebe o plano atual (ex: PlanFree) 
+            // e soma 100 pontos ao acumulado existente
+            u.setPlan(new PlanPremiumTop(u.getPlan())); 
+            
+            assertEquals(100, u.getPlan().getPoints(), "PremiumTop deve iniciar com 100 pontos (base 0 + bónus)");
+        } else {
+            u.setPlan(new PlanFree());
+        }
 
         int pontosAntes = u.getPlan().getPoints();
         
@@ -106,10 +111,8 @@ class QuickcheckTests {
             int pontosNoMomento = u.getPlan().getPoints();
             u.addPoints(); 
             
-            // Verificação da regra específica do Premium Top 
             if (planoInicial.equals("PremiumTop")) {
                 int ganhoEsperado = (int) (pontosNoMomento * 0.025);
-                // O ganho pode ser 0 se os pontos forem baixos, mas nunca negativo
                 assertTrue(u.getPlan().getPoints() >= pontosNoMomento + ganhoEsperado);
             }
         }
