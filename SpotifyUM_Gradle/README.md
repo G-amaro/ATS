@@ -79,7 +79,6 @@ Run the following command to execute the tests and generate the HTML report:
 ./gradlew jacocoTestReport
 ```
 
-*Note: Currently, the coverage report focuses on the results of the `test` task (Standard + Hypothesis). To include EvoSuite, ensure they are run or integrated into the execution data.*
 
 ### Viewing the Report
 After running the command, you can find the coverage report at:
