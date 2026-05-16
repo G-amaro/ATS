@@ -92,8 +92,8 @@ public class Song implements Serializable {
      * @param name The new song name
      */
     public void setName(String name) {
-<span class="fc" id="L95">        this.name = name;</span>
-<span class="fc" id="L96">    }</span>
+<span class="nc" id="L95">        this.name = name;</span>
+<span class="nc" id="L96">    }</span>
 
     /**
      * Gets the artist who performs the song.
@@ -110,8 +110,8 @@ public class Song implements Serializable {
      * @param artist The new artist name
      */
     public void setArtist(String artist) {
-<span class="fc" id="L113">        this.artist = artist;</span>
-<span class="fc" id="L114">    }</span>
+<span class="nc" id="L113">        this.artist = artist;</span>
+<span class="nc" id="L114">    }</span>
 
     /**
      * Gets the publisher of the song.
@@ -128,8 +128,8 @@ public class Song implements Serializable {
      * @param publisher The new publisher name
      */
     public void setPublisher(String publisher) {
-<span class="fc" id="L131">        this.publisher = publisher;</span>
-<span class="fc" id="L132">    }</span>
+<span class="nc" id="L131">        this.publisher = publisher;</span>
+<span class="nc" id="L132">    }</span>
 
     /**
      * Gets the lyrics of the song.
@@ -146,8 +146,8 @@ public class Song implements Serializable {
      * @param lyrics The new song lyrics
      */
     public void setLyrics(String lyrics) {
-<span class="fc" id="L149">        this.lyrics = lyrics;</span>
-<span class="fc" id="L150">    }</span>
+<span class="nc" id="L149">        this.lyrics = lyrics;</span>
+<span class="nc" id="L150">    }</span>
 
     /**
      * Gets the musical notes or composition information.
@@ -164,8 +164,8 @@ public class Song implements Serializable {
      * @param musicalNotes The new musical notes
      */
     public void setMusicalNotes(String musicalNotes) {
-<span class="fc" id="L167">        this.musicalNotes = musicalNotes;</span>
-<span class="fc" id="L168">    }</span>
+<span class="nc" id="L167">        this.musicalNotes = musicalNotes;</span>
+<span class="nc" id="L168">    }</span>
 
     /**
      * Gets the genre of the song.
@@ -182,8 +182,8 @@ public class Song implements Serializable {
      * @param genre The new song genre
      */
     public void setGenre(String genre) {
-<span class="fc" id="L185">        this.genre = genre;</span>
-<span class="fc" id="L186">    }</span>
+<span class="nc" id="L185">        this.genre = genre;</span>
+<span class="nc" id="L186">    }</span>
 
     /**
      * Gets the duration of the song in seconds.
@@ -200,8 +200,8 @@ public class Song implements Serializable {
      * @param durationInSeconds The new duration in seconds
      */
     public void setDurationInSeconds(int durationInSeconds) {
-<span class="fc" id="L203">        this.durationInSeconds = durationInSeconds;</span>
-<span class="fc" id="L204">    }</span>
+<span class="nc" id="L203">        this.durationInSeconds = durationInSeconds;</span>
+<span class="nc" id="L204">    }</span>
 
     /**
      * Gets the number of times the song has been played.
@@ -218,15 +218,15 @@ public class Song implements Serializable {
      * @param timesPlayed The new play count
      */
     public void setTimesPlayed(int timesPlayed) {
-<span class="fc" id="L221">        this.timesPlayed = timesPlayed;</span>
-<span class="fc" id="L222">    }</span>
+<span class="nc" id="L221">        this.timesPlayed = timesPlayed;</span>
+<span class="nc" id="L222">    }</span>
 
     /**
      * Increments the play count of the song by one.
      */
     public void incrementTimesPlayed() {
-<span class="fc" id="L228">        this.timesPlayed++;</span>
-<span class="fc" id="L229">    }</span>
+<span class="nc" id="L228">        this.timesPlayed++;</span>
+<span class="nc" id="L229">    }</span>
 
     /**
      * Compares this song to another object for equality.
@@ -240,17 +240,17 @@ public class Song implements Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-<span class="fc bfc" id="L243" title="All 2 branches covered.">        if (this == obj) {</span>
-<span class="fc" id="L244">            return true;</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L244">            return true;</span>
         }
-<span class="fc bfc" id="L246" title="All 4 branches covered.">        if (obj == null || getClass() != obj.getClass()) {</span>
-<span class="fc" id="L247">            return false;</span>
+<span class="nc bnc" id="L246" title="All 4 branches missed.">        if (obj == null || getClass() != obj.getClass()) {</span>
+<span class="nc" id="L247">            return false;</span>
         }
-<span class="fc" id="L249">        Song other = (Song) obj;</span>
-<span class="fc bfc" id="L250" title="All 4 branches covered.">        return Objects.equals(name, other.name) &amp;&amp; Objects.equals(artist, other.artist)</span>
-<span class="fc bfc" id="L251" title="All 4 branches covered.">                &amp;&amp; Objects.equals(publisher, other.publisher) &amp;&amp; durationInSeconds == other.durationInSeconds</span>
-<span class="pc bpc" id="L252" title="2 of 4 branches missed.">                &amp;&amp; Objects.equals(lyrics, other.lyrics) &amp;&amp; Objects.equals(musicalNotes, other.musicalNotes)</span>
-<span class="pc bpc" id="L253" title="2 of 4 branches missed.">                &amp;&amp; Objects.equals(genre, other.genre) &amp;&amp; Objects.equals(timesPlayed, other.timesPlayed);</span>
+<span class="nc" id="L249">        Song other = (Song) obj;</span>
+<span class="nc bnc" id="L250" title="All 4 branches missed.">        return Objects.equals(name, other.name) &amp;&amp; Objects.equals(artist, other.artist)</span>
+<span class="nc bnc" id="L251" title="All 4 branches missed.">                &amp;&amp; Objects.equals(publisher, other.publisher) &amp;&amp; durationInSeconds == other.durationInSeconds</span>
+<span class="nc bnc" id="L252" title="All 4 branches missed.">                &amp;&amp; Objects.equals(lyrics, other.lyrics) &amp;&amp; Objects.equals(musicalNotes, other.musicalNotes)</span>
+<span class="nc bnc" id="L253" title="All 4 branches missed.">                &amp;&amp; Objects.equals(genre, other.genre) &amp;&amp; Objects.equals(timesPlayed, other.timesPlayed);</span>
     }
 
     /**
@@ -263,10 +263,10 @@ public class Song implements Serializable {
      */
     @Override
     public int hashCode() {
-<span class="fc" id="L266">        int result = getName().hashCode();</span>
-<span class="fc" id="L267">        result = 31 * result + getArtist().hashCode();</span>
-<span class="fc" id="L268">        result = 31 * result + getDurationInSeconds();</span>
-<span class="fc" id="L269">        return result;</span>
+<span class="nc" id="L266">        int result = getName().hashCode();</span>
+<span class="nc" id="L267">        result = 31 * result + getArtist().hashCode();</span>
+<span class="nc" id="L268">        result = 31 * result + getDurationInSeconds();</span>
+<span class="nc" id="L269">        return result;</span>
     }
 
     /**
@@ -286,7 +286,7 @@ public class Song implements Serializable {
      */
     @Override
     public String toString() {
-<span class="fc" id="L289">        return &quot;Song{&quot; +</span>
+<span class="nc" id="L289">        return &quot;Song{&quot; +</span>
                 &quot;name='&quot; + name + '\'' +
                 &quot;, artist='&quot; + artist + '\'' +
                 &quot;, publisher='&quot; + publisher + '\'' +
@@ -308,7 +308,7 @@ public class Song implements Serializable {
      * @return {@code false} for regular songs
      */
     public boolean isExplicit() {
-<span class="fc" id="L311">        return false;</span>
+<span class="nc" id="L311">        return false;</span>
     }
     
     /**
@@ -321,7 +321,7 @@ public class Song implements Serializable {
      * @return {@code false} for regular songs
      */
     public boolean isMultimedia() {
-<span class="fc" id="L324">        return false;</span>
+<span class="nc" id="L324">        return false;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

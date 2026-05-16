@@ -8,7 +8,7 @@ import java.io.Serializable;
  * excluding the favourites list.
  * This class implements {@link SubscriptionPlan} and {@link Serializable}.
  */
-<span class="fc" id="L11">public class PremiumBase implements Serializable, SubscriptionPlan {</span>
+<span class="nc" id="L11">public class PremiumBase implements Serializable, SubscriptionPlan {</span>
     /**
      * Adds points by giving a fixed bonus of 10 points to the existing points.
      *
@@ -17,7 +17,7 @@ import java.io.Serializable;
      */
     @Override
     public double addPoints(double points) {
-<span class="fc" id="L20">        return points + 10;</span>
+<span class="nc" id="L20">        return points + 10;</span>
     }
 
     /**
@@ -27,7 +27,7 @@ import java.io.Serializable;
      */
     @Override
     public boolean canCreatePlaylist() {
-<span class="fc" id="L30">        return true;</span>
+<span class="nc" id="L30">        return true;</span>
     }
 
     /**
@@ -37,7 +37,7 @@ import java.io.Serializable;
      */
     @Override
     public boolean canBrowsePlaylist() {
-<span class="fc" id="L40">        return true;</span>
+<span class="nc" id="L40">        return true;</span>
     }
 
     /**
@@ -47,7 +47,7 @@ import java.io.Serializable;
      */
     @Override
     public boolean canAccessFavouritesList() {
-<span class="fc" id="L50">        return false;</span>
+<span class="nc" id="L50">        return false;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

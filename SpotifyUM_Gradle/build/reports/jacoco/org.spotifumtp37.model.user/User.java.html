@@ -65,9 +65,9 @@ public class User implements Serializable {
 <span class="fc" id="L65">        this.password = password;</span>
 <span class="fc" id="L66">        this.pontos = pontos;</span>
 <span class="fc" id="L67">        this.history = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">        for (History h : history) {</span>
-<span class="fc" id="L69">            this.history.add(h.clone());</span>
-<span class="fc" id="L70">        }</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        for (History h : history) {</span>
+<span class="nc" id="L69">            this.history.add(h.clone());</span>
+<span class="nc" id="L70">        }</span>
 <span class="fc" id="L71">    }</span>
 
 
@@ -86,9 +86,9 @@ public class User implements Serializable {
 <span class="fc" id="L86">        this.password = other.getPassword();</span>
 <span class="fc" id="L87">        this.pontos = other.getPontos();</span>
 <span class="fc" id="L88">        this.history = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (History h : other.history) {</span>
-<span class="fc" id="L90">            this.history.add(h.clone());</span>
-<span class="fc" id="L91">        }</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        for (History h : other.history) {</span>
+<span class="nc" id="L90">            this.history.add(h.clone());</span>
+<span class="nc" id="L91">        }</span>
 <span class="fc" id="L92">    }</span>
 
     /**
@@ -96,15 +96,15 @@ public class User implements Serializable {
      * Initializes the user with default values: empty strings for name, email, address, and password,
      * a new {@link FreePlan} for the subscription, 0 points, and an empty listening history.
      */
-<span class="fc" id="L99">    public User() {</span>
-<span class="fc" id="L100">        this.name = &quot;&quot;;</span>
-<span class="fc" id="L101">        this.email = &quot;&quot;;</span>
-<span class="fc" id="L102">        this.address = &quot;&quot;;</span>
-<span class="fc" id="L103">        this.subscriptionplan = new FreePlan();</span>
-<span class="fc" id="L104">        this.password = &quot;&quot;;</span>
-<span class="fc" id="L105">        this.pontos = 0;</span>
-<span class="fc" id="L106">        this.history = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L107">    }</span>
+<span class="nc" id="L99">    public User() {</span>
+<span class="nc" id="L100">        this.name = &quot;&quot;;</span>
+<span class="nc" id="L101">        this.email = &quot;&quot;;</span>
+<span class="nc" id="L102">        this.address = &quot;&quot;;</span>
+<span class="nc" id="L103">        this.subscriptionplan = new FreePlan();</span>
+<span class="nc" id="L104">        this.password = &quot;&quot;;</span>
+<span class="nc" id="L105">        this.pontos = 0;</span>
+<span class="nc" id="L106">        this.history = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L107">    }</span>
 
     /**
      * Gets the name of the user.
@@ -167,11 +167,11 @@ public class User implements Serializable {
      * @return A new list containing clones of the user's {@link History} records.
      */
     public List&lt;History&gt; getHistory() {
-<span class="fc" id="L170">        List&lt;History&gt; copy = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L171" title="All 2 branches covered.">        for (History h : this.history) {</span>
-<span class="fc" id="L172">            copy.add(h.clone());</span>
-<span class="fc" id="L173">        }</span>
-<span class="fc" id="L174">        return copy;</span>
+<span class="nc" id="L170">        List&lt;History&gt; copy = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        for (History h : this.history) {</span>
+<span class="nc" id="L172">            copy.add(h.clone());</span>
+<span class="nc" id="L173">        }</span>
+<span class="nc" id="L174">        return copy;</span>
     }
 
     /**
@@ -181,12 +181,12 @@ public class User implements Serializable {
      * @throws IllegalArgumentException if the newPlan is null.
      */
     public void setSubscriptionPlan(SubscriptionPlan newPlan) {
-<span class="fc bfc" id="L184" title="All 2 branches covered.">        if (newPlan != null) {</span>
-<span class="fc" id="L185">            this.subscriptionplan = newPlan;  // Update the user's subscription plan with the new one</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        if (newPlan != null) {</span>
+<span class="nc" id="L185">            this.subscriptionplan = newPlan;  // Update the user's subscription plan with the new one</span>
         } else {
-<span class="fc" id="L187">            throw new IllegalArgumentException(&quot;Subscription plan cannot be null.&quot;);</span>
+<span class="nc" id="L187">            throw new IllegalArgumentException(&quot;Subscription plan cannot be null.&quot;);</span>
         }
-<span class="fc" id="L189">    }</span>
+<span class="nc" id="L189">    }</span>
 
     /**
      * Sets the points for the user.
@@ -194,8 +194,8 @@ public class User implements Serializable {
      * @param pontos The new point value.
      */
     public void setPontos(double pontos) {
-<span class="fc" id="L197">        this.pontos = pontos;</span>
-<span class="fc" id="L198">    }</span>
+<span class="nc" id="L197">        this.pontos = pontos;</span>
+<span class="nc" id="L198">    }</span>
 
     /**
      * Sets the user's listening history.
@@ -204,11 +204,11 @@ public class User implements Serializable {
      * @param history A list of {@link History} records to set. Each element will be cloned.
      */
     public void setHistory(List&lt;History&gt; history) {
-<span class="fc" id="L207">        this.history = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L208" title="All 2 branches covered.">        for (History h : history) {</span>
-<span class="fc" id="L209">            this.history.add(h.clone());</span>
-<span class="fc" id="L210">        }</span>
-<span class="fc" id="L211">    }</span>
+<span class="nc" id="L207">        this.history = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        for (History h : history) {</span>
+<span class="nc" id="L209">            this.history.add(h.clone());</span>
+<span class="nc" id="L210">        }</span>
+<span class="nc" id="L211">    }</span>
 
     /**
      * Sets the name of the user.
@@ -216,8 +216,8 @@ public class User implements Serializable {
      * @param name The new name for the user.
      */
     public void setName(String name) {
-<span class="fc" id="L219">        this.name = name;</span>
-<span class="fc" id="L220">    }</span>
+<span class="nc" id="L219">        this.name = name;</span>
+<span class="nc" id="L220">    }</span>
 
     /**
      * Sets the email address of the user.
@@ -225,8 +225,8 @@ public class User implements Serializable {
      * @param email The new email address for the user.
      */
     public void setEmail(String email) {
-<span class="fc" id="L228">        this.email = email;</span>
-<span class="fc" id="L229">    }</span>
+<span class="nc" id="L228">        this.email = email;</span>
+<span class="nc" id="L229">    }</span>
 
     /**
      * Sets the physical address of the user.
@@ -234,8 +234,8 @@ public class User implements Serializable {
      * @param address The new physical address for the user.
      */
     public void setAddress(String address) {
-<span class="fc" id="L237">        this.address = address;</span>
-<span class="fc" id="L238">    }</span>
+<span class="nc" id="L237">        this.address = address;</span>
+<span class="nc" id="L238">    }</span>
 
     /**
      * Sets the password for the user's account.
@@ -243,17 +243,17 @@ public class User implements Serializable {
      * @param password The new password.
      */
     public void setPassword(String password) {
-<span class="fc" id="L246">        this.password = password;</span>
-<span class="fc" id="L247">    }</span>
+<span class="nc" id="L246">        this.password = password;</span>
+<span class="nc" id="L247">    }</span>
 
     /**
      * Adds points to the user's account based on their current subscription plan.
      * The calculation of points is delegated to the {@link SubscriptionPlan#addPoints(double)} method.
      */
     public void addPoints() {
-<span class="fc" id="L254">        double newPoints = subscriptionplan.addPoints(pontos); // Get the new points from the plan</span>
-<span class="fc" id="L255">        setPontos(newPoints);</span>
-<span class="fc" id="L256">    }</span>
+<span class="nc" id="L254">        double newPoints = subscriptionplan.addPoints(pontos); // Get the new points from the plan</span>
+<span class="nc" id="L255">        setPontos(newPoints);</span>
+<span class="nc" id="L256">    }</span>
 
     /**
      * Creates and returns a deep copy of this User object.
@@ -270,9 +270,9 @@ public class User implements Serializable {
      * @param newPlan The new {@link PremiumTop} subscription plan.
      */
     public void updatePremiumTop(PremiumTop newPlan) {
-<span class="fc" id="L273">        this.setSubscriptionPlan(newPlan);</span>
-<span class="fc" id="L274">        this.pontos += 100;</span>
-<span class="fc" id="L275">    }</span>
+<span class="nc" id="L273">        this.setSubscriptionPlan(newPlan);</span>
+<span class="nc" id="L274">        this.pontos += 100;</span>
+<span class="nc" id="L275">    }</span>
 
     /**
      * Adds a new song to the user's listening history.
@@ -281,12 +281,12 @@ public class User implements Serializable {
      * @param song The {@link Song} to add to the history. A clone of this song will be stored.
      */
     public void updateHistory(Song song) {
-<span class="fc" id="L284">        History h = new History();</span>
-<span class="fc" id="L285">        LocalDateTime time = LocalDateTime.now();</span>
-<span class="fc" id="L286">        h.setSong(song.clone());</span>
-<span class="fc" id="L287">        h.setTime(time);</span>
-<span class="fc" id="L288">        this.history.add(h);</span>
-<span class="fc" id="L289">    }</span>
+<span class="nc" id="L284">        History h = new History();</span>
+<span class="nc" id="L285">        LocalDateTime time = LocalDateTime.now();</span>
+<span class="nc" id="L286">        h.setSong(song.clone());</span>
+<span class="nc" id="L287">        h.setTime(time);</span>
+<span class="nc" id="L288">        this.history.add(h);</span>
+<span class="nc" id="L289">    }</span>
 
     /**
      * Returns a string representation of the User object.
@@ -295,7 +295,7 @@ public class User implements Serializable {
      */
     @Override
     public String toString() {
-<span class="fc" id="L298">        return &quot;User{&quot; +</span>
+<span class="nc" id="L298">        return &quot;User{&quot; +</span>
                 &quot;name='&quot; + name + '\'' +
                 &quot;, email='&quot; + email + '\'' +
                 &quot;, address='&quot; + address + '\'' +
@@ -314,10 +314,10 @@ public class User implements Serializable {
      * @return {@code true} if the given object is a User and has the same name; {@code false} otherwise.
      */
     public boolean equals(Object o) {
-<span class="fc bfc" id="L317" title="All 2 branches covered.">        if (this == o) return true;</span>
-<span class="fc bfc" id="L318" title="All 4 branches covered.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="fc" id="L319">        User user = (User) o;</span>
-<span class="fc" id="L320">        return Objects.equals(name, user.name); // Compare by name</span>
+<span class="nc bnc" id="L317" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L318" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc" id="L319">        User user = (User) o;</span>
+<span class="nc" id="L320">        return Objects.equals(name, user.name); // Compare by name</span>
     }
 
     /**
@@ -326,21 +326,21 @@ public class User implements Serializable {
      * @return The top genre as a String, or null if the history is empty or genres are not available.
      */
     public String getTopGenre() {
-<span class="fc bfc" id="L329" title="All 4 branches covered.">        if (history == null || history.isEmpty()) return null;</span>
+<span class="nc bnc" id="L329" title="All 4 branches missed.">        if (history == null || history.isEmpty()) return null;</span>
 
-<span class="fc" id="L331">        Map&lt;String, Integer&gt; genreCount = new HashMap&lt;&gt;();</span>
-<span class="fc bfc" id="L332" title="All 2 branches covered.">        for (History h : history) {</span>
-<span class="fc" id="L333">            Song song = h.getSong();</span>
-<span class="fc bfc" id="L334" title="All 4 branches covered.">            if (song != null &amp;&amp; song.getGenre() != null) {</span>
-<span class="fc" id="L335">                String genre = song.getGenre();</span>
-<span class="fc" id="L336">                genreCount.put(genre, genreCount.getOrDefault(genre, 0) + 1);</span>
+<span class="nc" id="L331">        Map&lt;String, Integer&gt; genreCount = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L332" title="All 2 branches missed.">        for (History h : history) {</span>
+<span class="nc" id="L333">            Song song = h.getSong();</span>
+<span class="nc bnc" id="L334" title="All 4 branches missed.">            if (song != null &amp;&amp; song.getGenre() != null) {</span>
+<span class="nc" id="L335">                String genre = song.getGenre();</span>
+<span class="nc" id="L336">                genreCount.put(genre, genreCount.getOrDefault(genre, 0) + 1);</span>
             }
-<span class="fc" id="L338">        }</span>
-<span class="fc" id="L339">        return genreCount.entrySet()</span>
-<span class="fc" id="L340">                .stream()</span>
-<span class="fc" id="L341">                .max(Map.Entry.comparingByValue())</span>
-<span class="fc" id="L342">                .map(Map.Entry::getKey)</span>
-<span class="fc" id="L343">                .orElse(null);</span>
+<span class="nc" id="L338">        }</span>
+<span class="nc" id="L339">        return genreCount.entrySet()</span>
+<span class="nc" id="L340">                .stream()</span>
+<span class="nc" id="L341">                .max(Map.Entry.comparingByValue())</span>
+<span class="nc" id="L342">                .map(Map.Entry::getKey)</span>
+<span class="nc" id="L343">                .orElse(null);</span>
     }
 
     /**
@@ -350,18 +350,18 @@ public class User implements Serializable {
      * @return A list of {@link Song} objects from the top genre. Returns an empty list if the top genre is null or albumMap is null.
      */
     public List&lt;Song&gt; createTopGenrePlaylist(Map&lt;String, Album&gt; albumMap) {
-<span class="fc" id="L353">        String topGenre = getTopGenre();</span>
-<span class="fc bfc" id="L354" title="All 4 branches covered.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
+<span class="nc" id="L353">        String topGenre = getTopGenre();</span>
+<span class="nc bnc" id="L354" title="All 4 branches missed.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
 
-<span class="fc" id="L356">        List&lt;Song&gt; result = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L357" title="All 2 branches covered.">        for (Album album : albumMap.values()) {</span>
-<span class="fc bfc" id="L358" title="All 2 branches covered.">            for (Song song : album.getSongs()) {</span>
-<span class="fc bfc" id="L359" title="All 2 branches covered.">                if (topGenre.equals(song.getGenre())) {</span>
-<span class="fc" id="L360">                    result.add(song);</span>
+<span class="nc" id="L356">        List&lt;Song&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L357" title="All 2 branches missed.">        for (Album album : albumMap.values()) {</span>
+<span class="nc bnc" id="L358" title="All 2 branches missed.">            for (Song song : album.getSongs()) {</span>
+<span class="nc bnc" id="L359" title="All 2 branches missed.">                if (topGenre.equals(song.getGenre())) {</span>
+<span class="nc" id="L360">                    result.add(song);</span>
                 }
-<span class="fc" id="L362">            }</span>
-<span class="fc" id="L363">        }</span>
-<span class="fc" id="L364">        return result;</span>
+<span class="nc" id="L362">            }</span>
+<span class="nc" id="L363">        }</span>
+<span class="nc" id="L364">        return result;</span>
     }
 
     /**
@@ -373,23 +373,23 @@ public class User implements Serializable {
      * @return A list of {@link Song} objects. Returns an empty list if the top genre is null or albumMap is null.
      */
     public List&lt;Song&gt; createTopGenrePlaylistWithinTime(Map&lt;String, Album&gt; albumMap, int maxTime) {
-<span class="fc" id="L376">        String topGenre = getTopGenre();</span>
-<span class="fc bfc" id="L377" title="All 4 branches covered.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
+<span class="nc" id="L376">        String topGenre = getTopGenre();</span>
+<span class="nc bnc" id="L377" title="All 4 branches missed.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
 
-<span class="fc" id="L379">        int totalTime = 0;</span>
-<span class="fc" id="L380">        List&lt;Song&gt; playlist = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L379">        int totalTime = 0;</span>
+<span class="nc" id="L380">        List&lt;Song&gt; playlist = new ArrayList&lt;&gt;();</span>
         outer:
-<span class="fc bfc" id="L382" title="All 2 branches covered.">        for (Album album : albumMap.values()) {</span>
-<span class="fc bfc" id="L383" title="All 2 branches covered.">            for (Song song : album.getSongs()) {</span>
-<span class="fc bfc" id="L384" title="All 2 branches covered.">                if (topGenre.equals(song.getGenre())) {</span>
-<span class="fc" id="L385">                    int songTime = song.getDurationInSeconds();</span>
-<span class="fc bfc" id="L386" title="All 2 branches covered.">                    if (totalTime + songTime &gt; maxTime) break outer;</span>
-<span class="fc" id="L387">                    playlist.add(song);</span>
-<span class="fc" id="L388">                    totalTime += songTime;</span>
+<span class="nc bnc" id="L382" title="All 2 branches missed.">        for (Album album : albumMap.values()) {</span>
+<span class="nc bnc" id="L383" title="All 2 branches missed.">            for (Song song : album.getSongs()) {</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">                if (topGenre.equals(song.getGenre())) {</span>
+<span class="nc" id="L385">                    int songTime = song.getDurationInSeconds();</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">                    if (totalTime + songTime &gt; maxTime) break outer;</span>
+<span class="nc" id="L387">                    playlist.add(song);</span>
+<span class="nc" id="L388">                    totalTime += songTime;</span>
                 }
-<span class="fc" id="L390">            }</span>
-<span class="fc" id="L391">        }</span>
-<span class="fc" id="L392">        return playlist;</span>
+<span class="nc" id="L390">            }</span>
+<span class="nc" id="L391">        }</span>
+<span class="nc" id="L392">        return playlist;</span>
     }
 
     /**
@@ -399,18 +399,18 @@ public class User implements Serializable {
      * @return A list of explicit {@link Song} objects from the top genre. Returns an empty list if the top genre is null or albumMap is null.
      */
     public List&lt;Song&gt; createTopGenreExplicitPlaylist(Map&lt;String, Album&gt; albumMap) {
-<span class="fc" id="L402">        String topGenre = getTopGenre();</span>
-<span class="fc bfc" id="L403" title="All 4 branches covered.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
+<span class="nc" id="L402">        String topGenre = getTopGenre();</span>
+<span class="nc bnc" id="L403" title="All 4 branches missed.">        if (topGenre == null || albumMap == null) return Collections.emptyList();</span>
 
-<span class="fc" id="L405">        List&lt;Song&gt; result = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L406" title="All 2 branches covered.">        for (Album album : albumMap.values()) {</span>
-<span class="fc bfc" id="L407" title="All 2 branches covered.">            for (Song song : album.getSongs()) {</span>
-<span class="fc bfc" id="L408" title="All 4 branches covered.">                if (topGenre.equals(song.getGenre()) &amp;&amp; song.isExplicit()) {</span>
-<span class="fc" id="L409">                    result.add(song);</span>
+<span class="nc" id="L405">        List&lt;Song&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L406" title="All 2 branches missed.">        for (Album album : albumMap.values()) {</span>
+<span class="nc bnc" id="L407" title="All 2 branches missed.">            for (Song song : album.getSongs()) {</span>
+<span class="nc bnc" id="L408" title="All 4 branches missed.">                if (topGenre.equals(song.getGenre()) &amp;&amp; song.isExplicit()) {</span>
+<span class="nc" id="L409">                    result.add(song);</span>
                 }
-<span class="fc" id="L411">            }</span>
-<span class="fc" id="L412">        }</span>
-<span class="fc" id="L413">        return result;</span>
+<span class="nc" id="L411">            }</span>
+<span class="nc" id="L412">        }</span>
+<span class="nc" id="L413">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -29,14 +29,14 @@ public class Album implements Playable, Serializable {
      * Creates an album with empty strings for title, artist, and genre,
      * sets the release year to 0, and initializes an empty song list.
      */
-<span class="fc" id="L32">    public Album() {</span>
-<span class="fc" id="L33">        this.title = &quot;&quot;;</span>
-<span class="fc" id="L34">        this.artist = &quot;&quot;;</span>
-<span class="fc" id="L35">        this.releaseYear = 0;</span>
-<span class="fc" id="L36">        this.genre = &quot;&quot;;</span>
-<span class="fc" id="L37">        this.songs = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L38">        this.currentSong = new Song();</span>
-<span class="fc" id="L39">    }</span>
+<span class="nc" id="L32">    public Album() {</span>
+<span class="nc" id="L33">        this.title = &quot;&quot;;</span>
+<span class="nc" id="L34">        this.artist = &quot;&quot;;</span>
+<span class="nc" id="L35">        this.releaseYear = 0;</span>
+<span class="nc" id="L36">        this.genre = &quot;&quot;;</span>
+<span class="nc" id="L37">        this.songs = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L38">        this.currentSong = new Song();</span>
+<span class="nc" id="L39">    }</span>
 
     /**
      * Parameterized constructor to create an album with specific attributes.
@@ -78,9 +78,9 @@ public class Album implements Playable, Serializable {
      */
     public List&lt;Song&gt; copySongs(List&lt;Song&gt; songs) {
 <span class="fc" id="L80">        List&lt;Song&gt; copy = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L81" title="All 2 branches covered.">        for (Song song : songs) {</span>
-<span class="fc" id="L82">            copy.add(song.clone());</span>
-<span class="fc" id="L83">        }</span>
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">        for (Song song : songs) {</span>
+<span class="nc" id="L82">            copy.add(song.clone());</span>
+<span class="nc" id="L83">        }</span>
 <span class="fc" id="L84">        return copy;</span>
     }
 
@@ -103,14 +103,14 @@ public class Album implements Playable, Serializable {
      */
     public void addSong(String name, String publisher, String lyrics, String musicalNotes, String genre,
                         int durationInSeconds, boolean isExplicit, boolean isMultimedia, String videoLink) {
-<span class="pc bpc" id="L106" title="1 of 4 branches missed.">        if (name == null || name.isEmpty()) {</span>
-<span class="fc" id="L107">            throw new IllegalArgumentException(&quot;Song name cannot be null or empty.&quot;);</span>
+<span class="pc bpc" id="L106" title="2 of 4 branches missed.">        if (name == null || name.isEmpty()) {</span>
+<span class="nc" id="L107">            throw new IllegalArgumentException(&quot;Song name cannot be null or empty.&quot;);</span>
         }
-<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (durationInSeconds &lt;= 0) {</span>
-<span class="fc" id="L110">            throw new IllegalArgumentException(&quot;Song duration must be positive.&quot;);</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">        if (durationInSeconds &lt;= 0) {</span>
+<span class="nc" id="L110">            throw new IllegalArgumentException(&quot;Song duration must be positive.&quot;);</span>
         }
-<span class="fc bfc" id="L112" title="All 2 branches covered.">        if (songs.stream().anyMatch(song -&gt; song.getName().equalsIgnoreCase(name))) {</span>
-<span class="fc" id="L113">            throw new IllegalArgumentException(&quot;A song with the same name already exists in the album.&quot;);</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">        if (songs.stream().anyMatch(song -&gt; song.getName().equalsIgnoreCase(name))) {</span>
+<span class="nc" id="L113">            throw new IllegalArgumentException(&quot;A song with the same name already exists in the album.&quot;);</span>
         }
 
         Song song;
@@ -130,7 +130,7 @@ public class Album implements Playable, Serializable {
      * @return true if a song was found and removed, false otherwise
      */
     public boolean deleteSong(String name) {
-<span class="fc" id="L133">        return songs.removeIf(song -&gt; song.getName().equals(name));</span>
+<span class="nc" id="L133">        return songs.removeIf(song -&gt; song.getName().equals(name));</span>
     }
 
     /**
@@ -169,10 +169,10 @@ public class Album implements Playable, Serializable {
      * Sets the current song to a random song from the album.
      */
     public void setCurrentSong() {
-<span class="fc" id="L172">        Random rand = new Random();</span>
-<span class="fc" id="L173">        int randomIndex = rand.nextInt(songs.size());</span>
-<span class="fc" id="L174">        this.currentSong = songs.get(randomIndex);</span>
-<span class="fc" id="L175">    }</span>
+<span class="nc" id="L172">        Random rand = new Random();</span>
+<span class="nc" id="L173">        int randomIndex = rand.nextInt(songs.size());</span>
+<span class="nc" id="L174">        this.currentSong = songs.get(randomIndex);</span>
+<span class="nc" id="L175">    }</span>
 
     /**
      * Sets the title of the album.
@@ -180,8 +180,8 @@ public class Album implements Playable, Serializable {
      * @param title The new album title
      */
     public void setTitle(String title) {
-<span class="fc" id="L183">        this.title = title;</span>
-<span class="fc" id="L184">    }</span>
+<span class="nc" id="L183">        this.title = title;</span>
+<span class="nc" id="L184">    }</span>
 
     /**
      * Gets the artist name.
@@ -198,8 +198,8 @@ public class Album implements Playable, Serializable {
      * @param artist The new artist or band name
      */
     public void setArtist(String artist) {
-<span class="fc" id="L201">        this.artist = artist;</span>
-<span class="fc" id="L202">    }</span>
+<span class="nc" id="L201">        this.artist = artist;</span>
+<span class="nc" id="L202">    }</span>
 
     /**
      * Sets the release year of the album.
@@ -207,8 +207,8 @@ public class Album implements Playable, Serializable {
      * @param releaseYear The year when the album was released
      */
     public void setReleaseYear(int releaseYear) {
-<span class="fc" id="L210">        this.releaseYear = releaseYear;</span>
-<span class="fc" id="L211">    }</span>
+<span class="nc" id="L210">        this.releaseYear = releaseYear;</span>
+<span class="nc" id="L211">    }</span>
 
     /**
      * Sets the genre of the album.
@@ -216,8 +216,8 @@ public class Album implements Playable, Serializable {
      * @param genre The new musical genre
      */
     public void setGenre(String genre) {
-<span class="fc" id="L219">        this.genre = genre;</span>
-<span class="fc" id="L220">    }</span>
+<span class="nc" id="L219">        this.genre = genre;</span>
+<span class="nc" id="L220">    }</span>
 
     /**
      * Gets the release year of the album.
@@ -243,7 +243,7 @@ public class Album implements Playable, Serializable {
      * @return The total duration in seconds
      */
     public int getTotalDuration() {
-<span class="fc" id="L246">        return songs.stream().mapToInt(Song::getDurationInSeconds).sum();</span>
+<span class="nc" id="L246">        return songs.stream().mapToInt(Song::getDurationInSeconds).sum();</span>
     }
 
     /**
@@ -261,8 +261,8 @@ public class Album implements Playable, Serializable {
      * @param currentSong The song to set as current
      */
     public void setCurrentSong(Song currentSong) {
-<span class="fc" id="L264">        this.currentSong = currentSong;</span>
-<span class="fc" id="L265">    }</span>
+<span class="nc" id="L264">        this.currentSong = currentSong;</span>
+<span class="nc" id="L265">    }</span>
 
     /**
      * Moves to the next song in the album, based on the user's subscription plan.
@@ -273,36 +273,36 @@ public class Album implements Playable, Serializable {
      */
     @Override
     public void next(User user) {
-<span class="fc bfc" id="L276" title="All 2 branches covered.">        if (user.getSubscriptionPlan().canBrowsePlaylist()) {</span>
-<span class="fc" id="L277">            int index = songs.indexOf(currentSong);</span>
-<span class="fc" id="L278">            int nextIndex = (index + 1) % songs.size();</span>
-<span class="fc" id="L279">            currentSong = songs.get(nextIndex);</span>
-<span class="fc" id="L280">        } else {</span>
-<span class="fc bfc" id="L281" title="All 2 branches covered.">            if (songs.size() == 1) return;</span>
-<span class="fc" id="L282">            Random rand = new Random();</span>
-<span class="fc" id="L283">            int currentIndex = songs.indexOf(currentSong);</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">        if (user.getSubscriptionPlan().canBrowsePlaylist()) {</span>
+<span class="nc" id="L277">            int index = songs.indexOf(currentSong);</span>
+<span class="nc" id="L278">            int nextIndex = (index + 1) % songs.size();</span>
+<span class="nc" id="L279">            currentSong = songs.get(nextIndex);</span>
+<span class="nc" id="L280">        } else {</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">            if (songs.size() == 1) return;</span>
+<span class="nc" id="L282">            Random rand = new Random();</span>
+<span class="nc" id="L283">            int currentIndex = songs.indexOf(currentSong);</span>
             int randomIndex;
             do {
-<span class="fc" id="L286">                randomIndex = rand.nextInt(songs.size());</span>
-<span class="fc bfc" id="L287" title="All 2 branches covered.">            } while (randomIndex == currentIndex);</span>
-<span class="fc" id="L288">            currentSong = songs.get(randomIndex);</span>
+<span class="nc" id="L286">                randomIndex = rand.nextInt(songs.size());</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            } while (randomIndex == currentIndex);</span>
+<span class="nc" id="L288">            currentSong = songs.get(randomIndex);</span>
         }
-<span class="fc" id="L290">    }</span>
+<span class="nc" id="L290">    }</span>
 
     /**
      * Selects a random song different from the current one.
      * If there's only one song on the album, no change occurs.
      */
     public void nextShuffle() {
-<span class="fc bfc" id="L297" title="All 2 branches covered.">        if (songs.size() == 1) return;</span>
-<span class="fc" id="L298">        Random rand = new Random();</span>
-<span class="fc" id="L299">        int currentIndex = songs.indexOf(currentSong);</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">        if (songs.size() == 1) return;</span>
+<span class="nc" id="L298">        Random rand = new Random();</span>
+<span class="nc" id="L299">        int currentIndex = songs.indexOf(currentSong);</span>
         int randomIndex;
         do {
-<span class="fc" id="L302">            randomIndex = rand.nextInt(songs.size());</span>
-<span class="fc bfc" id="L303" title="All 2 branches covered.">        } while (randomIndex == currentIndex);</span>
-<span class="fc" id="L304">        currentSong = songs.get(randomIndex);</span>
-<span class="fc" id="L305">    }</span>
+<span class="nc" id="L302">            randomIndex = rand.nextInt(songs.size());</span>
+<span class="nc bnc" id="L303" title="All 2 branches missed.">        } while (randomIndex == currentIndex);</span>
+<span class="nc" id="L304">        currentSong = songs.get(randomIndex);</span>
+<span class="nc" id="L305">    }</span>
 
     /**
      * Moves to the previous song on the album if the user's subscription allows it.
@@ -313,14 +313,14 @@ public class Album implements Playable, Serializable {
      */
     @Override
     public void previous(User user) throws SubscriptionDoesNotAllowException {
-<span class="fc bfc" id="L316" title="All 2 branches covered.">        if (user.getSubscriptionPlan().canBrowsePlaylist()) {</span>
-<span class="fc" id="L317">            int index = songs.indexOf(currentSong);</span>
-<span class="fc" id="L318">            int prevIndex = (index - 1 + songs.size()) % songs.size();</span>
-<span class="fc" id="L319">            currentSong = songs.get(prevIndex);</span>
-<span class="fc" id="L320">        } else {</span>
-<span class="fc" id="L321">            throw new SubscriptionDoesNotAllowException(&quot;Your subscription does not allow going back in the playlist.&quot;);</span>
+<span class="nc bnc" id="L316" title="All 2 branches missed.">        if (user.getSubscriptionPlan().canBrowsePlaylist()) {</span>
+<span class="nc" id="L317">            int index = songs.indexOf(currentSong);</span>
+<span class="nc" id="L318">            int prevIndex = (index - 1 + songs.size()) % songs.size();</span>
+<span class="nc" id="L319">            currentSong = songs.get(prevIndex);</span>
+<span class="nc" id="L320">        } else {</span>
+<span class="nc" id="L321">            throw new SubscriptionDoesNotAllowException(&quot;Your subscription does not allow going back in the playlist.&quot;);</span>
         }
-<span class="fc" id="L323">    }</span>
+<span class="nc" id="L323">    }</span>
 
     /**
      * Plays the current song, increments its play count, and updates the user's
@@ -330,10 +330,10 @@ public class Album implements Playable, Serializable {
      */
     @Override
     public void play(User user) {
-<span class="fc" id="L333">        this.currentSong.incrementTimesPlayed();</span>
-<span class="fc" id="L334">        user.addPoints();</span>
-<span class="fc" id="L335">        user.updateHistory(this.currentSong);</span>
-<span class="fc" id="L336">    }</span>
+<span class="nc" id="L333">        this.currentSong.incrementTimesPlayed();</span>
+<span class="nc" id="L334">        user.addPoints();</span>
+<span class="nc" id="L335">        user.updateHistory(this.currentSong);</span>
+<span class="nc" id="L336">    }</span>
 
     /**
      * Creates and returns a deep copy of this album.
@@ -353,7 +353,7 @@ public class Album implements Playable, Serializable {
      */
     @Override
     public String toString() {
-<span class="fc" id="L356">        return &quot;Album{&quot; +</span>
+<span class="nc" id="L356">        return &quot;Album{&quot; +</span>
                 &quot;title='&quot; + title + '\'' +
                 &quot;, artist='&quot; + artist + '\'' +
                 &quot;, releaseYear=&quot; + releaseYear +

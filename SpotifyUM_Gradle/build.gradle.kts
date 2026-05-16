@@ -35,6 +35,7 @@ sourceSets {
     val test by getting {
         java.srcDir("src/evosuite-tests")
         java.srcDir("src/hypothesis-tests")
+        resources.srcDir("src/hypothesis-tests")
     }
 }
 

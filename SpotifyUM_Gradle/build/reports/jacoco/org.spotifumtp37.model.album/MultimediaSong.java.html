@@ -30,7 +30,7 @@ public class MultimediaSong extends Song implements Serializable {
      * @return The URL or reference to the video content
      */
     public String getVideoLink() {
-<span class="fc" id="L33">        return videoLink;</span>
+<span class="nc" id="L33">        return videoLink;</span>
     }
 
     /**
@@ -39,8 +39,8 @@ public class MultimediaSong extends Song implements Serializable {
      * @param videoLink The URL or reference to the video content
      */
     public void setVideoLink(String videoLink) {
-<span class="fc" id="L42">        this.videoLink = videoLink;</span>
-<span class="fc" id="L43">    }</span>
+<span class="nc" id="L42">        this.videoLink = videoLink;</span>
+<span class="nc" id="L43">    }</span>
 
     /**
      * Parameterized constructor to create a multimedia song with specific attributes.
@@ -66,7 +66,7 @@ public class MultimediaSong extends Song implements Serializable {
      * @return {@code true} as this is a multimedia song
      */
     public boolean isMultimedia() {
-<span class="fc" id="L69">        return multimedia;</span>
+<span class="nc" id="L69">        return multimedia;</span>
     }
 
     /**
@@ -87,7 +87,7 @@ public class MultimediaSong extends Song implements Serializable {
      */
     @Override
     public String toString() {
-<span class="fc" id="L90">        return super.toString() +</span>
+<span class="nc" id="L90">        return super.toString() +</span>
                 &quot;multimedia=&quot; + multimedia +
                 &quot;, videoLink='&quot; + videoLink + '\'' +
                 '}';

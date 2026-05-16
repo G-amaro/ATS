@@ -26,19 +26,19 @@ public class History implements Serializable {
      * @param song The song that was played.
      * @param time The date and time the song was played.
      */
-<span class="fc" id="L29">    public History(Song song, LocalDateTime time) {</span>
-<span class="fc" id="L30">        this.song = song;</span>
-<span class="fc" id="L31">        this.time = time;</span>
-<span class="fc" id="L32">    }</span>
+<span class="nc" id="L29">    public History(Song song, LocalDateTime time) {</span>
+<span class="nc" id="L30">        this.song = song;</span>
+<span class="nc" id="L31">        this.time = time;</span>
+<span class="nc" id="L32">    }</span>
 
     /**
      * Default constructor for History.
      * Initializes song and time to null.
      */
-<span class="fc" id="L38">    public History() {</span>
-<span class="fc" id="L39">        this.time = null;</span>
-<span class="fc" id="L40">        this.song = null;</span>
-<span class="fc" id="L41">    }</span>
+<span class="nc" id="L38">    public History() {</span>
+<span class="nc" id="L39">        this.time = null;</span>
+<span class="nc" id="L40">        this.song = null;</span>
+<span class="nc" id="L41">    }</span>
 
     /**
      * Copy constructor for History.
@@ -47,10 +47,10 @@ public class History implements Serializable {
      *
      * @param other The History object to clone.
      */
-<span class="fc" id="L50">    public History(History other) {</span>
-<span class="fc bfc" id="L51" title="All 2 branches covered.">        this.song = other.song != null ? other.song.clone() : null;</span>
-<span class="fc" id="L52">        this.time = other.getTime();</span>
-<span class="fc" id="L53">    }</span>
+<span class="nc" id="L50">    public History(History other) {</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        this.song = other.song != null ? other.song.clone() : null;</span>
+<span class="nc" id="L52">        this.time = other.getTime();</span>
+<span class="nc" id="L53">    }</span>
 
     /**
      * Gets the time the song was played.
@@ -58,7 +58,7 @@ public class History implements Serializable {
      * @return The {@link LocalDateTime} representing when the song was played.
      */
     public LocalDateTime getTime() {
-<span class="fc" id="L61">        return this.time;</span>
+<span class="nc" id="L61">        return this.time;</span>
     }
 
     /**
@@ -67,8 +67,8 @@ public class History implements Serializable {
      * @param time The {@link LocalDateTime} to set as the playback time.
      */
     public void setTime(LocalDateTime time) {
-<span class="fc" id="L70">        this.time = time;</span>
-<span class="fc" id="L71">    }</span>
+<span class="nc" id="L70">        this.time = time;</span>
+<span class="nc" id="L71">    }</span>
 
     /**
      * Gets the song that was played.
@@ -77,7 +77,7 @@ public class History implements Serializable {
      * @return A clone of the {@link Song} object, or null if no song is set.
      */
     public Song getSong() {
-<span class="fc bfc" id="L80" title="All 2 branches covered.">        return this.song != null ? this.song.clone() : null;</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        return this.song != null ? this.song.clone() : null;</span>
     }
 
     /**
@@ -88,8 +88,8 @@ public class History implements Serializable {
      */
     public void setSong(Song song) {
         // Store the reference, not a deep copy
-<span class="fc" id="L91">        this.song = song;</span>
-<span class="fc" id="L92">    }</span>
+<span class="nc" id="L91">        this.song = song;</span>
+<span class="nc" id="L92">    }</span>
 
     /**
      * Returns a string representation of the History object.
@@ -98,7 +98,7 @@ public class History implements Serializable {
      */
     @Override
     public String toString() {
-<span class="fc" id="L101">        return &quot;History{&quot; +</span>
+<span class="nc" id="L101">        return &quot;History{&quot; +</span>
                 &quot;song=&quot; + song +
                 &quot;, time=&quot; + time +
                 '}';
@@ -113,9 +113,9 @@ public class History implements Serializable {
      */
     @Override
     public boolean equals(Object o) {
-<span class="fc bfc" id="L116" title="All 4 branches covered.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="fc" id="L117">        History history = (History) o;</span>
-<span class="fc bfc" id="L118" title="All 4 branches covered.">        return Objects.equals(song, history.song) &amp;&amp; Objects.equals(time, history.time);</span>
+<span class="nc bnc" id="L116" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc" id="L117">        History history = (History) o;</span>
+<span class="nc bnc" id="L118" title="All 4 branches missed.">        return Objects.equals(song, history.song) &amp;&amp; Objects.equals(time, history.time);</span>
     }
 
     /**
@@ -126,7 +126,7 @@ public class History implements Serializable {
      */
     @Override
     public int hashCode() {
-<span class="fc" id="L129">        return Objects.hash(song, time);</span>
+<span class="nc" id="L129">        return Objects.hash(song, time);</span>
     }
 
     /**
@@ -136,7 +136,7 @@ public class History implements Serializable {
      */
     @Override
     public History clone() {
-<span class="fc" id="L139">        return new History(this);</span>
+<span class="nc" id="L139">        return new History(this);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

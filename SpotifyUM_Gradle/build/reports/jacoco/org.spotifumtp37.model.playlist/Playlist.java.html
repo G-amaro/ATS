@@ -43,26 +43,26 @@ public class Playlist implements Serializable, Playable {
      *              the behavior of setting a current song might be problematic.
      *              Consider adding a check for an empty song list.
      */
-<span class="fc" id="L46">    public Playlist(User creator, String playlistName, String playlistDescription, int numberOfFollowers, String status, List&lt;Song&gt; songs) {</span>
-<span class="fc" id="L47">        this.creator = creator;</span>
-<span class="fc" id="L48">        this.playlistName = playlistName;</span>
-<span class="fc" id="L49">        this.playlistDescription = playlistDescription;</span>
-<span class="fc" id="L50">        this.numberOfFollowers = numberOfFollowers;</span>
-<span class="fc" id="L51">        this.status = status;</span>
-<span class="fc" id="L52">        this.songs = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (songs != null) {</span>
-<span class="fc bfc" id="L54" title="All 2 branches covered.">            for (Song song : songs) {</span>
-<span class="fc" id="L55">                this.songs.add(song.clone());</span>
-<span class="fc" id="L56">            }</span>
+<span class="nc" id="L46">    public Playlist(User creator, String playlistName, String playlistDescription, int numberOfFollowers, String status, List&lt;Song&gt; songs) {</span>
+<span class="nc" id="L47">        this.creator = creator;</span>
+<span class="nc" id="L48">        this.playlistName = playlistName;</span>
+<span class="nc" id="L49">        this.playlistDescription = playlistDescription;</span>
+<span class="nc" id="L50">        this.numberOfFollowers = numberOfFollowers;</span>
+<span class="nc" id="L51">        this.status = status;</span>
+<span class="nc" id="L52">        this.songs = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (songs != null) {</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            for (Song song : songs) {</span>
+<span class="nc" id="L55">                this.songs.add(song.clone());</span>
+<span class="nc" id="L56">            }</span>
         }
-<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (!this.songs.isEmpty()) {</span>
-<span class="fc" id="L59">            Random rand = new Random();</span>
-<span class="fc" id="L60">            int randomIndex = rand.nextInt(this.songs.size());</span>
-<span class="fc" id="L61">            this.currentSong = this.songs.get(randomIndex);</span>
-<span class="fc" id="L62">        } else {</span>
-<span class="fc" id="L63">            this.currentSong = null;</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (!this.songs.isEmpty()) {</span>
+<span class="nc" id="L59">            Random rand = new Random();</span>
+<span class="nc" id="L60">            int randomIndex = rand.nextInt(this.songs.size());</span>
+<span class="nc" id="L61">            this.currentSong = this.songs.get(randomIndex);</span>
+<span class="nc" id="L62">        } else {</span>
+<span class="nc" id="L63">            this.currentSong = null;</span>
         }
-<span class="fc" id="L65">    }</span>
+<span class="nc" id="L65">    }</span>
 
     /**
      * Copy constructor that creates a new Playlist as a deep copy of another Playlist.
@@ -71,27 +71,27 @@ public class Playlist implements Serializable, Playable {
      *
      * @param other The Playlist to copy.
      */
-<span class="fc" id="L74">    public Playlist(Playlist other) {</span>
-<span class="fc" id="L75">        this.creator = other.creator; // Assuming User is immutable or shared reference is intended</span>
-<span class="fc" id="L76">        this.playlistName = other.playlistName;</span>
-<span class="fc" id="L77">        this.playlistDescription = other.playlistDescription;</span>
-<span class="fc" id="L78">        this.numberOfFollowers = other.numberOfFollowers;</span>
-<span class="fc" id="L79">        this.status = other.status;</span>
-<span class="fc" id="L80">        this.songs = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L81" title="All 2 branches covered.">        if (other.songs != null) {</span>
-<span class="fc bfc" id="L82" title="All 2 branches covered.">            for (Song song : other.songs) {</span>
-<span class="fc" id="L83">                this.songs.add(song.clone()); // Assuming Song has a clone method</span>
-<span class="fc" id="L84">            }</span>
+<span class="nc" id="L74">    public Playlist(Playlist other) {</span>
+<span class="nc" id="L75">        this.creator = other.creator; // Assuming User is immutable or shared reference is intended</span>
+<span class="nc" id="L76">        this.playlistName = other.playlistName;</span>
+<span class="nc" id="L77">        this.playlistDescription = other.playlistDescription;</span>
+<span class="nc" id="L78">        this.numberOfFollowers = other.numberOfFollowers;</span>
+<span class="nc" id="L79">        this.status = other.status;</span>
+<span class="nc" id="L80">        this.songs = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (other.songs != null) {</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            for (Song song : other.songs) {</span>
+<span class="nc" id="L83">                this.songs.add(song.clone()); // Assuming Song has a clone method</span>
+<span class="nc" id="L84">            }</span>
         }
-<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (!this.songs.isEmpty()) {</span>
-<span class="fc" id="L87">            Random rand = new Random();</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (!this.songs.isEmpty()) {</span>
+<span class="nc" id="L87">            Random rand = new Random();</span>
             // Ensure currentSong is from the *new* list of songs
-<span class="fc" id="L89">            int randomIndex = rand.nextInt(this.songs.size());</span>
-<span class="fc" id="L90">            this.currentSong = this.songs.get(randomIndex);</span>
-<span class="fc" id="L91">        } else {</span>
-<span class="fc" id="L92">            this.currentSong = null;</span>
+<span class="nc" id="L89">            int randomIndex = rand.nextInt(this.songs.size());</span>
+<span class="nc" id="L90">            this.currentSong = this.songs.get(randomIndex);</span>
+<span class="nc" id="L91">        } else {</span>
+<span class="nc" id="L92">            this.currentSong = null;</span>
         }
-<span class="fc" id="L94">    }</span>
+<span class="nc" id="L94">    }</span>
 
     /**
      * Creates and returns a deep copy of this playlist.
@@ -101,7 +101,7 @@ public class Playlist implements Serializable, Playable {
      */
     @Override
     public Playlist clone() {
-<span class="fc" id="L104">        return new Playlist(this);</span>
+<span class="nc" id="L104">        return new Playlist(this);</span>
     }
 
     /**
@@ -117,17 +117,17 @@ public class Playlist implements Serializable, Playable {
      */
     @Override
     public boolean equals(Object obj) {
-<span class="fc bfc" id="L120" title="All 2 branches covered.">        if (this == obj) {</span>
-<span class="fc" id="L121">            return true;</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L121">            return true;</span>
         }
-<span class="fc bfc" id="L123" title="All 4 branches covered.">        if (obj == null || getClass() != obj.getClass()) {</span>
-<span class="fc" id="L124">            return false;</span>
+<span class="nc bnc" id="L123" title="All 4 branches missed.">        if (obj == null || getClass() != obj.getClass()) {</span>
+<span class="nc" id="L124">            return false;</span>
         }
-<span class="fc" id="L126">        Playlist other = (Playlist) obj;</span>
-<span class="fc bfc" id="L127" title="All 4 branches covered.">        return Objects.equals(creator, other.creator) &amp;&amp; Objects.equals(playlistName, other.playlistName)</span>
-<span class="fc bfc" id="L128" title="All 4 branches covered.">                &amp;&amp; Objects.equals(playlistDescription, other.playlistDescription) &amp;&amp; numberOfFollowers == other.numberOfFollowers</span>
-<span class="fc bfc" id="L129" title="All 4 branches covered.">                &amp;&amp; Objects.equals(status, other.status) &amp;&amp; Objects.equals(songs, other.songs) // Assumes Song.equals() is well-defined</span>
-<span class="fc bfc" id="L130" title="All 2 branches covered.">                &amp;&amp; Objects.equals(currentSong, other.currentSong); // Assumes Song.equals() is well-defined</span>
+<span class="nc" id="L126">        Playlist other = (Playlist) obj;</span>
+<span class="nc bnc" id="L127" title="All 4 branches missed.">        return Objects.equals(creator, other.creator) &amp;&amp; Objects.equals(playlistName, other.playlistName)</span>
+<span class="nc bnc" id="L128" title="All 4 branches missed.">                &amp;&amp; Objects.equals(playlistDescription, other.playlistDescription) &amp;&amp; numberOfFollowers == other.numberOfFollowers</span>
+<span class="nc bnc" id="L129" title="All 4 branches missed.">                &amp;&amp; Objects.equals(status, other.status) &amp;&amp; Objects.equals(songs, other.songs) // Assumes Song.equals() is well-defined</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                &amp;&amp; Objects.equals(currentSong, other.currentSong); // Assumes Song.equals() is well-defined</span>
     }
 
     /**
@@ -139,10 +139,10 @@ public class Playlist implements Serializable, Playable {
      */
     @Override
     public String toString() {
-<span class="fc bfc" id="L142" title="All 4 branches covered.">        return &quot;Playlist{&quot; + &quot;creator: {&quot; + (creator != null ? creator.toString() : &quot;null&quot;) + &quot;} \'&quot; + &quot;, playlistName='&quot; + playlistName + '\''</span>
+<span class="nc bnc" id="L142" title="All 4 branches missed.">        return &quot;Playlist{&quot; + &quot;creator: {&quot; + (creator != null ? creator.toString() : &quot;null&quot;) + &quot;} \'&quot; + &quot;, playlistName='&quot; + playlistName + '\''</span>
                 + &quot;, playlistDescription='&quot; + playlistDescription + '\'' + &quot;, numberOfFollowers=&quot; + numberOfFollowers
-<span class="fc bfc" id="L144" title="All 2 branches covered.">                + &quot;, status='&quot; + status + '\'' + &quot;, songs=&quot; + (songs != null ? songs.toString() : &quot;[]&quot;) + '}'</span>
-<span class="fc" id="L145">                + &quot;, currentsong: {&quot; + (currentSong != null ? currentSong.toString() : &quot;null&quot;) + &quot;}&quot;;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">                + &quot;, status='&quot; + status + '\'' + &quot;, songs=&quot; + (songs != null ? songs.toString() : &quot;[]&quot;) + '}'</span>
+<span class="nc" id="L145">                + &quot;, currentsong: {&quot; + (currentSong != null ? currentSong.toString() : &quot;null&quot;) + &quot;}&quot;;</span>
     }
 
     /**
@@ -151,7 +151,7 @@ public class Playlist implements Serializable, Playable {
      * @return The creator of the playlist.
      */
     public User getCreator() {
-<span class="fc" id="L154">        return creator;</span>
+<span class="nc" id="L154">        return creator;</span>
     }
 
     /**
@@ -160,7 +160,7 @@ public class Playlist implements Serializable, Playable {
      * @return The playlist name.
      */
     public String getPlaylistName() {
-<span class="fc" id="L163">        return playlistName;</span>
+<span class="nc" id="L163">        return playlistName;</span>
     }
 
     /**
@@ -169,7 +169,7 @@ public class Playlist implements Serializable, Playable {
      * @return The playlist description.
      */
     public String getPlaylistDescription() {
-<span class="fc" id="L172">        return playlistDescription;</span>
+<span class="nc" id="L172">        return playlistDescription;</span>
     }
 
     /**
@@ -178,7 +178,7 @@ public class Playlist implements Serializable, Playable {
      * @return The number of followers.
      */
     public int getNumberOfFollowers() {
-<span class="fc" id="L181">        return numberOfFollowers;</span>
+<span class="nc" id="L181">        return numberOfFollowers;</span>
     }
 
     /**
@@ -187,7 +187,7 @@ public class Playlist implements Serializable, Playable {
      * @return The status string.
      */
     public String getStatus() {
-<span class="fc" id="L190">        return status;</span>
+<span class="nc" id="L190">        return status;</span>
     }
 
     /**
@@ -198,13 +198,13 @@ public class Playlist implements Serializable, Playable {
      * @return A new list containing clones of the songs in this playlist.
      */
     public List&lt;Song&gt; getSongs() {
-<span class="fc" id="L201">        List&lt;Song&gt; copy = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L202" title="All 2 branches covered.">        if (this.songs != null) {</span>
-<span class="fc bfc" id="L203" title="All 2 branches covered.">            for (Song song : this.songs) {</span>
-<span class="fc" id="L204">                copy.add(song.clone()); // Assuming Song has a clone method</span>
-<span class="fc" id="L205">            }</span>
+<span class="nc" id="L201">        List&lt;Song&gt; copy = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">        if (this.songs != null) {</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            for (Song song : this.songs) {</span>
+<span class="nc" id="L204">                copy.add(song.clone()); // Assuming Song has a clone method</span>
+<span class="nc" id="L205">            }</span>
         }
-<span class="fc" id="L207">        return copy;</span>
+<span class="nc" id="L207">        return copy;</span>
     }
 
     /**
@@ -216,7 +216,7 @@ public class Playlist implements Serializable, Playable {
      * @return The current song, or {@code null} if no song is currently selected or the playlist is empty.
      */
     public Song getCurrentSong() {
-<span class="fc" id="L219">        return currentSong; // Or currentSong.clone() if a copy is preferred</span>
+<span class="nc" id="L219">        return currentSong; // Or currentSong.clone() if a copy is preferred</span>
     }
 
     /**
@@ -225,8 +225,8 @@ public class Playlist implements Serializable, Playable {
      * @param creator The new {@link User} who created the playlist.
      */
     public void setCreatorUsername(User creator) {
-<span class="fc" id="L228">        this.creator = creator;</span>
-<span class="fc" id="L229">    }</span>
+<span class="nc" id="L228">        this.creator = creator;</span>
+<span class="nc" id="L229">    }</span>
 
     /**
      * Sets the name of the playlist.
@@ -234,8 +234,8 @@ public class Playlist implements Serializable, Playable {
      * @param playlistName The new playlist name.
      */
     public void setPlaylistName(String playlistName) {
-<span class="fc" id="L237">        this.playlistName = playlistName;</span>
-<span class="fc" id="L238">    }</span>
+<span class="nc" id="L237">        this.playlistName = playlistName;</span>
+<span class="nc" id="L238">    }</span>
 
     /**
      * Sets the description of the playlist.
@@ -243,8 +243,8 @@ public class Playlist implements Serializable, Playable {
      * @param playlistDescription The new playlist description.
      */
     public void setPlaylistDescription(String playlistDescription) {
-<span class="fc" id="L246">        this.playlistDescription = playlistDescription;</span>
-<span class="fc" id="L247">    }</span>
+<span class="nc" id="L246">        this.playlistDescription = playlistDescription;</span>
+<span class="nc" id="L247">    }</span>
 
     /**
      * Sets the number of followers for this playlist.
@@ -252,8 +252,8 @@ public class Playlist implements Serializable, Playable {
      * @param numberOfFollowers The new number of followers.
      */
     public void setNumberOfFollowers(int numberOfFollowers) {
-<span class="fc" id="L255">        this.numberOfFollowers = numberOfFollowers;</span>
-<span class="fc" id="L256">    }</span>
+<span class="nc" id="L255">        this.numberOfFollowers = numberOfFollowers;</span>
+<span class="nc" id="L256">    }</span>
 
     /**
      * Sets the visibility status of the playlist.
@@ -261,8 +261,8 @@ public class Playlist implements Serializable, Playable {
      * @param status The new status (e.g., &quot;public&quot; or &quot;private&quot;).
      */
     public void setStatus(String status) {
-<span class="fc" id="L264">        this.status = status;</span>
-<span class="fc" id="L265">    }</span>
+<span class="nc" id="L264">        this.status = status;</span>
+<span class="nc" id="L265">    }</span>
 
     /**
      * Appends clones of the songs from the provided list to this playlist.
@@ -271,20 +271,20 @@ public class Playlist implements Serializable, Playable {
      */
     public void setSongs(List&lt;Song&gt; songs) {
         // CORREÇÃO: Limpa a lista antiga para substituir pelas novas músicas
-<span class="fc" id="L274">        this.songs = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L274">        this.songs = new ArrayList&lt;&gt;();</span>
 
-<span class="fc bfc" id="L276" title="All 2 branches covered.">        if (songs != null) {</span>
-<span class="fc bfc" id="L277" title="All 2 branches covered.">            for (Song song : songs) {</span>
-<span class="fc" id="L278">                this.songs.add(song.clone()); // Assuming Song has a clone method</span>
-<span class="fc" id="L279">            }</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">        if (songs != null) {</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            for (Song song : songs) {</span>
+<span class="nc" id="L278">                this.songs.add(song.clone()); // Assuming Song has a clone method</span>
+<span class="nc" id="L279">            }</span>
         }
         // Optionally, update currentSong if the list of songs changes significantly
-<span class="fc bfc" id="L282" title="All 4 branches covered.">        if (!this.songs.isEmpty() &amp;&amp; !this.songs.contains(this.currentSong)) {</span>
-<span class="fc" id="L283">            this.currentSong = this.songs.get(0); // Or a random one</span>
-<span class="fc bfc" id="L284" title="All 2 branches covered.">        } else if (this.songs.isEmpty()) {</span>
-<span class="fc" id="L285">            this.currentSong = null;</span>
+<span class="nc bnc" id="L282" title="All 4 branches missed.">        if (!this.songs.isEmpty() &amp;&amp; !this.songs.contains(this.currentSong)) {</span>
+<span class="nc" id="L283">            this.currentSong = this.songs.get(0); // Or a random one</span>
+<span class="nc bnc" id="L284" title="All 2 branches missed.">        } else if (this.songs.isEmpty()) {</span>
+<span class="nc" id="L285">            this.currentSong = null;</span>
         }
-<span class="fc" id="L287">    }</span>
+<span class="nc" id="L287">    }</span>
     /**
      * Sets the currently selected song in the playlist.
      * The provided song should ideally be one of the songs already in the playlist.
@@ -293,8 +293,8 @@ public class Playlist implements Serializable, Playable {
      */
     public void setCurrentSong(Song currentSong) {
         // Consider adding a check to ensure currentSong is part of this.songs
-<span class="fc" id="L296">        this.currentSong = currentSong;</span>
-<span class="fc" id="L297">    }</span>
+<span class="nc" id="L296">        this.currentSong = currentSong;</span>
+<span class="nc" id="L297">    }</span>
 
     /**
      * Checks if the playlist is private. Comparison is case-insensitive.
@@ -302,7 +302,7 @@ public class Playlist implements Serializable, Playable {
      * @return {@code true} if the playlist status is &quot;private&quot;, {@code false} otherwise.
      */
     public boolean isPrivate() {
-<span class="fc" id="L305">        return &quot;private&quot;.equalsIgnoreCase(status);</span>
+<span class="nc" id="L305">        return &quot;private&quot;.equalsIgnoreCase(status);</span>
     }
 
     /**
@@ -311,7 +311,7 @@ public class Playlist implements Serializable, Playable {
      * @return {@code true} if the playlist status is &quot;public&quot;, {@code false} otherwise.
      */
     public boolean isPublic() {
-<span class="fc" id="L314">        return &quot;public&quot;.equalsIgnoreCase(status);</span>
+<span class="nc" id="L314">        return &quot;public&quot;.equalsIgnoreCase(status);</span>
     }
 
     /**
@@ -324,12 +324,12 @@ public class Playlist implements Serializable, Playable {
      */
     @Override
     public void play(User user) {
-<span class="fc bfc" id="L327" title="All 4 branches covered.">        if (this.currentSong != null &amp;&amp; user != null) {</span>
-<span class="fc" id="L328">            this.currentSong.incrementTimesPlayed();</span>
-<span class="fc" id="L329">            user.addPoints();</span>
-<span class="fc" id="L330">            user.updateHistory(this.currentSong);</span>
+<span class="nc bnc" id="L327" title="All 4 branches missed.">        if (this.currentSong != null &amp;&amp; user != null) {</span>
+<span class="nc" id="L328">            this.currentSong.incrementTimesPlayed();</span>
+<span class="nc" id="L329">            user.addPoints();</span>
+<span class="nc" id="L330">            user.updateHistory(this.currentSong);</span>
         }
-<span class="fc" id="L332">    }</span>
+<span class="nc" id="L332">    }</span>
 
     /**
      * Moves to the next song in the playlist.
@@ -346,31 +346,31 @@ public class Playlist implements Serializable, Playable {
      */
     @Override
     public void next(User user) {
-<span class="pc bpc" id="L349" title="1 of 8 branches missed.">        if (songs == null || songs.isEmpty() || user == null || user.getSubscriptionPlan() == null) {</span>
-<span class="fc" id="L350">            return;</span>
+<span class="nc bnc" id="L349" title="All 8 branches missed.">        if (songs == null || songs.isEmpty() || user == null || user.getSubscriptionPlan() == null) {</span>
+<span class="nc" id="L350">            return;</span>
         }
 
-<span class="fc bfc" id="L353" title="All 2 branches covered.">        if (user.getSubscriptionPlan().canBrowsePlaylist()) {</span>
-<span class="fc" id="L354">            int index = songs.indexOf(currentSong);</span>
-<span class="fc bfc" id="L355" title="All 2 branches covered.">            if (index != -1) { // currentSong is in the list</span>
-<span class="fc" id="L356">                int nextIndex = (index + 1) % songs.size();</span>
-<span class="fc" id="L357">                currentSong = songs.get(nextIndex);</span>
-<span class="fc bfc" id="L358" title="All 2 branches covered.">            } else if (!songs.isEmpty()) { // currentSong was not in list, pick first</span>
-<span class="fc" id="L359">                 currentSong = songs.get(0);</span>
+<span class="nc bnc" id="L353" title="All 2 branches missed.">        if (user.getSubscriptionPlan().canBrowsePlaylist()) {</span>
+<span class="nc" id="L354">            int index = songs.indexOf(currentSong);</span>
+<span class="nc bnc" id="L355" title="All 2 branches missed.">            if (index != -1) { // currentSong is in the list</span>
+<span class="nc" id="L356">                int nextIndex = (index + 1) % songs.size();</span>
+<span class="nc" id="L357">                currentSong = songs.get(nextIndex);</span>
+<span class="nc bnc" id="L358" title="All 2 branches missed.">            } else if (!songs.isEmpty()) { // currentSong was not in list, pick first</span>
+<span class="nc" id="L359">                 currentSong = songs.get(0);</span>
             }
-<span class="fc" id="L361">        } else {</span>
-<span class="fc bfc" id="L362" title="All 2 branches covered.">            if (songs.size() &lt;= 1) { // Only one song or empty, no change or handled by initial check</span>
-<span class="fc" id="L363">                return;</span>
+<span class="nc" id="L361">        } else {</span>
+<span class="nc bnc" id="L362" title="All 2 branches missed.">            if (songs.size() &lt;= 1) { // Only one song or empty, no change or handled by initial check</span>
+<span class="nc" id="L363">                return;</span>
             }
-<span class="fc" id="L365">            Random rand = new Random();</span>
-<span class="fc" id="L366">            int currentIndex = songs.indexOf(currentSong);</span>
+<span class="nc" id="L365">            Random rand = new Random();</span>
+<span class="nc" id="L366">            int currentIndex = songs.indexOf(currentSong);</span>
             int randomIndex;
             do {
-<span class="fc" id="L369">                randomIndex = rand.nextInt(songs.size());</span>
-<span class="pc bpc" id="L370" title="3 of 4 branches missed.">            } while (randomIndex == currentIndex &amp;&amp; songs.size() &gt; 1); // ensure different if possible</span>
-<span class="fc" id="L371">            currentSong = songs.get(randomIndex);</span>
+<span class="nc" id="L369">                randomIndex = rand.nextInt(songs.size());</span>
+<span class="nc bnc" id="L370" title="All 4 branches missed.">            } while (randomIndex == currentIndex &amp;&amp; songs.size() &gt; 1); // ensure different if possible</span>
+<span class="nc" id="L371">            currentSong = songs.get(randomIndex);</span>
         }
-<span class="fc" id="L373">    }</span>
+<span class="nc" id="L373">    }</span>
 
     /**
      * Selects a new random song from the playlist, ensuring it's different from the current song
@@ -379,21 +379,21 @@ public class Playlist implements Serializable, Playable {
      * Does nothing if the playlist is empty.
      */
     public void nextShuffle() {
-<span class="pc bpc" id="L382" title="1 of 4 branches missed.">        if (songs == null || songs.isEmpty()) {</span>
-<span class="fc" id="L383">            return;</span>
+<span class="nc bnc" id="L382" title="All 4 branches missed.">        if (songs == null || songs.isEmpty()) {</span>
+<span class="nc" id="L383">            return;</span>
         }
-<span class="fc bfc" id="L385" title="All 2 branches covered.">        if (songs.size() == 1) {</span>
-<span class="fc" id="L386">            currentSong = songs.get(0); // Ensure current song is set if it was null</span>
-<span class="fc" id="L387">            return;</span>
+<span class="nc bnc" id="L385" title="All 2 branches missed.">        if (songs.size() == 1) {</span>
+<span class="nc" id="L386">            currentSong = songs.get(0); // Ensure current song is set if it was null</span>
+<span class="nc" id="L387">            return;</span>
         }
-<span class="fc" id="L389">        Random rand = new Random();</span>
-<span class="fc" id="L390">        int currentIndex = songs.indexOf(currentSong);</span>
+<span class="nc" id="L389">        Random rand = new Random();</span>
+<span class="nc" id="L390">        int currentIndex = songs.indexOf(currentSong);</span>
         int randomIndex;
         do {
-<span class="fc" id="L393">            randomIndex = rand.nextInt(songs.size());</span>
-<span class="fc bfc" id="L394" title="All 4 branches covered.">        } while (randomIndex == currentIndex &amp;&amp; songs.size() &gt; 1); // ensure different if possible</span>
-<span class="fc" id="L395">        currentSong = songs.get(randomIndex);</span>
-<span class="fc" id="L396">    }</span>
+<span class="nc" id="L393">            randomIndex = rand.nextInt(songs.size());</span>
+<span class="nc bnc" id="L394" title="All 4 branches missed.">        } while (randomIndex == currentIndex &amp;&amp; songs.size() &gt; 1); // ensure different if possible</span>
+<span class="nc" id="L395">        currentSong = songs.get(randomIndex);</span>
+<span class="nc" id="L396">    }</span>
 
     /**
      * Moves to the previous song in the playlist.
@@ -409,22 +409,22 @@ public class Playlist implements Serializable, Playable {
      */
     @Override
     public void previous(User user) throws SubscriptionDoesNotAllowException {
-<span class="pc bpc" id="L412" title="1 of 8 branches missed.">        if (songs == null || songs.isEmpty() || user == null || user.getSubscriptionPlan() == null) {</span>
-<span class="fc" id="L413">            return;</span>
+<span class="nc bnc" id="L412" title="All 8 branches missed.">        if (songs == null || songs.isEmpty() || user == null || user.getSubscriptionPlan() == null) {</span>
+<span class="nc" id="L413">            return;</span>
         }
 
-<span class="fc bfc" id="L416" title="All 2 branches covered.">        if (user.getSubscriptionPlan().canBrowsePlaylist()) {</span>
-<span class="fc" id="L417">            int index = songs.indexOf(currentSong);</span>
-<span class="fc bfc" id="L418" title="All 2 branches covered.">            if (index != -1) { // currentSong is in the list</span>
-<span class="fc" id="L419">                int prevIndex = (index - 1 + songs.size()) % songs.size();</span>
-<span class="fc" id="L420">                currentSong = songs.get(prevIndex);</span>
-<span class="fc bfc" id="L421" title="All 2 branches covered.">            } else if (!songs.isEmpty()) { // currentSong was not in list, pick last</span>
-<span class="fc" id="L422">                 currentSong = songs.get(songs.size() - 1);</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">        if (user.getSubscriptionPlan().canBrowsePlaylist()) {</span>
+<span class="nc" id="L417">            int index = songs.indexOf(currentSong);</span>
+<span class="nc bnc" id="L418" title="All 2 branches missed.">            if (index != -1) { // currentSong is in the list</span>
+<span class="nc" id="L419">                int prevIndex = (index - 1 + songs.size()) % songs.size();</span>
+<span class="nc" id="L420">                currentSong = songs.get(prevIndex);</span>
+<span class="nc bnc" id="L421" title="All 2 branches missed.">            } else if (!songs.isEmpty()) { // currentSong was not in list, pick last</span>
+<span class="nc" id="L422">                 currentSong = songs.get(songs.size() - 1);</span>
             }
-<span class="fc" id="L424">        } else {</span>
-<span class="fc" id="L425">            throw new SubscriptionDoesNotAllowException(&quot;Your subscription does not allow going back in the playlist.&quot;);</span>
+<span class="nc" id="L424">        } else {</span>
+<span class="nc" id="L425">            throw new SubscriptionDoesNotAllowException(&quot;Your subscription does not allow going back in the playlist.&quot;);</span>
         }
-<span class="fc" id="L427">    }</span>
+<span class="nc" id="L427">    }</span>
 
     /**
      * Adds a song to the playlist.
@@ -441,24 +441,24 @@ public class Playlist implements Serializable, Playable {
      * @throws NullPointerException if the song to add is null.
      */
     public void addSong(Song song) throws SubscriptionDoesNotAllowException {
-<span class="fc" id="L444">        Objects.requireNonNull(song, &quot;Cannot add a null song to the playlist.&quot;);</span>
-<span class="fc bfc" id="L445" title="All 4 branches covered.">        if (creator == null || creator.getSubscriptionPlan() == null) {</span>
-<span class="fc" id="L446">             throw new IllegalStateException(&quot;Playlist creator or subscription plan is not properly initialized.&quot;);</span>
+<span class="nc" id="L444">        Objects.requireNonNull(song, &quot;Cannot add a null song to the playlist.&quot;);</span>
+<span class="nc bnc" id="L445" title="All 4 branches missed.">        if (creator == null || creator.getSubscriptionPlan() == null) {</span>
+<span class="nc" id="L446">             throw new IllegalStateException(&quot;Playlist creator or subscription plan is not properly initialized.&quot;);</span>
         }
 
-<span class="fc bfc" id="L449" title="All 2 branches covered.">        if (creator.getSubscriptionPlan().canCreatePlaylist()) {</span>
-<span class="fc bfc" id="L450" title="All 2 branches covered.">            if (!songs.contains(song)) { // Relies on Song.equals()</span>
-<span class="fc" id="L451">                songs.add(song.clone()); // Assuming Song has a clone method</span>
-<span class="pc bpc" id="L452" title="1 of 4 branches missed.">                if (currentSong == null &amp;&amp; songs.size() == 1) { // If playlist was empty, set current song</span>
-<span class="fc" id="L453">                    currentSong = songs.get(0);</span>
+<span class="nc bnc" id="L449" title="All 2 branches missed.">        if (creator.getSubscriptionPlan().canCreatePlaylist()) {</span>
+<span class="nc bnc" id="L450" title="All 2 branches missed.">            if (!songs.contains(song)) { // Relies on Song.equals()</span>
+<span class="nc" id="L451">                songs.add(song.clone()); // Assuming Song has a clone method</span>
+<span class="nc bnc" id="L452" title="All 4 branches missed.">                if (currentSong == null &amp;&amp; songs.size() == 1) { // If playlist was empty, set current song</span>
+<span class="nc" id="L453">                    currentSong = songs.get(0);</span>
                 }
             } else {
-<span class="fc" id="L456">                throw new UnsupportedOperationException(&quot;This song is already in the playlist.&quot;);</span>
+<span class="nc" id="L456">                throw new UnsupportedOperationException(&quot;This song is already in the playlist.&quot;);</span>
             }
         } else {
-<span class="fc" id="L459">            throw new SubscriptionDoesNotAllowException(&quot;Your subscription does not allow adding songs to the playlist.&quot;);</span>
+<span class="nc" id="L459">            throw new SubscriptionDoesNotAllowException(&quot;Your subscription does not allow adding songs to the playlist.&quot;);</span>
         }
-<span class="fc" id="L461">    }</span>
+<span class="nc" id="L461">    }</span>
 
     /**
      * Deletes a song from the playlist.
@@ -476,24 +476,24 @@ public class Playlist implements Serializable, Playable {
      * @throws NullPointerException if the song to delete is null.
      */
     public void deleteSong(Song song) throws SubscriptionDoesNotAllowException {
-<span class="fc" id="L479">        Objects.requireNonNull(song, &quot;Cannot delete a null song from the playlist.&quot;);</span>
-<span class="fc bfc" id="L480" title="All 4 branches covered.">        if (creator == null || creator.getSubscriptionPlan() == null) {</span>
-<span class="fc" id="L481">             throw new IllegalStateException(&quot;Playlist creator or subscription plan is not properly initialized.&quot;);</span>
+<span class="nc" id="L479">        Objects.requireNonNull(song, &quot;Cannot delete a null song from the playlist.&quot;);</span>
+<span class="nc bnc" id="L480" title="All 4 branches missed.">        if (creator == null || creator.getSubscriptionPlan() == null) {</span>
+<span class="nc" id="L481">             throw new IllegalStateException(&quot;Playlist creator or subscription plan is not properly initialized.&quot;);</span>
         }
 
-<span class="fc bfc" id="L484" title="All 2 branches covered.">        if (creator.getSubscriptionPlan().canCreatePlaylist()) {</span>
-<span class="fc" id="L485">            boolean removed = songs.remove(song); // Relies on Song.equals()</span>
-<span class="fc bfc" id="L486" title="All 2 branches covered.">            if (removed) {</span>
-<span class="fc bfc" id="L487" title="All 2 branches covered.">                if (Objects.equals(currentSong, song)) {</span>
-<span class="fc bfc" id="L488" title="All 2 branches covered.">                    currentSong = songs.isEmpty() ? null : songs.get(0); // Or a random one</span>
+<span class="nc bnc" id="L484" title="All 2 branches missed.">        if (creator.getSubscriptionPlan().canCreatePlaylist()) {</span>
+<span class="nc" id="L485">            boolean removed = songs.remove(song); // Relies on Song.equals()</span>
+<span class="nc bnc" id="L486" title="All 2 branches missed.">            if (removed) {</span>
+<span class="nc bnc" id="L487" title="All 2 branches missed.">                if (Objects.equals(currentSong, song)) {</span>
+<span class="nc bnc" id="L488" title="All 2 branches missed.">                    currentSong = songs.isEmpty() ? null : songs.get(0); // Or a random one</span>
                 }
             } else {
-<span class="fc" id="L491">                throw new UnsupportedOperationException(&quot;This song is not in the playlist.&quot;);</span>
+<span class="nc" id="L491">                throw new UnsupportedOperationException(&quot;This song is not in the playlist.&quot;);</span>
             }
-<span class="fc" id="L493">        } else {</span>
-<span class="fc" id="L494">            throw new SubscriptionDoesNotAllowException(&quot;Your subscription does not allow deleting songs from the playlist.&quot;);</span>
+<span class="nc" id="L493">        } else {</span>
+<span class="nc" id="L494">            throw new SubscriptionDoesNotAllowException(&quot;Your subscription does not allow deleting songs from the playlist.&quot;);</span>
         }
-<span class="fc" id="L496">    }</span>
+<span class="nc" id="L496">    }</span>
 
 
 }

@@ -6,22 +6,22 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-<span class="fc" id="L9">public class LocalDateTimeAdapter</span>
+<span class="nc" id="L9">public class LocalDateTimeAdapter</span>
         implements JsonSerializer&lt;LocalDateTime&gt;, JsonDeserializer&lt;LocalDateTime&gt; {
 
     // Choose your format (ISO is a good default)
-<span class="fc" id="L13">    private static final DateTimeFormatter FORMATTER =</span>
+<span class="nc" id="L13">    private static final DateTimeFormatter FORMATTER =</span>
             DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     @Override
     public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext ctx) {
-<span class="fc" id="L18">        return new JsonPrimitive(src.format(FORMATTER));</span>
+<span class="nc" id="L18">        return new JsonPrimitive(src.format(FORMATTER));</span>
     }
 
     @Override
     public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext ctx)
             throws JsonParseException {
-<span class="fc" id="L24">        return LocalDateTime.parse(json.getAsString(), FORMATTER);</span>
+<span class="nc" id="L24">        return LocalDateTime.parse(json.getAsString(), FORMATTER);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
