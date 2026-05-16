@@ -5,6 +5,7 @@ plugins {
     id("java")
     id("application")
     id("jacoco")
+    id("info.solidsoft.pitest") version "1.9.0"
 }
 
 group = "org.spotifumtp37"
@@ -25,13 +26,15 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(files("lib/evosuite/evosuite-standalone-runtime-1.0.6.jar"))
     testImplementation("junit:junit:4.12")
-    testImplementation("org.mockito:mockito-core:5.+")
-    testImplementation("org.mockito:mockito-junit-jupiter:5.+")
+    testImplementation("org.mockito:mockito-core:4.11.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:4.11.0")
+    testImplementation("net.jqwik:jqwik:1.8.2")
 }
 
 sourceSets {
     val test by getting {
         java.srcDir("src/evosuite-tests")
+        java.srcDir("src/hypothesis-tests")
     }
 }
 
@@ -47,7 +50,6 @@ application {
 tasks.test {
     useJUnitPlatform()
 
-    // 1. Excluir os testes gerados pelo EvoSuite (que terminam em _ESTest) da task normal de testes
     exclude("**/*_ESTest*")
 
     testLogging {
@@ -55,14 +57,12 @@ tasks.test {
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
     }
 
-    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+    finalizedBy(tasks.jacocoTestReport) 
 }
 
 tasks.jacocoTestReport {
-    // 2. Remover a dependência da task testEvoSuite
     dependsOn(tasks.test)
 
-    // 3. (Opcional mas recomendado) Garantir que o JaCoCo lê apenas a execução dos testes normais
     executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/test.exec"))
 
     reports {
@@ -125,7 +125,6 @@ tasks.register<EvoSuiteGenerateAllTask>("evosuiteGenerateAll") {
     dependsOn("compileJava")
 }
 
-// EvoSuite tests often use JUnit 4
 tasks.withType<Test> {
     if (name != "test" && name != "testEvoSuite") {
         useJUnit()
@@ -135,4 +134,26 @@ tasks.withType<Test> {
 tasks.named<JavaExec>("run") {
     standardInput = System.`in`
     jvmArgs = listOf("-Dfile.encoding=UTF-8")
+}
+
+pitest {
+    junit5PluginVersion.set("1.2.1") 
+    targetClasses.set(setOf("org.spotifumtp37.*")) 
+    excludedTestClasses.set(setOf("*ESTest*")) 
+    threads.set(4)
+    outputFormats.set(setOf("HTML"))
+    excludedClasses.set(setOf("org.spotifumtp37.delegate.*"))
+    timestampedReports.set(false)
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
 }
